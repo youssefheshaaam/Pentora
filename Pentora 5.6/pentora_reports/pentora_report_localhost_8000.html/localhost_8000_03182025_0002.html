@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pentora scan report</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/kube.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+</head>
+<body>
+    <div id="page">
+        <header style="text-align: center">
+        <h2 class="title" style="text-align: center">Pentora vulnerability report</h2>
+        <h3>Target: http://localhost:8000/vulnerabilities/ldap/</h3>
+        <p>Date of the scan: Tue, 18 Mar 2025 00:02:01 +0000. Scope of the scan: folder. Crawled pages: 9</p>
+        </header>
+        <hr />
+
+        <h4>Summary</h4>
+        <table class="width-100 hovered" style="background: url('Pentora_logo.png') no-repeat center;">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Number of vulnerabilities found</th>
+                </tr>
+            </thead>
+            <tbody id="summary">
+                    <tr>
+                        <td class="small">
+                            Backup file
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Weak credentials
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            CRLF Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Content Security Policy Configuration
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Cross Site Request Forgery
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Potentially dangerous file
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Command execution
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Path Traversal
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web application framework
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web server
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTML Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Clickjacking Protection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTTP Strict Transport Security (HSTS)
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            MIME Type Confusion
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HttpOnly Flag cookie
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            <a href="#vuln_type_15">LDAP Injection</a>
+                        </td>
+                        <td class="small .text-centered">17</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Open Redirect
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Reflected Cross Site Scripting
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Secure Flag cookie
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            SQL Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stored HTML Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stored Cross Site Scripting
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Blind SQL Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Unrestricted File Upload
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Vulnerable software
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            XML External Entity
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Internal Server Error
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Resource consumption
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Review Webserver Metafiles for Information Leakage
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web technology
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTTP Methods
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+            </tbody>
+        </table>
+        <hr />
+        <div id="details">
+                <h3 id="vuln_type_15">LDAP Injection</h3>
+                <dl>
+                    <dt>Description</dt>
+                    <dd>LDAP Injection is an attack used to exploit web based applications that construct LDAP statements based on user input. When an application fails to properly sanitize user input, it’s possible to modify LDAP statements using a local proxy. This could result in the execution of arbitrary commands such as granting permissions to unauthorized queries.</dd>
+                    <dt>CVSS Score</dt>
+                    <dd>
+                        <span class="cvss-score high">7.5</span>
+                        <span class="cvss-severity">High</span>
+                        <span class="cvss-vector">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</span>
+                    </dd>
+                </dl>
+
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-0-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-0-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-0-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-0-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter ldap_query</pre>
+                        </section>
+                        <section id="tab-vuln-15-0-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /vulnerabilities/ldap/?ldap_query=%2A%29%29%00nosuchvalue HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-0-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-1-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-1-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-1-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-1-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter search</pre>
+                        </section>
+                        <section id="tab-vuln-15-1-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /vulnerabilities/ldap/index.php?search=%2A%29%29%00nosuchvalue HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-1-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-2-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-2-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-2-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-2-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter ldap_query</pre>
+                        </section>
+                        <section id="tab-vuln-15-2-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /vulnerabilities/ldap/index.php?ldap_query=%2A%29%29%00nosuchvalue HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-2-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-3-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-3-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-3-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-3-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter username</pre>
+                        </section>
+                        <section id="tab-vuln-15-3-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/ HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/
+                                    <br>
+                                    content-length: 57
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=%2A%29%29%00nosuchvalue&amp;password=Letm3in_&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-3-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-4-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-4-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-4-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-4-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter password</pre>
+                        </section>
+                        <section id="tab-vuln-15-4-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/ HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/
+                                    <br>
+                                    content-length: 54
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=%2A%29%29%00nosuchvalue&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-4-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-5-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-5-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-5-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-5-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter login</pre>
+                        </section>
+                        <section id="tab-vuln-15-5-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/ HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/
+                                    <br>
+                                    content-length: 62
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=Letm3in_&amp;login=%2A%29%29%00nosuchvalue
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-5-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-6-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-6-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-6-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-6-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter ldap_query</pre>
+                        </section>
+                        <section id="tab-vuln-15-6-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/?ldap_query=%2A%29%29%00nosuchvalue HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/?ldap_query=default
+                                    <br>
+                                    content-length: 39
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=Letm3in_&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-6-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-7-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-7-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-7-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-7-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter username</pre>
+                        </section>
+                        <section id="tab-vuln-15-7-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/?ldap_query=default HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/?ldap_query=default
+                                    <br>
+                                    content-length: 57
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=%2A%29%29%00nosuchvalue&amp;password=Letm3in_&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-7-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-8-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-8-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-8-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-8-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter password</pre>
+                        </section>
+                        <section id="tab-vuln-15-8-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/?ldap_query=default HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/?ldap_query=default
+                                    <br>
+                                    content-length: 54
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=%2A%29%29%00nosuchvalue&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-8-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-9-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-9-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-9-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-9-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter login</pre>
+                        </section>
+                        <section id="tab-vuln-15-9-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/?ldap_query=default HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/?ldap_query=default
+                                    <br>
+                                    content-length: 62
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=Letm3in_&amp;login=%2A%29%29%00nosuchvalue
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-9-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-10-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-10-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-10-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-10-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter search</pre>
+                        </section>
+                        <section id="tab-vuln-15-10-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/index.php?search=%2A%29%29%00nosuchvalue HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/index.php?search=default
+                                    <br>
+                                    content-length: 39
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=Letm3in_&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-10-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-11-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-11-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-11-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-11-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter username</pre>
+                        </section>
+                        <section id="tab-vuln-15-11-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/index.php?search=default HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/index.php?search=default
+                                    <br>
+                                    content-length: 57
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=%2A%29%29%00nosuchvalue&amp;password=Letm3in_&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-11-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-12-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-12-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-12-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-12-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter password</pre>
+                        </section>
+                        <section id="tab-vuln-15-12-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/index.php?search=default HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/index.php?search=default
+                                    <br>
+                                    content-length: 54
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=%2A%29%29%00nosuchvalue&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-12-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-13-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-13-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-13-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-13-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter login</pre>
+                        </section>
+                        <section id="tab-vuln-15-13-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/index.php?search=default HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/index.php?search=default
+                                    <br>
+                                    content-length: 62
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=Letm3in_&amp;login=%2A%29%29%00nosuchvalue
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-13-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-14-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-14-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-14-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-14-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter username</pre>
+                        </section>
+                        <section id="tab-vuln-15-14-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/index.php HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/index.php
+                                    <br>
+                                    content-length: 57
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=%2A%29%29%00nosuchvalue&amp;password=Letm3in_&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-14-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-15-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-15-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-15-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-15-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter password</pre>
+                        </section>
+                        <section id="tab-vuln-15-15-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/index.php HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/index.php
+                                    <br>
+                                    content-length: 54
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=%2A%29%29%00nosuchvalue&amp;login=
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-15-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+                        <h4>🔴 Vulnerability found in /vulnerabilities/ldap/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-15-16-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-15-16-2">HTTP Request</a>
+                            <a href="#tab-vuln-15-16-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-15-16-1" style="min-height: 124px;">
+                            <pre>Potential LDAP injection via injection in the parameter login</pre>
+                        </section>
+                        <section id="tab-vuln-15-16-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /vulnerabilities/ldap/index.php HTTP/1.1
+                                    <br>
+                                    host: localhost:8000
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://localhost:8000/vulnerabilities/ldap/index.php
+                                    <br>
+                                    content-length: 62
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=alice&amp;password=Letm3in_&amp;login=%2A%29%29%00nosuchvalue
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-15-16-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-06&#39;]</pre>
+                        </section>
+
+                <dl><dt>Solutions</dt><dd>To protect against XPATH injection, Escape all variables using the right LDAP encoding function. Use Frameworks that Automatically Protect from LDAP Injection.</dd></dl>
+                <h5>References</h5>
+                <ul>
+                    <li><a href="https://owasp.org/www-community/attacks/LDAP_Injection">LDAP Injection</a></li>
+                    <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/LDAP_Injection_Prevention_Cheat_Sheet.html">LDAP Injection Prevention Cheat Sheet</a></li>
+                    <li><a href="https://cwe.mitre.org/data/definitions/90.html">CWE-90: Improper Neutralization of Special Elements used in an LDAP Query (&#39;LDAP Injection&#39;)</a></li>
+                </ul>
+                <br />
+                <hr>
+        </div>
+        <footer class="small" id="footer"><a href="#" id="pentora_link">Pentora 1.0.0</a> &copy; Pentora Team 2025</footer>
+	</div>
+    <script type="text/javascript" src="js/kube.min.js"></script>
+    <script>$K.init();</script>
+</body>
+</html>

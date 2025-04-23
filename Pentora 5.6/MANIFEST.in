@@ -1,0 +1,8 @@
+include README.rst
+include INSTALL.md
+include LICENSE
+include VERSION
+
+recursive-include PentoraCore/data *
+recursive-include PentoraCore/report_template *
+recursive-include doc *

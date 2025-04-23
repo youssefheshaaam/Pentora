@@ -1,0 +1,84 @@
+/* =Typography
+-----------------------------------------------------------------------------*/
+
+/* =Links
+-----------------------------------------------------------------------------*/
+
+/* =Layout
+-----------------------------------------------------------------------------*/
+#page {
+	max-width: 940px;
+	padding: 0 10px;
+	margin: 24px auto;
+}
+
+/* =Header
+-----------------------------------------------------------------------------*/
+
+/* =Nav
+-----------------------------------------------------------------------------*/
+
+/* =Misc
+-----------------------------------------------------------------------------*/
+
+/* =Footer
+-----------------------------------------------------------------------------*/
+
+/* =Background Logo
+-----------------------------------------------------------------------------*/
+table.width-100.hovered {
+    background-size: contain !important;
+    background-blend-mode: lighten !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* =CVSS Scoring
+-----------------------------------------------------------------------------*/
+.cvss-score {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: bold;
+    color: white;
+    margin-right: 10px;
+}
+
+.cvss-score-label {
+    display: inline-block;
+    font-size: 0.9em;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+.cvss-severity {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.cvss-vector {
+    display: inline-block;
+    font-family: monospace;
+    background-color: #f5f5f5;
+    padding: 2px 4px;
+    border-radius: 2px;
+    font-size: 0.9em;
+}
+
+/* CVSS Score color coding */
+.critical {
+    background-color: #cc0500;
+}
+
+.high {
+    background-color: #df3d03;
+}
+
+.medium {
+    background-color: #f9a009;
+}
+
+.low {
+    background-color: #ffcb0d;
+    color: #333;
+}

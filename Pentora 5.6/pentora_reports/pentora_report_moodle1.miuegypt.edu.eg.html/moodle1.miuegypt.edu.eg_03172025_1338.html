@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pentora scan report</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/kube.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/master.css" />
+</head>
+<body>
+    <div id="page">
+        <header style="text-align: center">
+        <h2 class="title" style="text-align: center">Pentora vulnerability report</h2>
+        <h3>Target: https://moodle1.miuegypt.edu.eg/</h3>
+        <p>Date of the scan: Mon, 17 Mar 2025 13:38:20 +0000. Scope of the scan: folder. Crawled pages: 59</p>
+        </header>
+        <hr />
+
+        <h4>Summary</h4>
+        <table class="width-100 hovered" style="background: url('Pentora_logo.png') no-repeat center;">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Number of vulnerabilities found</th>
+                </tr>
+            </thead>
+            <tbody id="summary">
+                    <tr>
+                        <td class="small">
+                            Backup file
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Weak credentials
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            CRLF Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Content Security Policy Configuration
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Cross Site Request Forgery
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Potentially dangerous file
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            <a href="#vuln_type_6">Command execution</a>
+                        </td>
+                        <td class="small .text-centered">40</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Path Traversal
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web application framework
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web server
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTML Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Clickjacking Protection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTTP Strict Transport Security (HSTS)
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            MIME Type Confusion
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HttpOnly Flag cookie
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            LDAP Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Open Redirect
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Reflected Cross Site Scripting
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Secure Flag cookie
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            SQL Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stored HTML Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Stored Cross Site Scripting
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Blind SQL Injection
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Unrestricted File Upload
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Vulnerable software
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Internal Server Error
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Resource consumption
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Review Webserver Metafiles for Information Leakage
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            Fingerprint web technology
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+                    <tr>
+                        <td class="small">
+                            HTTP Methods
+                        </td>
+                        <td class="small .text-centered">0</td>
+                    </tr>
+            </tbody>
+        </table>
+        <hr />
+        <div id="details">
+                <h3 id="vuln_type_6">Command execution</h3>
+                <dl>
+                    <dt>Description</dt>
+                    <dd>This attack consists in executing system commands on the server. The attacker tries to inject this commands in the request parameters.</dd>
+                    <dt>CVSS Score</dt>
+                    <dd>
+                        <span class="cvss-score critical">9.8</span>
+                        <span class="cvss-severity">Critical</span>
+                        <span class="cvss-vector">CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H</span>
+                    </dd>
+                </dl>
+
+                        <h4>🔥 Vulnerability found in / 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-0-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-0-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-0-4">cURL command line</a>
+                            <a href="#tab-vuln-6-0-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-0-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter lang</pre>
+                        </section>
+                        <section id="tab-vuln-6-0-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /?lang=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-0-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/?lang=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-0-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /admin/tool/dataprivacy/summary.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-1-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-1-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-1-4">cURL command line</a>
+                            <a href="#tab-vuln-6-1-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-1-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter lang</pre>
+                        </section>
+                        <section id="tab-vuln-6-1-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /admin/tool/dataprivacy/summary.php?lang=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-1-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/admin/tool/dataprivacy/summary.php?lang=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-1-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-2-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-2-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-2-4">cURL command line</a>
+                            <a href="#tab-vuln-6-2-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-2-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-2-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2F&amp;sesskey=hOC7Mvcl1g HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-2-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2F&amp;sesskey=hOC7Mvcl1g&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-2-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-3-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-3-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-3-4">cURL command line</a>
+                            <a href="#tab-vuln-6-3-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-3-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-3-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=1&amp;wantsurl=id&amp;sesskey=hOC7Mvcl1g&amp;id=wantsurl HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    Content-Type: 
+                                    <br>
+                                    
+                                    <br>
+                                    id=wantsurl
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-3-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=1&amp;wantsurl=id&amp;sesskey=hOC7Mvcl1g&amp;id=wantsurl&#34; -H &#34;Content-Type: &#34; -d @payload_file</pre>
+                        </section>
+                        <section id="tab-vuln-6-3-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-4-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-4-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-4-4">cURL command line</a>
+                            <a href="#tab-vuln-6-4-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-4-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-4-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2F&amp;sesskey=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-4-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2F&amp;sesskey=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-4-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-5-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-5-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-5-4">cURL command line</a>
+                            <a href="#tab-vuln-6-5-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-5-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-5-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Fsearch.php%3Fsearch%3Ddefault&amp;sesskey=hOC7Mvcl1g HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-5-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Fsearch.php%3Fsearch%3Ddefault&amp;sesskey=hOC7Mvcl1g&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-5-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-6-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-6-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-6-4">cURL command line</a>
+                            <a href="#tab-vuln-6-6-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-6-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-6-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Fsearch.php%3Fsearch%3Ddefault&amp;sesskey=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-6-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Fsearch.php%3Fsearch%3Ddefault&amp;sesskey=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-6-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-7-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-7-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-7-4">cURL command line</a>
+                            <a href="#tab-vuln-6-7-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-7-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-7-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=id&amp;wantsurl=%2F&amp;sesskey=hOC7Mvcl1g HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-7-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=id&amp;wantsurl=%2F&amp;sesskey=hOC7Mvcl1g&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-7-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-8-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-8-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-8-4">cURL command line</a>
+                            <a href="#tab-vuln-6-8-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-8-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-8-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=1&amp;wantsurl=%2F&amp;sesskey=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-8-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=1&amp;wantsurl=%2F&amp;sesskey=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-8-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-9-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-9-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-9-4">cURL command line</a>
+                            <a href="#tab-vuln-6-9-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-9-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-9-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Findex.php&amp;sesskey=hOC7Mvcl1g HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-9-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Findex.php&amp;sesskey=hOC7Mvcl1g&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-9-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-10-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-10-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-10-4">cURL command line</a>
+                            <a href="#tab-vuln-6-10-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-10-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-10-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Findex.php&amp;sesskey=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-10-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Findex.php&amp;sesskey=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-10-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-11-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-11-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-11-4">cURL command line</a>
+                            <a href="#tab-vuln-6-11-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-11-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-11-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fadmin%2Ftool%2Fdataprivacy%2Fsummary.php&amp;sesskey=hOC7Mvcl1g HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-11-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fadmin%2Ftool%2Fdataprivacy%2Fsummary.php&amp;sesskey=hOC7Mvcl1g&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-11-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-12-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-12-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-12-4">cURL command line</a>
+                            <a href="#tab-vuln-6-12-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-12-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-12-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fadmin%2Ftool%2Fdataprivacy%2Fsummary.php&amp;sesskey=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-12-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fadmin%2Ftool%2Fdataprivacy%2Fsummary.php&amp;sesskey=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-12-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-13-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-13-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-13-4">cURL command line</a>
+                            <a href="#tab-vuln-6-13-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-13-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-13-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Flogin%2Fforgot_password.php&amp;sesskey=hOC7Mvcl1g HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-13-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Flogin%2Fforgot_password.php&amp;sesskey=hOC7Mvcl1g&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-13-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-14-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-14-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-14-4">cURL command line</a>
+                            <a href="#tab-vuln-6-14-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-14-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-14-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Flogin%2Fforgot_password.php&amp;sesskey=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-14-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Flogin%2Fforgot_password.php&amp;sesskey=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-14-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-15-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-15-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-15-4">cURL command line</a>
+                            <a href="#tab-vuln-6-15-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-15-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-15-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Fsearch.php&amp;sesskey=hOC7Mvcl1g HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-15-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=id&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Fsearch.php&amp;sesskey=hOC7Mvcl1g&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-15-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /auth/oauth2/login.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-16-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-16-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-16-4">cURL command line</a>
+                            <a href="#tab-vuln-6-16-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-16-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-16-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Fsearch.php&amp;sesskey=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-16-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/auth/oauth2/login.php?id=1&amp;wantsurl=https%3A%2F%2Fmoodle1.miuegypt.edu.eg%2Fcourse%2Fsearch.php&amp;sesskey=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-16-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-17-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-17-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-17-4">cURL command line</a>
+                            <a href="#tab-vuln-6-17-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-17-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter csearch_67d825c74a7c9</pre>
+                        </section>
+                        <section id="tab-vuln-6-17-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/index.php?csearch_67d825c74a7c9=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-17-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/index.php?csearch_67d825c74a7c9=id&#34; -e &#34;https://moodle1.miuegypt.edu.eg/course/index.php&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-17-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-18-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-18-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-18-4">cURL command line</a>
+                            <a href="#tab-vuln-6-18-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-18-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter lang</pre>
+                        </section>
+                        <section id="tab-vuln-6-18-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/index.php?lang=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-18-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/index.php?lang=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-18-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-19-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-19-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-19-4">cURL command line</a>
+                            <a href="#tab-vuln-6-19-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-19-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter csearch_67d825c756d82</pre>
+                        </section>
+                        <section id="tab-vuln-6-19-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/index.php?csearch_67d825c756d82=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-19-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/index.php?csearch_67d825c756d82=id&#34; -e &#34;https://moodle1.miuegypt.edu.eg/course/&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-19-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-20-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-20-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-20-4">cURL command line</a>
+                            <a href="#tab-vuln-6-20-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-20-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter search</pre>
+                        </section>
+                        <section id="tab-vuln-6-20-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/search.php?search=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-20-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/search.php?search=id&#34; -e &#34;https://moodle1.miuegypt.edu.eg/&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-20-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-21-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-21-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-21-4">cURL command line</a>
+                            <a href="#tab-vuln-6-21-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-21-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter areaids</pre>
+                        </section>
+                        <section id="tab-vuln-6-21-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/search.php?areaids=id&amp;q=default HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-21-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/search.php?areaids=id&amp;q=default&#34; -e &#34;https://moodle1.miuegypt.edu.eg/course/search.php?search=default&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-21-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-22-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-22-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-22-4">cURL command line</a>
+                            <a href="#tab-vuln-6-22-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-22-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter q</pre>
+                        </section>
+                        <section id="tab-vuln-6-22-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/search.php?areaids=core_course-course&amp;q=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-22-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/search.php?areaids=core_course-course&amp;q=id&#34; -e &#34;https://moodle1.miuegypt.edu.eg/course/search.php?search=default&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-22-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-23-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-23-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-23-4">cURL command line</a>
+                            <a href="#tab-vuln-6-23-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-23-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter search</pre>
+                        </section>
+                        <section id="tab-vuln-6-23-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/search.php?search=id&amp;lang=ar HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-23-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/search.php?search=id&amp;lang=ar&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-23-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-24-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-24-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-24-4">cURL command line</a>
+                            <a href="#tab-vuln-6-24-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-24-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter lang</pre>
+                        </section>
+                        <section id="tab-vuln-6-24-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/search.php?search=default&amp;lang=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-24-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/search.php?search=default&amp;lang=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-24-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/search.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-25-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-25-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-25-4">cURL command line</a>
+                            <a href="#tab-vuln-6-25-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-25-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter lang</pre>
+                        </section>
+                        <section id="tab-vuln-6-25-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /course/search.php?lang=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-25-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/search.php?lang=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-25-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/forgot_password.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-26-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-26-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-26-4">cURL command line</a>
+                            <a href="#tab-vuln-6-26-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-26-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter lang</pre>
+                        </section>
+                        <section id="tab-vuln-6-26-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /login/forgot_password.php?lang=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-26-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php?lang=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-26-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-27-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-27-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-27-4">cURL command line</a>
+                            <a href="#tab-vuln-6-27-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-27-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter lang</pre>
+                        </section>
+                        <section id="tab-vuln-6-27-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /login/index.php?lang=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-27-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/index.php?lang=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-27-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-28-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-28-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-28-4">cURL command line</a>
+                            <a href="#tab-vuln-6-28-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-28-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter loginredirect</pre>
+                        </section>
+                        <section id="tab-vuln-6-28-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    GET /login/index.php?loginredirect=id HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-28-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/index.php?loginredirect=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-28-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/jumpto.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-29-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-29-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-29-4">cURL command line</a>
+                            <a href="#tab-vuln-6-29-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-29-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-29-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /course/jumpto.php HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/course/index.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 55
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    sesskey=id&amp;jump=%2Fcourse%2Findex.php%3Fcategoryid%3D53
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-29-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/jumpto.php&#34; -e &#34;https://moodle1.miuegypt.edu.eg/course/index.php&#34; -d &#34;sesskey=id&amp;jump=%2Fcourse%2Findex.php%3Fcategoryid%3D53&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-29-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /course/jumpto.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-30-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-30-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-30-4">cURL command line</a>
+                            <a href="#tab-vuln-6-30-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-30-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter jump</pre>
+                        </section>
+                        <section id="tab-vuln-6-30-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /course/jumpto.php HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/course/index.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 26
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    sesskey=hOC7Mvcl1g&amp;jump=id
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-30-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/course/jumpto.php&#34; -e &#34;https://moodle1.miuegypt.edu.eg/course/index.php&#34; -d &#34;sesskey=hOC7Mvcl1g&amp;jump=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-30-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/forgot_password.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-31-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-31-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-31-4">cURL command line</a>
+                            <a href="#tab-vuln-6-31-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-31-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter sesskey</pre>
+                        </section>
+                        <section id="tab-vuln-6-31-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/forgot_password.php HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/login/forgot_password.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 171
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    sesskey=id&amp;_qf__login_forgot_password_form=1&amp;username=alice&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-31-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -e &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -d &#34;sesskey=id&amp;_qf__login_forgot_password_form=1&amp;username=alice&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-31-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/forgot_password.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-32-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-32-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-32-4">cURL command line</a>
+                            <a href="#tab-vuln-6-32-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-32-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter _qf__login_forgot_password_form</pre>
+                        </section>
+                        <section id="tab-vuln-6-32-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/forgot_password.php HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/login/forgot_password.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 180
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=id&amp;username=alice&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-32-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -e &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -d &#34;sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=id&amp;username=alice&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-32-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/forgot_password.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-33-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-33-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-33-4">cURL command line</a>
+                            <a href="#tab-vuln-6-33-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-33-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter username</pre>
+                        </section>
+                        <section id="tab-vuln-6-33-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/forgot_password.php HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/login/forgot_password.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 176
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=1&amp;username=id&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-33-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -e &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -d &#34;sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=1&amp;username=id&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-33-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/forgot_password.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-34-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-34-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-34-4">cURL command line</a>
+                            <a href="#tab-vuln-6-34-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-34-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter submitbuttonusername</pre>
+                        </section>
+                        <section id="tab-vuln-6-34-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/forgot_password.php HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/login/forgot_password.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 163
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=1&amp;username=alice&amp;submitbuttonusername=id&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-34-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -e &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -d &#34;sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=1&amp;username=alice&amp;submitbuttonusername=id&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-34-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/forgot_password.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-35-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-35-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-35-4">cURL command line</a>
+                            <a href="#tab-vuln-6-35-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-35-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter email</pre>
+                        </section>
+                        <section id="tab-vuln-6-35-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/forgot_password.php HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/login/forgot_password.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 153
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=1&amp;username=alice&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=id&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-35-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -e &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -d &#34;sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=1&amp;username=alice&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=id&amp;submitbuttonemail=%D8%A8%D8%AD%D8%AB&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-35-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/forgot_password.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-36-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-36-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-36-4">cURL command line</a>
+                            <a href="#tab-vuln-6-36-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-36-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter submitbuttonemail</pre>
+                        </section>
+                        <section id="tab-vuln-6-36-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/forgot_password.php HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/login/forgot_password.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 163
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=1&amp;username=alice&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=id
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-36-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -e &#34;https://moodle1.miuegypt.edu.eg/login/forgot_password.php&#34; -d &#34;sesskey=hOC7Mvcl1g&amp;_qf__login_forgot_password_form=1&amp;username=alice&amp;submitbuttonusername=%D8%A8%D8%AD%D8%AB&amp;email=pentora2025%40mailinator.com&amp;submitbuttonemail=id&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-36-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-37-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-37-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-37-4">cURL command line</a>
+                            <a href="#tab-vuln-6-37-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-37-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-37-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/index.php?id=username HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 85
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=id&amp;password=Letm3in_&amp;logintoken=PX00F9zDYF7rfRfGe3gDOrOsDuwbjZPc&amp;id=username
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-37-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/index.php?id=username&#34; -e &#34;https://moodle1.miuegypt.edu.eg/&#34; -d &#34;username=id&amp;password=Letm3in_&amp;logintoken=PX00F9zDYF7rfRfGe3gDOrOsDuwbjZPc&amp;id=username&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-37-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-38-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-38-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-38-4">cURL command line</a>
+                            <a href="#tab-vuln-6-38-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-38-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-38-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/index.php?id=logintoken HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/login/index.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 60
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    logintoken=id&amp;username=alice&amp;password=Letm3in_&amp;id=logintoken
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-38-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/index.php?id=logintoken&#34; -e &#34;https://moodle1.miuegypt.edu.eg/login/index.php&#34; -d &#34;logintoken=id&amp;username=alice&amp;password=Letm3in_&amp;id=logintoken&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-38-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+                        <h4>🔥 Vulnerability found in /login/index.php 
+                        <span class="cvss-score-label">CVSS: <span class="cvss-score critical">9.8</span></span>
+                        </h4>
+                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
+                            <a href="#tab-vuln-6-39-1" class="is-active">Description</a>
+                            <a href="#tab-vuln-6-39-2">HTTP Request</a>
+                            <a href="#tab-vuln-6-39-4">cURL command line</a>
+                            <a href="#tab-vuln-6-39-5">WSTG Code</a>
+                        </nav>
+                        <section id="tab-vuln-6-39-1" style="min-height: 124px;">
+                            <pre>Command execution via injection in the parameter id</pre>
+                        </section>
+                        <section id="tab-vuln-6-39-2" style="min-height: 124px;" class="is-hidden">
+                            <pre style="white-space: normal">
+                                    POST /login/index.php?id=username HTTP/1.1
+                                    <br>
+                                    host: moodle1.miuegypt.edu.eg
+                                    <br>
+                                    connection: keep-alive
+                                    <br>
+                                    user-agent: Mozilla/5.0 (Windows NT 6.1; rv:45.0) Gecko/20100101 Firefox/45.0
+                                    <br>
+                                    accept-language: en-US
+                                    <br>
+                                    accept-encoding: gzip, deflate, br
+                                    <br>
+                                    accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+                                    <br>
+                                    content-type: application/x-www-form-urlencoded
+                                    <br>
+                                    referer: https://moodle1.miuegypt.edu.eg/course/index.php
+                                    <br>
+                                    cookie: MoodleSession=1oa93usa91tur7hcunkh8d4jl6
+                                    <br>
+                                    content-length: 85
+                                    <br>
+                                    Content-Type: application/x-www-form-urlencoded
+                                    <br>
+                                    
+                                    <br>
+                                    username=id&amp;password=Letm3in_&amp;logintoken=cGPDLZYTsyJEr7fK6vD68qMQ3BZ7v0vp&amp;id=username
+                                    <br>
+                            </pre>
+                        </section>
+                        <section id="tab-vuln-6-39-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>curl &#34;https://moodle1.miuegypt.edu.eg/login/index.php?id=username&#34; -e &#34;https://moodle1.miuegypt.edu.eg/course/index.php&#34; -d &#34;username=id&amp;password=Letm3in_&amp;logintoken=cGPDLZYTsyJEr7fK6vD68qMQ3BZ7v0vp&amp;id=username&#34;</pre>
+                        </section>
+                        <section id="tab-vuln-6-39-5" style="min-height: 124px;" class="is-hidden">
+                            <pre>[&#39;WSTG-INPV-12&#39;]</pre>
+                        </section>
+
+                <dl><dt>Solutions</dt><dd>Prefer working without user input when using file system calls.</dd></dl>
+                <h5>References</h5>
+                <ul>
+                    <li><a href="https://owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/07-Input_Validation_Testing/12-Testing_for_Command_Injection">OWASP: Command Injection</a></li>
+                    <li><a href="https://cwe.mitre.org/data/definitions/78.html">CWE-78: Improper Neutralization of Special Elements used in an OS Command (OS Command Injection)</a></li>
+                </ul>
+                <br />
+                <hr>
+        </div>
+        <footer class="small" id="footer"><a href="#" id="pentora_link">Pentora 1.0.0</a> &copy; Pentora Team 2025</footer>
+	</div>
+    <script type="text/javascript" src="js/kube.min.js"></script>
+    <script>$K.init();</script>
+</body>
+</html>

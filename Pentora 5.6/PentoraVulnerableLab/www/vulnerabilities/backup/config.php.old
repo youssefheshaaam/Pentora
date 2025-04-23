@@ -1,0 +1,54 @@
+<?php
+// Configuration file for the application
+// OLD VERSION - Contains actual sensitive information
+
+// Database connection settings
+$db_config = [
+    'host' => 'localhost',
+    'user' => 'root',
+    'pass' => 'P@ssw0rd123!',
+    'name' => 'vulnerable_app'
+];
+
+// API configuration
+$api_config = [
+    'key' => 'ak_live_51KjHdGHJK29d8sMN3PQRsTUVwXyZ',
+    'secret' => 'sk_live_51KjHdGHJK29d8sMN3PQRsTUVwXyZaBcDeFgHiJkLmNoPqRsTuVwXyZ'
+];
+
+// Application settings
+$app_config = [
+    'debug' => true,  // SECURITY RISK: Debug mode is enabled
+    'environment' => 'development',
+    'timezone' => 'UTC',
+    'admin_email' => 'admin@example.com',
+    'admin_password' => 'SuperSecretAdmin2023!'
+];
+
+// JWT Secret Key
+$jwt_secret = 'e4c68beaec52493f83d7f024cb9877d15de4533a12d4e8e9dc1';
+
+// Internal server IPs
+$internal_servers = [
+    'db_server' => '192.168.1.100',
+    'file_server' => '192.168.1.101',
+    'backup_server' => '192.168.1.102'
+];
+
+// Email server configuration
+$email_config = [
+    'host' => 'smtp.example.com',
+    'port' => 587,
+    'username' => 'notifications@example.com',
+    'password' => 'EmailP@ssw0rd!',
+    'encryption' => 'tls'
+];
+
+// S3 Bucket configuration
+$s3_config = [
+    'key' => 'AKIAIOSFODNN7EXAMPLE',
+    'secret' => 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
+    'region' => 'us-west-2',
+    'bucket' => 'example-bucket'
+];
+?>

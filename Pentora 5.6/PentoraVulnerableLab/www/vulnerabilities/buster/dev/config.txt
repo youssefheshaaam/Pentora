@@ -1,0 +1,27 @@
+# Database Configuration
+# WARNING: This is a development configuration file with sensitive information
+
+DB_HOST=localhost
+DB_NAME=pentora_app
+DB_USER=pentora_admin
+DB_PASS=dev_password_123!
+
+# API Keys
+API_KEY_PAYMENT=pk_test_51KjH72LkjhGFD56sdfjLKJHlkjhsdf78
+API_KEY_MAPS=AIzaSyC7jkl8dfgDFGhjkKJHGkjhgkjhgJHG
+API_KEY_ANALYTICS=UA-12345678-1
+
+# SMTP Configuration
+SMTP_HOST=smtp.example.com
+SMTP_PORT=587
+SMTP_USER=notifications@example.com
+SMTP_PASS=email_password_456!
+
+# Security Settings
+SESSION_SECRET=super_secret_session_key_789
+JWT_SECRET=jwt_signing_key_very_secret_012
+
+# Development Mode Settings
+DEBUG=true
+DISABLE_CSRF=true  # DANGER: Only for development!
+ALLOW_REMOTE_DEBUG=true
