@@ -105,6 +105,7 @@
                             % if detailed_report is True and vulnerability["detail"]["response"] is not None:
                                 <a href="#tab-vuln-${i}-${j}-3">HTTP Response</a>
                             % endif
+                            <a href="#tab-vuln-${i}-${j}-4">cURL command line</a>
                             <a href="#tab-vuln-${i}-${j}-5">WSTG Code</a>
                         </nav>
                         <section id="tab-vuln-${i}-${j}-1" style="min-height: 124px;">
@@ -132,6 +133,9 @@
                                 </pre>
                             </section>
                         % endif
+                        <section id="tab-vuln-${i}-${j}-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>${vulnerability["curl_command"] | h}</pre>
+                        </section>
                         <section id="tab-vuln-${i}-${j}-5" style="min-height: 124px;" class="is-hidden">
                             <pre>${vulnerability["wstg"] | h}</pre>
                         </section>
@@ -164,6 +168,7 @@
                             % if detailed_report is True and anomaly["detail"]["response"] is not None:
                                 <a href="#tab-anom-${i}-${j}-3">HTTP Response</a>
                             % endif
+                            <a href="#tab-anom-${i}-${j}-4">cURL command line</a>
                             <a href="#tab-anom-${i}-${j}-5">WSTG Code</a>
                         </nav>
                         <section id="tab-anom-${i}-${j}-1" style="min-height: 124px;">
@@ -191,6 +196,9 @@
                                 </pre>
                             </section>
                         % endif
+                        <section id="tab-anom-${i}-${j}-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>${anomaly["curl_command"] | h}</pre>
+                        </section>
                         <section id="tab-anom-${i}-${j}-5" style="min-height: 124px;" class="is-hidden">
                             <pre>${anomaly["wstg"] | h}</pre>
                         </section>
@@ -223,6 +231,7 @@
                             % if detailed_report is True and additional["detail"]["response"] is not None:
                                 <a href="#tab-addition-${i}-${j}-3">HTTP Response</a>
                             % endif
+                            <a href="#tab-addition-${i}-${j}-4">cURL command line</a>
                             <a href="#tab-addition-${i}-${j}-5">WSTG Code</a>
                         </nav>
                         <section id="tab-addition-${i}-${j}-1" style="min-height: 124px;">
@@ -250,6 +259,9 @@
                                 </pre>
                             </section>
                         % endif
+                        <section id="tab-addition-${i}-${j}-4" style="min-height: 124px;" class="is-hidden">
+                            <pre>${additional["curl_command"] | h}</pre>
+                        </section>
                         <section id="tab-addition-${i}-${j}-5" style="min-height: 124px;" class="is-hidden">
                             <pre>${additional["wstg"] | h}</pre>
                         </section>
