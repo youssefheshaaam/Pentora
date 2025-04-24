@@ -1925,118 +1925,286 @@ class PentoraMainWindow(QMainWindow):
         # Create a scroll area for the about content
         scroll_area = QScrollArea()
         scroll_area.setWidgetResizable(True)
-        scroll_area.setFrameShape(QFrame.NoFrame)  # Remove frame
-        scroll_area.setStyleSheet("background-color: #1E1E1E; border: none;")  # Match main background
+        scroll_area.setFrameShape(QFrame.NoFrame)
+        scroll_area.setStyleSheet("background-color: #1E1E1E; border: none;")
         about_layout.addWidget(scroll_area)
         
         # Create a widget to hold the content
         content_widget = QWidget()
-        content_widget.setStyleSheet("background-color: #1E1E1E;")  # Match main background
+        content_widget.setStyleSheet("background-color: #1E1E1E;")
         content_layout = QVBoxLayout(content_widget)
-        content_layout.setContentsMargins(15, 15, 15, 15)  # Add padding inside content
-        scroll_area.setWidget(content_widget)
+        content_layout.setContentsMargins(15, 15, 15, 15)
         
-        # Add Pentora logo at the top
+        # Section fonts
+        title_font = QFont()
+        title_font.setPointSize(24)
+        title_font.setBold(True)
+        
+        subtitle_font = QFont()
+        subtitle_font.setPointSize(16)
+        subtitle_font.setBold(True)
+        
+        # Add Pentora logo
         logo_container = QWidget()
         logo_layout = QHBoxLayout(logo_container)
         logo_path = get_app_icon_path()
         if os.path.exists(logo_path):
             logo_label = QLabel()
             logo_pixmap = QPixmap(logo_path)
-            # Scale the logo to a reasonable size for the about page
             logo_pixmap = logo_pixmap.scaled(200, 200, Qt.KeepAspectRatio, Qt.SmoothTransformation)
             logo_label.setPixmap(logo_pixmap)
             logo_label.setAlignment(Qt.AlignCenter)
             logo_layout.addWidget(logo_label)
             logo_layout.setAlignment(Qt.AlignCenter)
         content_layout.addWidget(logo_container)
-        
-        # Add title with accent color
-        title_label = QLabel("Pentora - Web & Network Security Scanner")
-        title_font = QFont()
-        title_font.setPointSize(18)
-        title_font.setBold(True)
-        title_label.setFont(title_font)
-        title_label.setAlignment(Qt.AlignCenter)
-        title_label.setStyleSheet("color: #B388FF;") # Purple accent color
-        content_layout.addWidget(title_label)
-        
-        # Add description with border
-        desc_frame = QFrame()
-        desc_frame.setFrameShape(QFrame.StyledPanel)
-        desc_frame.setStyleSheet("background-color: #252525; border-radius: 5px; border: 1px solid #3E3E3E; padding: 10px;")
-        desc_layout = QVBoxLayout(desc_frame)
-        
-        desc_label = QLabel("Pentora is a graphical user interface for vulnerability scanning, designed to make security testing accessible to everyone. It performs comprehensive tests to identify security vulnerabilities in web applications and network services.")
-        desc_label.setWordWrap(True)
-        desc_label.setStyleSheet("color: #CCCCCC;")
-        desc_layout.addWidget(desc_label)
-        content_layout.addWidget(desc_frame)
+
+        # Overview Section
+        overview_text = '''<div style="color:#CCCCCC; font-size:12pt;">
+            <h2 style="color:#B388FF; text-align:center;">Pentora - Web & Network Security Scanner</h2>
+            <p>Pentora is a graphical user interface for vulnerability scanning, designed to make security testing accessible to everyone. It performs comprehensive tests to identify security vulnerabilities in web applications and network services.</p>
+        </div>'''
+        overview_label = QLabel()
+        overview_label.setTextFormat(Qt.TextFormat.RichText)
+        overview_label.setTextInteractionFlags(Qt.TextSelectableByMouse)
+        overview_label.setWordWrap(True)
+        overview_label.setStyleSheet("background-color: #252525; border-radius: 5px; padding: 16px;")
+        overview_label.setText(overview_text)
+        content_layout.addWidget(overview_label)
         content_layout.addSpacing(20)
-        
-        # Add GUI guide section with colored header
+
+        # GUI Guide Section
         gui_title = QLabel("GUI Guide")
-        subtitle_font = QFont()
-        subtitle_font.setPointSize(16)
-        subtitle_font.setBold(True)
         gui_title.setFont(subtitle_font)
-        gui_title.setStyleSheet("color: #C6FF00;")  # Lime accent color
+        gui_title.setStyleSheet("color: #C6FF00;")
         content_layout.addWidget(gui_title)
-        
-        # GUI guide frame
+
         gui_frame = QFrame()
         gui_frame.setFrameShape(QFrame.StyledPanel)
         gui_frame.setStyleSheet("background-color: #252525; border-radius: 5px; border: 1px solid #3E3E3E; padding: 15px;")
         gui_layout = QVBoxLayout(gui_frame)
-        gui_layout.setSpacing(15)
-        
-        # Scanner tab guide
-        scanner_label = QLabel("<b>Web Scanner Tab</b>")
-        scanner_label.setStyleSheet("color: #4FC3F7;")  # Blue accent
-        gui_layout.addWidget(scanner_label)
-        
-        scanner_desc = QLabel("The Web Scanner tab allows you to scan web applications for vulnerabilities. Enter a target URL, configure scan options, and click 'Start Scan' to begin. Results will appear in the findings panel.")
-        scanner_desc.setWordWrap(True)
-        scanner_desc.setStyleSheet("color: #CCCCCC;")
-        gui_layout.addWidget(scanner_desc)
-        
-        # Network tab guide
-        network_label = QLabel("<b>Network Scanner Tab</b>")
-        network_label.setStyleSheet("color: #4FC3F7;")  # Blue accent
-        gui_layout.addWidget(network_label)
-        
-        network_desc = QLabel("The Network Scanner tab allows you to scan network hosts and services for vulnerabilities. Enter a target IP or range, configure scan options, and click 'Start Network Scan' to begin. Results will appear in the findings panel.")
-        network_desc.setWordWrap(True)
-        network_desc.setStyleSheet("color: #CCCCCC;")
-        gui_layout.addWidget(network_desc)
-        
+
+        # Scanner Controls subsection
+        controls_text = QLabel("<b style='color: #C6FF00;'>Scanner Controls</b>")
+        controls_text.setTextFormat(Qt.TextFormat.RichText)
+        controls_text.setWordWrap(True)
+        gui_layout.addWidget(controls_text)
+
+        controls_list = QLabel(
+            "<ul>"
+            "<li><b>Start Scan Button:</b> Initiates the vulnerability scan with configured settings. It begins by crawling the target website and then runs the selected attack modules.</li>"
+            "<li><b>Stop Scan Button:</b> Safely terminates an in-progress scan. The scan will attempt to complete its current operation and generate a report based on findings up to that point.</li>"
+            "<li><b>Select Modules Button:</b> Opens a dialog that allows you to choose specific attack modules to run during the scan. This is only available when 'Custom' is selected in the modules dropdown.</li>"
+            "</ul>"
+        )
+        controls_list.setTextFormat(Qt.TextFormat.RichText)
+        controls_list.setWordWrap(True)
+        controls_list.setStyleSheet("color: #CCCCCC;")
+        gui_layout.addWidget(controls_list)
+        gui_layout.addSpacing(10)
+
+        # Configuration Options subsection
+        config_text = QLabel("<b style='color: #C6FF00;'>Configuration Options</b>")
+        config_text.setTextFormat(Qt.TextFormat.RichText)
+        config_text.setWordWrap(True)
+        gui_layout.addWidget(config_text)
+
+        config_list = QLabel(
+            "<ul>"
+            "<li><b>URL Input Field:</b> Enter the target website address (e.g., https://example.com). Pentora will automatically add 'http://' if not specified.</li>"
+            "<li><b>Scan Scope Dropdown:</b> Determines how much of the website to scan - folder (default), domain, page, or URL. Wider scopes like 'domain' will scan more pages but take longer.</li>"
+            "<li><b>Scan Depth Selector:</b> Controls how many link levels deep the scanner will crawl. Higher values find more pages but increase scan time.</li>"
+            "<li><b>Request Timeout:</b> Sets how long the scanner waits for each page to respond before timing out. Increase this for slower websites.</li>"
+            "<li><b>Modules Dropdown:</b> Choose which vulnerability tests to run - All Modules, Common Modules, or a Custom selection.</li>"
+            "<li><b>Report Format:</b> Select the output format for scan results (HTML, JSON). HTML is most user-friendly with interactive elements.</li>"
+            "<li><b>Output Directory:</b> Specify where to save the scan reports. Use the Browse button to select a directory.</li>"
+            "</ul>"
+        )
+        config_list.setTextFormat(Qt.TextFormat.RichText)
+        config_list.setWordWrap(True)
+        config_list.setStyleSheet("color: #CCCCCC;")
+        gui_layout.addWidget(config_list)
         content_layout.addWidget(gui_frame)
         content_layout.addSpacing(20)
-        
-        # Version information
-        version_label = QLabel("Version Information")
-        version_label.setFont(subtitle_font)
-        version_label.setStyleSheet("color: #C6FF00;")  # Lime accent color
-        content_layout.addWidget(version_label)
-        
-        # Version frame
-        version_frame = QFrame()
-        version_frame.setFrameShape(QFrame.StyledPanel)
-        version_frame.setStyleSheet("background-color: #252525; border-radius: 5px; border: 1px solid #3E3E3E; padding: 15px;")
-        version_layout = QVBoxLayout(version_frame)
-        
-        version_info = QLabel("Pentora v5.2")
-        version_info.setStyleSheet("color: #CCCCCC; font-weight: bold;")
-        version_layout.addWidget(version_info)
-        
-        build_info = QLabel("Build: 2025.03.15")
-        build_info.setStyleSheet("color: #CCCCCC;")
-        version_layout.addWidget(build_info)
-        
-        content_layout.addWidget(version_frame)
-        
-        # Add spacer at the bottom to push content up
-        content_layout.addStretch()
+
+        # Web Attack Modules Section
+        web_attack_title = QLabel("Web Attack Modules")
+        web_attack_title.setFont(subtitle_font)
+        web_attack_title.setStyleSheet("color: #C6FF00;")
+        content_layout.addWidget(web_attack_title)
+
+        # SQL Injection Modules subsection
+        web_attack_frame = QFrame()
+        web_attack_frame.setFrameShape(QFrame.StyledPanel)
+        web_attack_frame.setStyleSheet("background-color: #252525; border-radius: 5px; border: 1px solid #3E3E3E; padding: 15px;")
+        web_attack_layout = QVBoxLayout(web_attack_frame)
+
+        sql_text = QLabel("<b style='color: #C6FF00;'>SQL Injection Modules</b>")
+        sql_text.setTextFormat(Qt.TextFormat.RichText)
+        web_attack_layout.addWidget(sql_text)
+
+        sql_list = QLabel(
+            "<ul>"
+            "<li><b>sql:</b> Tests for classic SQL injection vulnerabilities by sending specially crafted queries to database inputs. Detects both error-based and boolean-based SQL injections.</li>"
+            "<li><b>timesql:</b> Performs time-based SQL injection tests that detect vulnerabilities even without visible output. Uses time delays in database responses to determine if injection is possible.</li>"
+            "<li><b>ldap:</b> Identifies LDAP injection vulnerabilities by inserting special LDAP query characters and analyzing responses.</li>"
+            "</ul>"
+        )
+        sql_list.setTextFormat(Qt.TextFormat.RichText)
+        sql_list.setWordWrap(True)
+        sql_list.setStyleSheet("color: #CCCCCC;")
+        web_attack_layout.addWidget(sql_list)
+        web_attack_layout.addSpacing(10)
+
+        # XSS Modules subsection
+        xss_text = QLabel("<b style='color: #C6FF00;'>Cross-Site Scripting (XSS) Modules</b>")
+        xss_text.setTextFormat(Qt.TextFormat.RichText)
+        web_attack_layout.addWidget(xss_text)
+
+        xss_list = QLabel(
+            "<ul>"
+            "<li><b>xss:</b> Detects reflected XSS vulnerabilities by injecting script code into parameters and analyzing if the code is returned unfiltered in the response.</li>"
+            "<li><b>permanentxss:</b> Identifies stored/persistent XSS vulnerabilities where injected code is saved on the server and affects multiple users.</li>"
+            "<li><b>csp:</b> Evaluates Content-Security-Policy headers to identify misconfigured policies that may allow script injection.</li>"
+            "<li><b>xxe:</b> Detects XML External Entity (XXE) injection vulnerabilities that can lead to server-side file disclosure or denial of service.</li>"
+            "</ul>"
+        )
+        xss_list.setTextFormat(Qt.TextFormat.RichText)
+        xss_list.setWordWrap(True)
+        xss_list.setStyleSheet("color: #CCCCCC;")
+        web_attack_layout.addWidget(xss_list)
+        web_attack_layout.addSpacing(10)
+
+        # File & Command Execution subsection
+        file_exec_text = QLabel("<b style='color: #C6FF00;'>File & Command Execution</b>")
+        file_exec_text.setTextFormat(Qt.TextFormat.RichText)
+        web_attack_layout.addWidget(file_exec_text)
+
+        file_exec_list = QLabel(
+            "<ul>"
+            "<li><b>file:</b> Detects file-related vulnerabilities including Path Traversal, Local File Inclusion (LFI), and Remote File Inclusion (RFI).</li>"
+            "<li><b>exec:</b> Tests for command execution vulnerabilities by sending OS commands embedded in parameters.</li>"
+            "<li><b>upload:</b> Checks for insecure file upload functionality by attempting to upload files with malicious content or invalid extensions.</li>"
+            "<li><b>shellshock:</b> Scans for the Shellshock vulnerability (CVE-2014-6271) in Bash by sending specially crafted HTTP headers.</li>"
+            "</ul>"
+        )
+        file_exec_list.setTextFormat(Qt.TextFormat.RichText)
+        file_exec_list.setWordWrap(True)
+        file_exec_list.setStyleSheet("color: #CCCCCC;")
+        web_attack_layout.addWidget(file_exec_list)
+        web_attack_layout.addSpacing(10)
+
+        # Authentication & Session Issues subsection
+        auth_text = QLabel("<b style='color: #C6FF00;'>Authentication & Session Issues</b>")
+        auth_text.setTextFormat(Qt.TextFormat.RichText)
+        web_attack_layout.addWidget(auth_text)
+
+        auth_list = QLabel(
+            "<ul>"
+            "<li><b>brute_login_form:</b> Attempts to identify login forms and tests them with common credentials from dictionary lists.</li>"
+            "<li><b>csrf:</b> Detects Cross-Site Request Forgery vulnerabilities by analyzing forms and determining if they use unpredictable tokens.</li>"
+            "</ul>"
+        )
+        auth_list.setTextFormat(Qt.TextFormat.RichText)
+        auth_list.setWordWrap(True)
+        auth_list.setStyleSheet("color: #CCCCCC;")
+        web_attack_layout.addWidget(auth_list)
+        web_attack_layout.addSpacing(10)
+
+        # Network & Server Discovery subsection
+        discovery_text = QLabel("<b style='color: #C6FF00;'>Network & Server Discovery</b>")
+        discovery_text.setTextFormat(Qt.TextFormat.RichText)
+        web_attack_layout.addWidget(discovery_text)
+
+        discovery_list = QLabel(
+            "<ul>"
+            "<li><b>backup:</b> Searches for backup files and directories by testing common backup extensions and naming patterns.</li>"
+            "<li><b>buster:</b> Performs directory and file brute-forcing to discover hidden content, admin interfaces, and resources.</li>"
+            "</ul>"
+        )
+        discovery_list.setTextFormat(Qt.TextFormat.RichText)
+        discovery_list.setWordWrap(True)
+        discovery_list.setStyleSheet("color: #CCCCCC;")
+        web_attack_layout.addWidget(discovery_list)
+        web_attack_layout.addSpacing(10)
+
+        # HTTP Protocol & Redirects subsection
+        http_text = QLabel("<b style='color: #C6FF00;'>HTTP Protocol & Redirects</b>")
+        http_text.setTextFormat(Qt.TextFormat.RichText)
+        web_attack_layout.addWidget(http_text)
+
+        http_list = QLabel(
+            "<ul>"
+            "<li><b>http_header:</b> Examines HTTP security headers for issues, checking for missing security headers or information disclosure.</li>"
+            "<li><b>redirect:</b> Detects open redirect vulnerabilities where user-controlled input determines redirect destinations.</li>"
+            "<li><b>crlf:</b> Searches for CRLF injection vulnerabilities that allow attackers to inject HTTP headers.</li>"
+            "<li><b>methods:</b> Checks which HTTP methods are supported by the server and if dangerous methods are properly restricted.</li>"
+            "</ul>"
+        )
+        http_list.setTextFormat(Qt.TextFormat.RichText)
+        http_list.setWordWrap(True)
+        http_list.setStyleSheet("color: #CCCCCC;")
+        web_attack_layout.addWidget(http_list)
+        content_layout.addWidget(web_attack_frame)
+        content_layout.addSpacing(20)
+
+        # Network Scan Modules Section
+        network_module_title = QLabel("Network Scan Modules")
+        network_module_title.setFont(subtitle_font)
+        network_module_title.setStyleSheet("color: #C6FF00;")
+        content_layout.addWidget(network_module_title)
+
+        network_module_frame = QFrame()
+        network_module_frame.setFrameShape(QFrame.StyledPanel)
+        network_module_frame.setStyleSheet("background-color: #252525; border-radius: 5px; border: 1px solid #3E3E3E; padding: 15px;")
+        network_module_layout = QVBoxLayout(network_module_frame)
+
+        network_vuln_text = QLabel("<b style='color: #C6FF00;'>Network Vulnerability Scanning</b>")
+        network_vuln_text.setTextFormat(Qt.TextFormat.RichText)
+        network_module_layout.addWidget(network_vuln_text)
+
+        network_vuln_list = QLabel(
+            "<ul>"
+            "<li><b>open_ports:</b> Detects open ports and identifies running services on the target system.</li>"
+            "<li><b>default_credentials:</b> Checks for default credentials on common services like FTP, SSH, Telnet, MySQL, etc.</li>"
+            "<li><b>dos_vulnerabilities:</b> Identifies services that might be vulnerable to Denial of Service (DoS) attacks.</li>"
+            "<li><b>directory_listing:</b> Detects web servers with directory listing enabled.</li>"
+            "<li><b>no_auth_services:</b> Identifies services running without proper authentication requirements.</li>"
+            "</ul>"
+        )
+        network_vuln_list.setTextFormat(Qt.TextFormat.RichText)
+        network_vuln_list.setWordWrap(True)
+        network_vuln_list.setStyleSheet("color: #CCCCCC;")
+        network_module_layout.addWidget(network_vuln_list)
+        content_layout.addWidget(network_module_frame)
+        content_layout.addSpacing(20)
+
+        # Disclaimer Section
+        disclaimer_title = QLabel("Important Disclaimer")
+        disclaimer_title.setFont(subtitle_font)
+        disclaimer_title.setStyleSheet("color: #B388FF;")
+        content_layout.addWidget(disclaimer_title)
+
+        disclaimer_frame = QFrame()
+        disclaimer_frame.setFrameShape(QFrame.StyledPanel)
+        disclaimer_frame.setStyleSheet("background-color: #252525; border-radius: 5px; border: 1px solid #3E3E3E; padding: 15px;")
+        disclaimer_layout = QVBoxLayout(disclaimer_frame)
+
+        disclaimer_text = QLabel(
+            "⚠️ <b>This tool is intended for security professionals to test their own systems or systems they have permission to test. "
+            "Always obtain proper authorization before scanning any website, web application, or network. "
+            "Unauthorized scanning may be illegal and unethical.</b>"
+        )
+        disclaimer_text.setTextFormat(Qt.TextFormat.RichText)
+        disclaimer_text.setWordWrap(True)
+        disclaimer_text.setStyleSheet("color: #FF8A80;")
+        disclaimer_layout.addWidget(disclaimer_text)
+        content_layout.addWidget(disclaimer_frame)
+
+        # Add some padding at the bottom
+        content_layout.addSpacing(20)
+
+        # Set the content widget to the scroll area
+        scroll_area.setWidget(content_widget)
         
     def browse_output_dir(self):
         """Open a dialog to select the output directory"""
