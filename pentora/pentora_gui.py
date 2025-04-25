@@ -1510,7 +1510,33 @@ class PentoraMainWindow(QMainWindow):
             }
         """)
         clear_log_button.setMaximumWidth(120)
-        log_panel_layout.addWidget(clear_log_button, alignment=Qt.AlignmentFlag.AlignRight)
+        
+        # Add hide logs button
+        hide_logs_button = QPushButton("Hide Logs")
+        hide_logs_button.clicked.connect(self.toggle_log_visibility)
+        hide_logs_button.setStyleSheet("""
+            QPushButton {
+                background-color: #424242;
+                color: #CCCCCC;
+                border: none;
+                border-radius: 4px;
+                padding: 6px 12px;
+            }
+            QPushButton:hover {
+                background-color: #616161;
+            }
+            QPushButton:pressed {
+                background-color: #757575;
+            }
+        """)
+        hide_logs_button.setMaximumWidth(120)
+        
+        # Create a horizontal layout for the buttons
+        log_buttons_layout = QHBoxLayout()
+        log_buttons_layout.addWidget(clear_log_button)
+        log_buttons_layout.addWidget(hide_logs_button)
+        log_buttons_layout.addStretch()
+        log_panel_layout.addLayout(log_buttons_layout)
         
         # Findings panel (right side)
         findings_panel = QGroupBox()
@@ -1805,7 +1831,33 @@ class PentoraMainWindow(QMainWindow):
             }
         """)
         clear_network_log_button.setMaximumWidth(120)
-        network_log_panel_layout.addWidget(clear_network_log_button, alignment=Qt.AlignmentFlag.AlignRight)
+        
+        # Add hide logs button
+        hide_network_logs_button = QPushButton("Hide Logs")
+        hide_network_logs_button.clicked.connect(self.toggle_network_log_visibility)
+        hide_network_logs_button.setStyleSheet("""
+            QPushButton {
+                background-color: #424242;
+                color: #CCCCCC;
+                border: none;
+                border-radius: 4px;
+                padding: 6px 12px;
+            }
+            QPushButton:hover {
+                background-color: #616161;
+            }
+            QPushButton:pressed {
+                background-color: #757575;
+            }
+        """)
+        hide_network_logs_button.setMaximumWidth(120)
+        
+        # Create a horizontal layout for the buttons
+        network_log_buttons_layout = QHBoxLayout()
+        network_log_buttons_layout.addWidget(clear_network_log_button)
+        network_log_buttons_layout.addWidget(hide_network_logs_button)
+        network_log_buttons_layout.addStretch()
+        network_log_panel_layout.addLayout(network_log_buttons_layout)
         
         # Network findings panel (right side)
         network_findings_panel = QGroupBox()  # Create without title initially
@@ -2891,6 +2943,15 @@ class PentoraMainWindow(QMainWindow):
         """Clear the findings log"""
         self.findings_display.clear()
 
+    def toggle_log_visibility(self):
+        """Toggle the visibility of the log display"""
+        if self.status_display.isVisible():
+            self.status_display.hide()
+            self.sender().setText("Show Logs")
+        else:
+            self.status_display.show()
+            self.sender().setText("Hide Logs")
+
     def select_network_modules(self):
         """Open network module selection dialog"""
         dialog = NetworkModuleSelectionDialog(self)
@@ -2937,6 +2998,15 @@ class PentoraMainWindow(QMainWindow):
             "format": "module"
         }
         self.add_status_message(str(formatted_message))
+
+    def toggle_network_log_visibility(self):
+        """Toggle the visibility of the network log display"""
+        if self.network_status_display.isVisible():
+            self.network_status_display.hide()
+            self.sender().setText("Show Logs")
+        else:
+            self.network_status_display.show()
+            self.sender().setText("Hide Logs")
 
 
 class NetworkScannerThread(QThread):
