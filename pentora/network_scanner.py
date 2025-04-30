@@ -2056,7 +2056,7 @@ class NetworkScanner:
             return output
 
     def _generate_html_report(self, report_path=None):
-        """Generate an HTML report."""
+        """Generate an HTML report with modern styling."""
         # Group vulnerabilities by category
         categorized_vulns = {}
         for vuln in self.vulnerabilities:
@@ -2068,62 +2068,250 @@ class NetworkScanner:
         # Filter out categories with zero findings
         categorized_vulns = {k: v for k, v in categorized_vulns.items() if len(v) > 0}
         
+        # Define the HTML template with modern styling
+        html_template = """
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Pentora Network Scanner Report</title>
+            <style>
+                :root {{
+                    --primary-color: #2c3e50;
+                    --secondary-color: #3498db;
+                    --success-color: #2ecc71;
+                    --warning-color: #f1c40f;
+                    --danger-color: #e74c3c;
+                    --light-gray: #ecf0f1;
+                    --dark-gray: #7f8c8d;
+                }}
+                
+                * {{
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }}
+                
+                body {{
+                    background-color: #f5f6fa;
+                    color: var(--primary-color);
+                    line-height: 1.6;
+                    padding: 20px;
+                }}
+                
+                .container {{
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    background: white;
+                    padding: 30px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+                }}
+                
+                .header {{
+                    text-align: center;
+                    margin-bottom: 40px;
+                    padding-bottom: 20px;
+                    border-bottom: 2px solid var(--light-gray);
+                }}
+                
+                .header h1 {{
+                    color: var(--primary-color);
+                    font-size: 2.5em;
+                    margin-bottom: 10px;
+                }}
+                
+                .header h2 {{
+                    color: var(--dark-gray);
+                    font-size: 1.2em;
+                    font-weight: normal;
+                }}
+                
+                .scan-info {{
+                    background: var(--light-gray);
+                    padding: 20px;
+                    border-radius: 8px;
+                    margin-bottom: 30px;
+                }}
+                
+                .scan-info h2 {{
+                    color: var(--primary-color);
+                    margin-bottom: 15px;
+                }}
+                
+                .vulnerabilities {{
+                    margin-bottom: 30px;
+                }}
+                
+                .vulnerability-category {{
+                    background: white;
+                    border: 1px solid var(--light-gray);
+                    border-radius: 8px;
+                    margin-bottom: 20px;
+                    overflow: hidden;
+                }}
+                
+                .category-header {{
+                    background: var(--primary-color);
+                    color: white;
+                    padding: 15px 20px;
+                    font-size: 1.2em;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }}
+                
+                .category-content {{
+                    padding: 20px;
+                }}
+                
+                .vulnerability-item {{
+                    background: var(--light-gray);
+                    padding: 15px;
+                    border-radius: 6px;
+                    margin-bottom: 10px;
+                }}
+                
+                .severity {{
+                    display: inline-block;
+                    padding: 4px 8px;
+                    border-radius: 4px;
+                    font-size: 0.9em;
+                    font-weight: bold;
+                    margin-right: 10px;
+                }}
+                
+                .severity-high {{
+                    background: var(--danger-color);
+                    color: white;
+                }}
+                
+                .severity-medium {{
+                    background: var(--warning-color);
+                    color: var(--primary-color);
+                }}
+                
+                .severity-low {{
+                    background: var(--success-color);
+                    color: white;
+                }}
+                
+                .findings {{
+                    background: white;
+                    border: 1px solid var(--light-gray);
+                    border-radius: 8px;
+                    padding: 20px;
+                }}
+                
+                .findings h2 {{
+                    color: var(--primary-color);
+                    margin-bottom: 15px;
+                }}
+                
+                .findings ul {{
+                    list-style-type: none;
+                }}
+                
+                .findings li {{
+                    padding: 10px;
+                    border-bottom: 1px solid var(--light-gray);
+                }}
+                
+                .findings li:last-child {{
+                    border-bottom: none;
+                }}
+                
+                @media (max-width: 768px) {{
+                    .container {{
+                        padding: 15px;
+                    }}
+                    
+                    .header h1 {{
+                        font-size: 2em;
+                    }}
+                }}
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <div class="header">
+                    <h1>Pentora Network Scanner Report</h1>
+                </div>
+                
+                <div class="scan-info">
+                    <h2>Scan Information</h2>
+                    <p><strong>Target:</strong> {target}</p>
+                    <p><strong>Scan Time:</strong> {scan_time}</p>
+                    <p><strong>Enabled Modules:</strong> {enabled_modules}</p>
+                </div>
+                
+                <div class="vulnerabilities">
+                    <h2>Vulnerabilities</h2>
+                    {vulnerabilities_content}
+                </div>
+                
+                <div class="findings">
+                    <h2>Additional Findings</h2>
+                    {findings_content}
+                </div>
+            </div>
+        </body>
+        </html>
+        """
+        
+        # Generate vulnerabilities content
+        vulnerabilities_content = ""
+        if categorized_vulns:
+            for category, vulns in categorized_vulns.items():
+                vulnerabilities_content += f"""
+                <div class="vulnerability-category">
+                    <div class="category-header">
+                        <span>{category}</span>
+                        <span>{len(vulns)} found</span>
+                    </div>
+                    <div class="category-content">
+                """
+                for vuln in vulns:
+                    severity_class = "severity-" + vuln["severity"].lower()
+                    vulnerabilities_content += f"""
+                    <div class="vulnerability-item">
+                        <span class="severity {severity_class}">{vuln["severity"]}</span>
+                        <span>{vuln["description"]}</span>
+                    </div>
+                    """
+                vulnerabilities_content += """
+                    </div>
+                </div>
+                """
+        else:
+            vulnerabilities_content = "<p>No vulnerabilities found</p>"
+        
+        # Generate findings content
+        findings_content = ""
+        if self.findings:
+            findings_content += "<ul>"
+            for finding in self.findings:
+                findings_content += f"<li>{finding}</li>"
+            findings_content += "</ul>"
+        else:
+            findings_content = "<p>No additional findings</p>"
+        
+        # Format the template with the data
+        html_content = html_template.format(
+            target=self.target,
+            scan_time=dt.now().strftime("%Y-%m-%d %H:%M:%S"),
+            enabled_modules=', '.join(self.enabled_modules),
+            vulnerabilities_content=vulnerabilities_content,
+            findings_content=findings_content
+        )
+        
         if report_path:
             with open(report_path, 'w', encoding='utf-8') as f:
-                f.write("<html><head><title>Pentora Network Scanner Report</title></head><body>")
-                f.write("<h1>Pentora Network Scanner Report</h1>")
-                f.write("<h2>Target: {}</h2>".format(self.target))
-                f.write("<h2>Scan Time: {}</h2>".format(dt.now().isoformat()))
-                f.write("<h2>Enabled Modules: {}</h2>".format(', '.join(self.enabled_modules)))
-                
-                if categorized_vulns:
-                    f.write("<h2>Vulnerabilities:</h2>")
-                    f.write("<ul>")
-                    for category, vulns in categorized_vulns.items():
-                        f.write(f"<li><b>{category}</b> ({len(vulns)} found)")
-                        f.write("<ul>")
-                        for vuln in vulns:
-                            f.write("<li>{} - {}</li>".format(vuln["severity"], vuln["description"]))
-                        f.write("</ul></li>")
-                    f.write("</ul>")
-                else:
-                    f.write("<h2>No vulnerabilities found</h2>")
-                
-                if self.findings:
-                    f.write("<h2>Findings:</h2>")
-                    f.write("<ul>")
-                    for finding in self.findings:
-                        f.write("<li>{}</li>".format(finding))
-                    f.write("</ul>")
-                f.write("</body></html>")
+                f.write(html_content)
         else:
-            output = "<html><head><title>Pentora Network Scanner Report</title></head><body>"
-            output += "<h1>Pentora Network Scanner Report</h1>"
-            output += "<h2>Target: {}</h2>".format(self.target)
-            output += "<h2>Scan Time: {}</h2>".format(dt.now().isoformat())
-            output += "<h2>Enabled Modules: {}</h2>".format(', '.join(self.enabled_modules))
-            
-            if categorized_vulns:
-                output += "<h2>Vulnerabilities:</h2>"
-                output += "<ul>"
-                for category, vulns in categorized_vulns.items():
-                    output += f"<li><b>{category}</b> ({len(vulns)} found)"
-                    output += "<ul>"
-                    for vuln in vulns:
-                        output += "<li>{} - {}</li>".format(vuln["severity"], vuln["description"])
-                    output += "</ul></li>"
-                output += "</ul>"
-            else:
-                output += "<h2>No vulnerabilities found</h2>"
-            
-            if self.findings:
-                output += "<h2>Findings:</h2>"
-                output += "<ul>"
-                for finding in self.findings:
-                    output += "<li>{}</li>".format(finding)
-                output += "</ul>"
-            output += "</body></html>"
-            return output
+            return html_content
 
     def _check_service_vulnerabilities(self, port_info):
         """Check for known vulnerabilities based on service and version information."""
