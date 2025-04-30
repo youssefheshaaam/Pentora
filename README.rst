@@ -1,8 +1,9 @@
 ==================================
-Pentora - Advanced Web Security Scanner
+Pentora – Advanced Web and Network Security Scanner
 ==================================
 
-Pentora is a comprehensive security assessment tool featuring an intuitive graphical interface for conducting thorough web application vulnerability scans.
+Pentora is a comprehensive automated penetration testing framework designed to identify and address security vulnerabilities across both web applications and network infrastructures. 
+With an intuitive graphical interface and modular architecture, Pentora makes advanced security assessments efficient, scalable, and accessible to professionals and non-experts alike.
 
 About Pentora
 ============
