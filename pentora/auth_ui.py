@@ -398,6 +398,17 @@ class LoginWidget(QWidget):
         self.button_font.setFamily("SF Pro Text")
         self.button_font.setPointSize(10)
         self.button_font.setBold(True)
+        
+        # Load Material Icons font for visibility toggle
+        self.material_icons_font = QFont("Material Icons")
+        if "Material Icons" not in QFontDatabase().families():
+            font_id = QFontDatabase.addApplicationFont(
+                os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "fonts", "MaterialIcons-Regular.ttf")
+            )
+            if font_id == -1:
+                print("Failed to load Material Icons font")
+            else:
+                self.material_icons_font = QFontDatabase.applicationFontFamilies(font_id)[0]
     
     def init_ui(self):
         """Initialize the user interface with modern styling"""
@@ -467,16 +478,42 @@ class LoginWidget(QWidget):
         password_label = QLabel("Password")
         password_label.setStyleSheet(STYLE_SHEETS["field_label"])
         
+        # Create a horizontal layout for password input and visibility toggle
+        password_input_layout = QHBoxLayout()
+        password_input_layout.setContentsMargins(0, 0, 0, 0)
+        password_input_layout.setSpacing(0)
+        
         self.password_input = QLineEdit()
         self.password_input.setPlaceholderText("Enter your password")
         self.password_input.setEchoMode(QLineEdit.Password)
         self.password_input.setStyleSheet(STYLE_SHEETS["line_edit"])
         self.password_input.setCursor(QCursor(Qt.IBeamCursor))
         
+        # Create visibility toggle button
+        self.visibility_button = QPushButton()
+        self.visibility_button.setFixedSize(24, 24)
+        self.visibility_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.visibility_button.setStyleSheet("""
+            QPushButton {
+                background-color: transparent;
+                border: none;
+                padding: 0;
+                margin: 0;
+            }
+            QPushButton:hover {
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        """)
+        self.visibility_button.clicked.connect(self.toggle_password_visibility)
+        self.update_visibility_icon()
+        
+        password_input_layout.addWidget(self.password_input)
+        password_input_layout.addWidget(self.visibility_button)
+        
         self.password_status = FormStatusLabel()
         
         password_layout.addWidget(password_label)
-        password_layout.addWidget(self.password_input)
+        password_layout.addLayout(password_input_layout)
         password_layout.addWidget(self.password_status)
         
         # Form status - zero height when empty
@@ -551,6 +588,38 @@ class LoginWidget(QWidget):
         """Handle username field change"""
         self.username_status.clear()
         self.form_status.clear()
+
+    def toggle_password_visibility(self):
+        """Toggle password visibility"""
+        if self.password_input.echoMode() == QLineEdit.Password:
+            self.password_input.setEchoMode(QLineEdit.Normal)
+        else:
+            self.password_input.setEchoMode(QLineEdit.Password)
+        self.update_visibility_icon()
+
+    def update_visibility_icon(self):
+        """Update the visibility toggle icon"""
+        if self.password_input.echoMode() == QLineEdit.Password:
+            icon = "visibility_off"
+        else:
+            icon = "visibility"
+        
+        self.visibility_button.setFont(self.material_icons_font)
+        self.visibility_button.setText(icon)
+        self.visibility_button.setStyleSheet(
+            f"""
+            QPushButton {{
+                background-color: transparent;
+                border: none;
+                padding: 0;
+                margin: 0;
+                color: {COLORS['text_secondary']};
+            }}
+            QPushButton:hover {{
+                background-color: rgba(255, 255, 255, 0.1);
+            }}
+            """
+        )
     
     def on_password_changed(self, text):
         """Handle password field change"""

@@ -563,7 +563,7 @@ class NetworkScanner:
                     "-sV",  # Version Detection
                     "-v",   # Verbose output for real-time progress
                     "-T4",  # Aggressive timing
-                    "--script=default,safe,vuln", # Run vulnerability scripts
+                    "--script=ssl-enum-ciphers,http-title,http-headers", # Run essential scripts
                     "--min-rate", "5000", # Fast scan rate
                     "--max-retries", "1", # Fewer retries
                     "-p", ports_str, # Port range
