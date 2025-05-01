@@ -172,9 +172,9 @@ class NetworkScanner:
             "open_ports": [],
             "default_credentials": [],
             "dos_vulnerabilities": [],
-            "directory_listing": [],
             "no_auth_services": [],
-            "service_vulnerabilities": []
+            "service_vulnerabilities": [],
+            "snmp_public": []
         }
         
     def set_target(self, target):
@@ -232,8 +232,10 @@ class NetworkScanner:
         Args:
             modules: List of module names to enable
         """
-        valid_modules = ["open_ports", "default_credentials", "dos_vulnerabilities", 
-                         "directory_listing", "no_auth_services", "service_vulnerabilities", "all"]
+        valid_modules = [
+            "open_ports", "default_credentials", "dos_vulnerabilities", 
+            "no_auth_services", "service_vulnerabilities", "snmp_public", "all"
+        ]
         
         if "all" in modules:
             self.enabled_modules = valid_modules[:-1]  # All except 'all' itself
@@ -271,16 +273,16 @@ class NetworkScanner:
                 "description": "Identifies services vulnerable to Denial of Service attacks"
             },
             {
-                "name": "directory_listing",
-                "description": "Detects web servers with directory listing enabled"
-            },
-            {
                 "name": "no_auth_services",
                 "description": "Identifies services with no authentication required"
             },
             {
                 "name": "service_vulnerabilities",
                 "description": "Checks for known vulnerabilities in detected services"
+            },
+            {
+                "name": "snmp_public",
+                "description": "Checks for SNMP public information"
             }
         ]
         return modules
@@ -320,9 +322,9 @@ class NetworkScanner:
             "open_ports": [],
             "default_credentials": [],
             "dos_vulnerabilities": [],
-            "directory_listing": [],
             "no_auth_services": [],
-            "service_vulnerabilities": []
+            "service_vulnerabilities": [],
+            "snmp_public": []
         }
         
         # Record scan start time
@@ -402,15 +404,15 @@ class NetworkScanner:
                     self.status_callback("<font color='#FF6600'>🚀 Launching DoS vulnerabilities check module...</font>")
                 self._check_dos_vulnerabilities()
                 
-            if "directory_listing" in self.enabled_modules:
-                if self.status_callback:
-                    self.status_callback("<font color='#FF6600'>🚀 Launching directory listing check module...</font>")
-                self._check_directory_listing()
-                
             if "no_auth_services" in self.enabled_modules:
                 if self.status_callback:
                     self.status_callback("🚀 Launching no authentication services check module...")
                 self._check_no_auth_services()
+                
+            if "snmp_public" in self.enabled_modules:
+                if self.status_callback:
+                    self.status_callback("<font color='#FF6600'>🚀 Launching SNMP public community string check module...</font>")
+                self._check_snmp_public()
                 
             if "service_vulnerabilities" in self.enabled_modules:
                 # The service_vulnerabilities check is now integrated into _run_port_scan via nmap script parsing
@@ -559,7 +561,8 @@ class NetworkScanner:
                 # Construct the nmap command
                 nmap_command = [
                     "nmap",
-                    "-sS",  # SYN Scan (requires privileges) - Consider -sT if issues arise
+                    "-Pn",  # Skip host discovery (added)
+                    "-sT",  # TCP connect scan (works without admin/root)
                     "-sV",  # Version Detection
                     "-v",   # Verbose output for real-time progress
                     "-T4",  # Aggressive timing
@@ -1081,212 +1084,6 @@ class NetworkScanner:
             return True
         except:
             return False
-
-    def _check_directory_listing(self):
-        """Check for web servers with directory listing enabled."""
-        if self.status_callback:
-            self.status_callback("<font color='#FF6600'>Checking for directory listing...</font>")
-            
-        # Perform network-wide checks for directory listing
-        if self.status_callback:
-            self.status_callback("<font color='#FF6600'>📂 Performing network-wide directory listing checks...</font>")
-            
-        target_ip = self.target
-        if "://" in target_ip:
-            target_ip = target_ip.split("://")[1].split("/")[0].split(":")[0]
-            
-        try:
-            target_ip = socket.gethostbyname(target_ip)
-        except:
-            # If we can't resolve it, just use the original
-            pass
-            
-        # Common web server ports
-        web_ports = [80, 443, 8080, 8443, 8000, 8008, 8888, 8081]
-        
-        # Expanded directory and common file paths to check
-        directories_and_files = [
-            '/',
-            '/images/', '/img/', '/pics/',
-            '/static/', '/assets/', '/includes/', '/inc/',
-            '/uploads/', '/files/', '/download/', '/downloads/',
-            '/data/', '/db/',
-            '/backup/', '/bak/', '/old/',
-            '/temp/', '/tmp/',
-            '/css/', '/js/', '/scripts/', '/lib/', '/libs/',
-            '/admin/', '/administrator/', '/login/', '/user/', '/users/',
-            '/config/', '/conf/', '/etc/',
-            '/logs/', '/log/',
-            '/cgi-bin/',
-            '/vendor/', # Common in PHP projects
-            '/node_modules/', # Common in Node.js projects
-            '/.git/', '/.svn/', '/.hg/', # Version control metadata
-            '/.env', '/config.js', '/settings.py', '/wp-config.php', # Common config files
-            '/robots.txt', '/sitemap.xml',
-            '/backup.zip', '/backup.tar.gz', '/db.sql', # Common backup files
-            '/error_log', '/access_log', # Common log files
-        ]
-        
-        # Expanded patterns that indicate directory listing
-        dir_listing_patterns = [
-            '<title>Index of /',
-            'Directory Listing for',
-            '<h1>Index of /',
-            'Parent Directory</a>',
-            '- Directory listing for',
-            'Directory: /',
-            '<h2>Directory listing for',
-            '<title>Listing of /',
-            'Directory List /',
-            'listing directory /',
-            '<pre><a href="?C=N;O=D">Name</a>', # Apache detailed listing
-            'folder.gif' # Common icon in listings
-        ]
-        
-        # Files that indicate sensitive info exposure if directly accessible
-        sensitive_files_to_check = [
-             '.env', '.env.bak', '.env.save', '.env.old',
-             'config.json', 'config.yaml', 'config.yml', 'settings.py', 'settings.local.py',
-             'wp-config.php', 'wp-config.php.bak', 'configuration.php',
-             'web.config',
-             'id_rsa', 'id_dsa', '.ssh/id_rsa', # Private keys
-             '.bash_history', '.history',
-             'access.log', 'error.log', 'app.log',
-             'backup.sql', 'database.sql', 'dump.sql',
-             '.git/config', '.svn/wc.db'
-        ]
-
-        found_listing_urls = set() # Keep track of URLs confirmed to have listing
-
-        for port in web_ports:
-            protocols = ['http']
-            if port in [443, 8443]: # Add other potential HTTPS ports if needed
-                protocols.append('https') # Test both http and https for these ports
-
-            for protocol in protocols:
-                for path_item in directories_and_files:
-                    # Skip HTTPS test if SSL context fails or cert is invalid? Maybe not for scanning.
-                    # Consider adding SSL context handling if needed: ssl._create_unverified_context()
-
-                    try:
-                        # Ensure path starts with / if it's a directory-like path
-                        if not path_item.startswith('/') and path_item.endswith('/'):
-                             path_item = '/' + path_item
-                        elif not path_item.startswith('/'):
-                             # Assume it might be a file in the root if no leading /
-                             path_item = '/' + path_item
-
-                        url = f"{protocol}://{target_ip}:{port}{path_item}"
-                        
-                        if self.status_callback:
-                            self.status_callback(f"    <font color='#999999'>ℹ️ Testing {url} for listing/access...</font>")
-                        
-                        # Try to access the path
-                        request = urllib.request.Request(url, method='GET') # Explicitly GET
-                        request.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36') # More common UA
-                        
-                        # Handle potential SSL errors for HTTPS
-                        context = ssl._create_unverified_context() if protocol == 'https' else None
-
-                        try:
-                            with urllib.request.urlopen(request, timeout=self.timeout, context=context) as response:
-                                if response.getcode() == 200:
-                                    # Read only a portion initially to check for listing patterns
-                                    content_sample = response.read(10240).decode('utf-8', errors='ignore') # Read first 10KB
-                                    
-                                    is_listing = any(pattern in content_sample for pattern in dir_listing_patterns)
-                                    
-                                    if is_listing:
-                                        if url not in found_listing_urls:
-                                            if self.status_callback:
-                                                self.status_callback(f"    <font color='#FF9900'>⚠️ Potential Directory Listing found at {url}</font>")
-                                            
-                                            self.findings.append(f"Potential Directory Listing enabled at {url}")
-                                            self.vulnerabilities.append({
-                                                "name": "Potential Directory Listing Enabled",
-                                                "description": f"Directory listing seems enabled at {url}. Manual verification recommended.",
-                                                "severity": "Medium",
-                                                "ip": target_ip,
-                                                "port": port,
-                                                "url": url,
-                                                "module": "directory_listing"
-                                            })
-                                            found_listing_urls.add(url)
-
-                                            # If listing found, try accessing sensitive files within that dir
-                                            if path_item.endswith('/'): # Only if it's a directory path
-                                                for sensitive_file in sensitive_files_to_check:
-                                                    sensitive_url = url.rstrip('/') + '/' + sensitive_file.lstrip('/')
-                                                    self._check_sensitive_file_access(sensitive_url, target_ip, port, context)
-
-                                    # Check if the accessed path itself is a sensitive file
-                                    elif any(path_item.endswith(sf) for sf in sensitive_files_to_check):
-                                         if self.status_callback:
-                                            self.status_callback(f"    <font color='#FF0000'>⚠️ Sensitive File Accessible: {url}</font>")
-                                         self.findings.append(f"Sensitive file potentially accessible at {url}")
-                                         self.vulnerabilities.append({
-                                            "name": "Sensitive File Accessible",
-                                            "description": f"Potentially sensitive file accessible at {url}. Content should be reviewed.",
-                                            "severity": "High",
-                                            "ip": target_ip,
-                                            "port": port,
-                                            "url": url,
-                                            "module": "directory_listing" # Grouping under this module for now
-                                        })
-
-                        except urllib.error.HTTPError as e:
-                            # Ignore 404 Not Found, 403 Forbidden is interesting but not listing/access
-                            if e.code not in [404]:
-                                if self.verbose and self.status_callback:
-                                     self.status_callback(f"    <font color='#AAAAAA'>ℹ️ HTTP Error {e.code} for {url}</font>")
-                            pass
-                        except Exception as e:
-                            # Ignore connection errors, timeouts etc.
-                            if self.verbose and self.status_callback:
-                                self.status_callback(f"    <font color='#AAAAAA'>ℹ️ Error accessing {url}: {str(e)}</font>")
-                            pass
-                        
-                    except Exception as e:
-                        if self.verbose and self.status_callback:
-                            self.status_callback(f"    <font color='#AAAAAA'>ℹ️ General error for path {path_item} on {protocol}://{target_ip}:{port}: {str(e)}</font>")
-                        pass
-                        
-        if self.status_callback:
-            vuln_count = sum(1 for v in self.vulnerabilities if v.get('module') == 'directory_listing')
-            if vuln_count > 0:
-                 self.status_callback(f"<font color='#FF6600'>Directory listing/sensitive file check complete. Found {vuln_count} potential issues.</font>")
-            else:
-                 self.status_callback("<font color='#00CC00'>Directory listing/sensitive file check complete. No obvious issues found.</font>")
-
-    def _check_sensitive_file_access(self, url, target_ip, port, ssl_context):
-        """Helper function to check access to a specific sensitive file URL."""
-        try:
-            request = urllib.request.Request(url, method='GET')
-            request.add_header('User-Agent', 'Mozilla/5.0')
-            
-            with urllib.request.urlopen(request, timeout=self.timeout, context=ssl_context) as response:
-                if response.getcode() == 200:
-                    # Check if content is non-empty and not a standard error/redirect page
-                    content_sample = response.read(512).decode('utf-8', errors='ignore')
-                    if content_sample and '<html' not in content_sample.lower() and 'not found' not in content_sample.lower():
-                        if self.status_callback:
-                            self.status_callback(f"    <font color='#FF0000'>⚠️ Sensitive File Accessible: {url}</font>")
-                        self.findings.append(f"Sensitive file potentially accessible at {url}")
-                        self.vulnerabilities.append({
-                            "name": "Sensitive File Accessible",
-                            "description": f"Potentially sensitive file accessible at {url}. Content should be reviewed.",
-                            "severity": "High",
-                            "ip": target_ip,
-                            "port": port,
-                            "url": url,
-                            "module": "directory_listing" # Grouping here
-                        })
-        except urllib.error.HTTPError as e:
-            # Ignore 404, 403
-            pass
-        except Exception as e:
-            # Ignore other errors
-            pass
 
     def _check_dos_vulnerabilities(self):
         """Check for potential DoS vulnerabilities."""
@@ -1986,8 +1783,77 @@ class NetworkScanner:
             else:
                  self.status_callback("<font color='#00CC00'>No-authentication service check complete. No obvious issues found.</font>")
 
-    # Removed the _check_service_vulnerabilities method as its functionality
-    # is now integrated into the nmap script parsing within _run_port_scan.
+        # 7. Check for SNMP public community string exposure using Nmap, then fallback to a minimal Python UDP SNMP GET.
+        if self.status_callback:
+            self.status_callback("<font color='#FF6600'>Checking for SNMP public community string...</font>")
+
+        import socket
+        import subprocess
+        import struct
+        import binascii
+
+        target_ip = self.target
+        if "://" in target_ip:
+            target_ip = target_ip.split("://")[1].split("/")[0].split(":")[0]
+        try:
+            target_ip = socket.gethostbyname(target_ip)
+        except:
+            pass
+
+        snmp_port = 161
+        found = False
+        used_nmap = False
+        nmap_error = None
+        # --- Nmap method ---
+        try:
+            nmap_cmd = ["nmap", "-sU", "-p", str(snmp_port), "--script", "snmp-info", target_ip]
+            nmap_proc = subprocess.run(nmap_cmd, capture_output=True, text=True, timeout=30)
+            if nmap_proc.returncode == 0 and "SNMP" in nmap_proc.stdout:
+                self.vulnerabilities.append(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Nmap)")
+                self.findings.append(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Nmap)")
+                found = True
+                used_nmap = True
+                if self.status_callback:
+                    self.status_callback(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Nmap)")
+            else:
+                nmap_error = nmap_proc.stderr or nmap_proc.stdout
+        except Exception as e:
+            nmap_error = str(e)
+
+        # --- Python fallback ---
+        if not found:
+            if self.status_callback:
+                self.status_callback(f"Nmap SNMP check failed or not conclusive. Fallback to Python UDP SNMP GET...")
+            try:
+                # Minimal SNMPv1 GET for sysDescr.0 (OID 1.3.6.1.2.1.1.1.0)
+                # Prebuilt SNMP GET packet for community 'public', request id 1
+                snmp_get_packet = binascii.unhexlify(
+                    "302602010004067075626c6963a01902010102010002010030133011060d2b060102010101000500"
+                )
+                sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                sock.settimeout(2)
+                sock.sendto(snmp_get_packet, (target_ip, snmp_port))
+                data, _ = sock.recvfrom(4096)
+                if data:
+                    self.vulnerabilities.append(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Python UDP)")
+                    self.findings.append(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Python UDP)")
+                    found = True
+                    if self.status_callback:
+                        self.status_callback(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Python UDP)")
+                else:
+                    if self.status_callback:
+                        self.status_callback(f"SNMP public community string not accessible on {target_ip}:{snmp_port}")
+                sock.close()
+            except Exception as e:
+                if self.status_callback:
+                    self.status_callback(f"Python SNMP fallback failed: {e}")
+                pass
+        if not found:
+            if self.status_callback:
+                self.status_callback(f"SNMP public community string not accessible on {target_ip}:{snmp_port}")
+        # Optionally log nmap error for debugging
+        if nmap_error and self.status_callback:
+            self.status_callback(f"Nmap SNMP check error: {nmap_error}")
 
     def get_findings(self):
         """
@@ -2581,3 +2447,76 @@ class NetworkScanner:
             #     vulnerabilities.append(default_cred_check)
         
         return vulnerabilities # Return vulnerabilities found by hardcoded checks (if any)
+
+    def _check_snmp_public(self):
+        """Check for SNMP public community string exposure using Nmap, then fallback to a minimal Python UDP SNMP GET."""
+        if self.status_callback:
+            self.status_callback("<font color='#FF6600'>Checking for SNMP public community string...</font>")
+
+        import socket
+        import subprocess
+        import struct
+        import binascii
+
+        target_ip = self.target
+        if "://" in target_ip:
+            target_ip = target_ip.split("://")[1].split("/")[0].split(":")[0]
+        try:
+            target_ip = socket.gethostbyname(target_ip)
+        except:
+            pass
+
+        snmp_port = 161
+        found = False
+        used_nmap = False
+        nmap_error = None
+        # --- Nmap method ---
+        try:
+            nmap_cmd = ["nmap", "-sU", "-p", str(snmp_port), "--script", "snmp-info", target_ip]
+            nmap_proc = subprocess.run(nmap_cmd, capture_output=True, text=True, timeout=30)
+            if nmap_proc.returncode == 0 and "SNMP" in nmap_proc.stdout:
+                self.vulnerabilities.append(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Nmap)")
+                self.findings.append(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Nmap)")
+                found = True
+                used_nmap = True
+                if self.status_callback:
+                    self.status_callback(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Nmap)")
+            else:
+                nmap_error = nmap_proc.stderr or nmap_proc.stdout
+        except Exception as e:
+            nmap_error = str(e)
+
+        # --- Python fallback ---
+        if not found:
+            if self.status_callback:
+                self.status_callback(f"Nmap SNMP check failed or not conclusive. Fallback to Python UDP SNMP GET...")
+            try:
+                # Minimal SNMPv1 GET for sysDescr.0 (OID 1.3.6.1.2.1.1.1.0)
+                # Prebuilt SNMP GET packet for community 'public', request id 1
+                snmp_get_packet = binascii.unhexlify(
+                    "302602010004067075626c6963a01902010102010002010030133011060d2b060102010101000500"
+                )
+                sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+                sock.settimeout(2)
+                sock.sendto(snmp_get_packet, (target_ip, snmp_port))
+                data, _ = sock.recvfrom(4096)
+                if data:
+                    self.vulnerabilities.append(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Python UDP)")
+                    self.findings.append(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Python UDP)")
+                    found = True
+                    if self.status_callback:
+                        self.status_callback(f"SNMP public community string accessible on {target_ip}:{snmp_port} (Python UDP)")
+                else:
+                    if self.status_callback:
+                        self.status_callback(f"SNMP public community string not accessible on {target_ip}:{snmp_port}")
+                sock.close()
+            except Exception as e:
+                if self.status_callback:
+                    self.status_callback(f"Python SNMP fallback failed: {e}")
+                pass
+        if not found:
+            if self.status_callback:
+                self.status_callback(f"SNMP public community string not accessible on {target_ip}:{snmp_port}")
+        # Optionally log nmap error for debugging
+        if nmap_error and self.status_callback:
+            self.status_callback(f"Nmap SNMP check error: {nmap_error}")

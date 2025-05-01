@@ -91,6 +91,7 @@ MODULE_DESCRIPTIONS = {
     "exec": "Tests for command execution vulnerabilities that allow attackers to run arbitrary system commands on the server, potentially leading to complete system compromise",
     "file": "Detects file-related vulnerabilities including Path Traversal (directory traversal), Local File Inclusion (LFI), and Remote File Inclusion (RFI) that can expose sensitive files or execute malicious code",
     "http_headers": "Analyzes HTTP headers for security issues including information disclosure, missing security headers, and misconfiguration",
+    "snmp_public": "Checks if SNMP (Simple Network Management Protocol) is accessible with the default 'public' community string, which can expose sensitive device and network information. This is a classic network-layer vulnerability.",
     "ldap": "Tests for LDAP injection vulnerabilities where user input is improperly sanitized before being used in LDAP queries",
     "methods": "Identifies supported HTTP methods and potential misconfigurations that could allow unauthorized operations like PUT or DELETE",
     "permanentxss": "Detects stored/permanent Cross-Site Scripting vulnerabilities where malicious scripts are saved on the server and executed when other users view the affected page",
@@ -2333,8 +2334,13 @@ class PentoraMainWindow(QMainWindow):
             "<li><b>open_ports:</b> Detects open ports and identifies running services on the target system.</li>"
             "<li><b>default_credentials:</b> Checks for default credentials on common services like FTP, SSH, Telnet, MySQL, etc.</li>"
             "<li><b>dos_vulnerabilities:</b> Identifies services that might be vulnerable to Denial of Service (DoS) attacks.</li>"
-            "<li><b>directory_listing:</b> Detects web servers with directory listing enabled.</li>"
             "<li><b>no_auth_services:</b> Identifies services running without proper authentication requirements.</li>"
+            "<li><b>service_vulnerabilities:</b> Checks for known vulnerabilities in detected services.</li>"
+            "<li><b>snmp_public:</b> Checks if SNMP (Simple Network Management Protocol) is accessible with the default 'public' community string. "
+            "This test attempts to detect devices that expose sensitive network or device information via SNMP without proper authentication. "
+            "SNMP is widely used for network management, and leaving it open with the default community string ('public') is a common misconfiguration that can lead to information disclosure or even exploitation. "
+            "The scanner first tries to use Nmap's SNMP scripts, then falls back to a direct SNMP GET request using Python if Nmap is unavailable or inconclusive." 
+            "</li>"
             "</ul>"
         )
         network_vuln_list.setTextFormat(Qt.TextFormat.RichText)
