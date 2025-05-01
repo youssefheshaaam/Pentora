@@ -247,7 +247,7 @@ class PentoraAuthApp(QMainWindow):
     def init_ui(self):
         """Initialize the user interface with modern design"""
         # Set window properties
-        self.setWindowTitle("Pentora - Vulnerability Scanner")
+        self.setWindowTitle("Pentora")
         self.resize(1280, 800)
         self.setMinimumSize(900, 600)
         
@@ -963,7 +963,7 @@ def main():
     
     # Set application-wide properties
     app.setApplicationName("Pentora")
-    app.setApplicationDisplayName("Pentora Vulnerability Scanner")
+    app.setApplicationDisplayName("Pentora")
     
     # Set consistent font
     app.setFont(QFont("SF Pro Text", 10))

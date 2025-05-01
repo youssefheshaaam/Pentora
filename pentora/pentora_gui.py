@@ -1145,7 +1145,7 @@ class PentoraMainWindow(QMainWindow):
     def init_ui(self):
         """Initialize the user interface"""
         # Set window properties
-        self.setWindowTitle("Pentora - Vulnerability Scanner")
+        self.setWindowTitle("Pentora")
         self.resize(1200, 800)
         
         # Set application style
@@ -1800,8 +1800,8 @@ class PentoraMainWindow(QMainWindow):
         network_options_layout.addWidget(network_port_label, 0, 0)
         
         self.network_port_input = QLineEdit()
-        self.network_port_input.setPlaceholderText("1-1000")
-        self.network_port_input.setText("1-1000")
+        self.network_port_input.setPlaceholderText("1-65535")
+        self.network_port_input.setText("1-65535")
         network_options_layout.addWidget(self.network_port_input, 0, 1)
         
         # Network modules
@@ -2545,7 +2545,7 @@ class PentoraMainWindow(QMainWindow):
         # Get port range
         port_range = self.network_port_input.text().strip()
         if not port_range:
-            port_range = "1-1000"  # Default port range
+            port_range = "1-65535"  # Default port range
             
         # Get output directory
         output_dir = self.network_output_dir_input.text().strip()
@@ -3349,7 +3349,7 @@ def main():
     
     # Set application-wide properties
     app.setApplicationName("Pentora")
-    app.setApplicationDisplayName("Pentora Vulnerability Scanner")
+    app.setApplicationDisplayName("Pentora")
     
     # Set application icon (will be used in taskbar and window decorations)
     icon_path = get_app_icon_path()

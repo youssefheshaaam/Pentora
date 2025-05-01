@@ -141,7 +141,7 @@ class NetworkScanner:
             status_callback: Optional callback function to report status updates
         """
         self.target = None
-        self.port_range = "1-1000"  # Default port range
+        self.port_range = "1-65535"  # Default port range changed to full scan
         self.output_dir = None
         self.report_format = "html"
         self.enabled_modules = ["open_ports"]  # Default module
@@ -559,6 +559,9 @@ class NetworkScanner:
                     ports_str = ",".join(map(str, ports_to_scan))
                 
                 # Construct the nmap command
+                # IMPORTANT: We use -sT (TCP connect scan) instead of -sS (SYN scan) for maximum compatibility:
+                # - SYN scan (-sS) requires administrative/root privileges and may not work on Windows or in restricted environments.
+                # - TCP connect scan (-sT) works without special privileges and is more reliable for most users, especially on Windows.
                 nmap_command = [
                     "nmap",
                     "-Pn",  # Skip host discovery (added)
@@ -659,7 +662,10 @@ class NetworkScanner:
                                         "service": current_service,
                                         "product": current_product,
                                         "version": current_version,
-                                        "module": "open_ports"
+                                        "module": "open_ports",
+                                        "cvss_score": 2.6,
+                                        "remediation": "Close unused ports and restrict access with a firewall.",
+                                        "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                                     })
 
                         except (IndexError, ValueError):
@@ -708,7 +714,10 @@ class NetworkScanner:
                                      "product": current_product,
                                      "version": current_version,
                                      "module": "service_vulnerabilities",
-                                     "details": script_output
+                                     "details": script_output,
+                                     "cvss_score": 7.5,
+                                     "remediation": "Change the SNMP community string from 'public' and restrict SNMP access.",
+                                     "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                                  })
 
                     # Reset current_port if we encounter a line indicating a move away from port details
@@ -796,7 +805,10 @@ class NetworkScanner:
                                 "service": service,
                                 "product": "",
                                 "version": "",
-                                "module": "open_ports"
+                                "module": "open_ports",
+                                "cvss_score": 2.6,
+                                "remediation": "Close unused ports and restrict access with a firewall.",
+                                "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                             })
                     except Exception as e:
                         if self.verbose and self.status_callback:
@@ -959,14 +971,15 @@ class NetworkScanner:
                                 "description": f"Default credentials ({username}:{password}) work on {service} service",
                                 "severity": "High",
                                 "cvss_score": 7.5,
-                                "remediation": "Change default credentials and implement strong password policy",
+                                "remediation": "Change default credentials and enforce strong password policies",
                                 "references": ["https://www.owasp.org/index.php/Testing_for_Default_Credentials_(OTG-AUTHN-002)"],
                                 "ip": ip,
                                 "port": port,
                                 "service": service,
                                 "username": username,
                                 "password": password,
-                                "module": "default_credentials"
+                                "module": "default_credentials",
+                                "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                             }
                             
                             self.vulnerabilities.append(vuln)
@@ -1156,7 +1169,9 @@ class NetworkScanner:
                         "description": f"Target shows high packet loss ({total_count - success_count}/{total_count}) under moderate ICMP load.",
                         "severity": "Medium",
                         "ip": target_ip,
-                        "module": "dos_vulnerabilities"
+                        "module": "dos_vulnerabilities",
+                        "cvss_score": 5.0,
+                        "remediation": "Implement rate limiting and network-level protections."
                     })
                     if self.status_callback:
                         self.status_callback(f"  <font color='#FF0000'>⚠️ Potential ICMP vulnerability! High packet loss observed ({total_count - success_count}/{total_count})</font>")
@@ -1175,7 +1190,9 @@ class NetworkScanner:
                              "description": f"Target shows high ICMP response time variability (Mean: {mean_rt:.2f}ms, StDev: {stdev:.2f}ms) under moderate load.",
                              "severity": "Low", # Lower severity than packet loss
                              "ip": target_ip,
-                             "module": "dos_vulnerabilities"
+                             "module": "dos_vulnerabilities",
+                             "cvss_score": 5.0,
+                             "remediation": "Implement rate limiting and network-level protections."
                          })
                          if self.status_callback:
                              self.status_callback(f"  <font color='#FF9900'>⚠️ Potential ICMP vulnerability! High response time variability observed (StDev: {stdev:.2f}ms)</font>")
@@ -1275,7 +1292,9 @@ class NetworkScanner:
                         "description": f"Target responded to {success_ratio*100:.1f}% of TCP SYN packets across multiple ports under moderate load.",
                         "severity": "Low",
                         "ip": target_ip,
-                        "module": "dos_vulnerabilities"
+                        "module": "dos_vulnerabilities",
+                        "cvss_score": 5.0,
+                        "remediation": "Implement rate limiting and network-level protections."
                     })
                     if self.status_callback:
                         self.status_callback(f"  <font color='#FF9900'>⚠️ Potential SYN Flood Susceptibility: High SYN response ratio ({success_ratio*100:.1f}%)</font>")
@@ -1294,7 +1313,9 @@ class NetworkScanner:
                              "description": f"Target shows high TCP SYN connection time variability (Mean: {mean_ct:.2f}ms, StDev: {stdev:.2f}ms) under moderate load.",
                              "severity": "Low",
                              "ip": target_ip,
-                             "module": "dos_vulnerabilities"
+                             "module": "dos_vulnerabilities",
+                             "cvss_score": 5.0,
+                             "remediation": "Implement rate limiting and network-level protections."
                          })
                          if self.status_callback:
                              self.status_callback(f"  <font color='#FF9900'>⚠️ Potential SYN Flood Vulnerability: High connection time variability (StDev: {stdev:.2f}ms)</font>")
@@ -1376,7 +1397,9 @@ class NetworkScanner:
                     "severity": "Medium",
                     "ip": target_ip,
                     "port": target_port,
-                    "module": "dos_vulnerabilities"
+                    "module": "dos_vulnerabilities",
+                    "cvss_score": 7.5,
+                    "remediation": "Implement rate limiting and network-level protections."
                 })
                 if self.status_callback:
                     self.status_callback(f"  <font color='#FF0000'>⚠️ Potential Slowloris vulnerability! Server accepted {established_sockets}/{max_sockets} partial connections.</font>")
@@ -1442,7 +1465,9 @@ class NetworkScanner:
                     "severity": "Low",
                     "ip": target_ip,
                     "port": udp_port,
-                    "module": "dos_vulnerabilities"
+                    "module": "dos_vulnerabilities",
+                    "cvss_score": 5.0,
+                    "remediation": "Implement rate limiting and network-level protections."
                 })
                 if self.status_callback:
                     self.status_callback(f"  <font color='#FF9900'>⚠️ Potential UDP Flood Sensitivity: High send error rate ({error_count}/{udp_packets_to_send}) to port {udp_port}.</font>")
@@ -1520,7 +1545,10 @@ class NetworkScanner:
                                     "severity": "High",
                                     "ip": target_ip,
                                     "port": port,
-                                    "module": "no_auth_services"
+                                    "module": "no_auth_services",
+                                    "cvss_score": 8.0,
+                                    "remediation": "Enable authentication and restrict public access.",
+                                    "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                                 })
                                 
                                 # Close connection
@@ -1573,7 +1601,10 @@ class NetworkScanner:
                                         "severity": "High",
                                         "ip": target_ip,
                                         "port": port,
-                                        "module": "no_auth_services"
+                                        "module": "no_auth_services",
+                                        "cvss_score": 7.5,
+                                        "remediation": "Change the SNMP community string from 'public' and restrict SNMP access.",
+                                        "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                                     })
                     except:
                         # Either auth is required or some other error
@@ -1650,7 +1681,10 @@ class NetworkScanner:
                                             "severity": "High",
                                             "ip": target_ip,
                                             "port": port,
-                                            "module": "no_auth_services"
+                                            "module": "no_auth_services",
+                                            "cvss_score": 8.0,
+                                            "remediation": "Enable authentication and restrict public access.",
+                                            "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                                         })
                         except:
                             # This is expected for most URLs that don't exist
@@ -1681,7 +1715,10 @@ class NetworkScanner:
                          "severity": "Medium",
                          "ip": target_ip,
                          "port": ftp_port,
-                         "module": "no_auth_services"
+                         "module": "no_auth_services",
+                         "cvss_score": 7.5,
+                         "remediation": "Enable authentication and restrict public access.",
+                         "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                      })
         except Exception as e:
              if self.verbose and self.status_callback:
@@ -1714,7 +1751,10 @@ class NetworkScanner:
                             "severity": "High",
                             "ip": target_ip,
                             "port": redis_port,
-                            "module": "no_auth_services"
+                            "module": "no_auth_services",
+                            "cvss_score": 7.5,
+                            "remediation": "Enable authentication and restrict public access.",
+                            "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                         })
                         r.close()
                     except redis.exceptions.AuthenticationError:
@@ -1760,7 +1800,10 @@ class NetworkScanner:
                                  "severity": "Medium", # Often less critical than DBs unless storing sensitive data
                                  "ip": target_ip,
                                  "port": memcached_port,
-                                 "module": "no_auth_services"
+                                 "module": "no_auth_services",
+                                 "cvss_score": 7.5,
+                                 "remediation": "Enable authentication and restrict public access.",
+                                 "cvss_vector": "AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:N"
                              })
                         client.close()
                     except Exception as e:
@@ -2144,9 +2187,14 @@ class NetworkScanner:
                     vulnerabilities_content += f"""
                     <div class="vulnerability-item">
                         <span class="severity {severity_class}">{vuln["severity"]}</span>
-                        <span>{vuln["description"]}</span>
-                    </div>
-                    """
+                        <span>{vuln["description"]}</span>"""
+                    # Add CVSS score if present
+                    if "cvss_score" in vuln:
+                        vulnerabilities_content += f"<br><b>CVSS Score:</b> {vuln['cvss_score']}"
+                    # Add remediation/fix if present
+                    if "remediation" in vuln:
+                        vulnerabilities_content += f"<br><b>Remediation:</b> {vuln['remediation']}"
+                    vulnerabilities_content += "</div>"
                 vulnerabilities_content += """
                     </div>
                 </div>
