@@ -25,7 +25,7 @@ Key Capabilities
 ================
 
 * Interactive graphical interface for easy scan configuration and monitoring
-* Comprehensive HTML and JSON vulnerability reporting
+* Comprehensive HTML, PDF, and JSON vulnerability reporting
 * Customizable attack module selection
 * Color-coded terminal output for quick vulnerability identification
 * Configurable scan parameters and depth
@@ -52,9 +52,8 @@ Pentora can detect a wide range of web application vulnerabilities:
 * Content Security Policy Evaluation
 * Login Form Brute Force Testing
 * Security Header Analysis
-* Cookie Security Verification
 * Cross-Site Request Forgery Detection
-* JSON Payload Injection
+
 
 Pentora handles both GET and POST requests, supports multipart form submissions, and can inject payloads into file uploads. The scanner distinguishes between persistent and reflected vulnerabilities and highlights anomalies like server errors and timeouts.
 

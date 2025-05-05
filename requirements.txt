@@ -1,104 +1,87 @@
 # =============================================================================
 # PENTORA - VULNERABILITY SCANNER - REQUIREMENTS
 # =============================================================================
-# Core packages required for basic functionality of the application
 
 # =============================================================================
-# REQUIRED DEPENDENCIES 
+# CORE DEPENDENCIES (Required for main functionality)
 # =============================================================================
 
-# Core Functionality
-aiocache==0.12.2      # Caching for asynchronous code
-aiohttp==3.10.2       # Asynchronous HTTP client/server
-aiosqlite==0.20.0     # Async interface for SQLite
-beautifulsoup4==4.12.3  # HTML parsing library
-browser-cookie3==0.19.1  # Cookie extraction from browsers
-dnspython==2.6.1      # DNS toolkit for domain validation
-h11==0.14.0           # HTTP/1.1 protocol implementation
-
-# HTTP and Networking
-httpcore==1.0.4       # Low-level HTTP client
-httpx[brotli, socks]==0.27.0  # Modern HTTP client with async support
-httpx-ntlm==1.4.0     # NTLM authentication support
-humanize==4.9.0       # Human-friendly output formatting
-paramiko==3.5.1       # SSH implementation for network scanning
-bcrypt==3.2.2         # Cryptographic library for secure password hashing
-passlib==1.7.4        # Password hashing library
-
-# GUI Framework
-PyQt5==5.15.11        # GUI framework
-PyQt5-Qt5==5.15.2     # Qt5 binaries
-PyQt5_sip==12.17.0    # SIP bindings for PyQt5
-
-# Logging and Reporting
-loguru==0.7.2         # Advanced Python logging
-mako==1.3.2           # Template engine for reports
-markupsafe==2.1.5     # String handling for templates
-XlsxWriter==3.2.1     # Excel file creation for reports
-cvss==2.4             # CVSS scoring in vulnerability reports
-tabulate==0.9.0       # Text tables in reports
-
-# Data Processing and Storage
-sqlalchemy==2.0.28    # SQL toolkit and ORM
-tld==0.13             # Top-level domain extraction
-tldextract==5.1.3     # TLD separation
-packaging==24.1       # Version comparison utilities
-pyasn1==0.5.1         # ASN.1 encoding/decoding
-typing-extensions==4.10.0  # Backported typing hints
-
-# Security and Scanning
-scapy==2.5.0rc2       # Packet manipulation for network analysis
-cryptography==42.0.8  # Cryptographic functions
-pyOpenSSL==24.0.0     # Python wrapper for OpenSSL
-requests==2.32.3      # HTTP library for security testing
-python-nmap==0.7.1    # Nmap interface for network scanning
-python3-nmap==1.9.1   # Enhanced Nmap interface
-pymongo==4.11.2       # MongoDB client for NoSQL security testing
-pymysql==1.1.1        # MySQL client for database security testing
-redis==5.2.1          # Redis client for cache security testing
-pymemcache==4.0.0     # Memcached client for cache security testing
-elasticsearch==7.17.0 # Elasticsearch client for search security testing
-urllib3==2.0.7        # HTTP client library (used directly)
-colorama==0.4.5       # Colored terminal output
+aiocache==0.12.2                # Caching for asynchronous code
+aiohttp==3.10.2                 # Asynchronous HTTP client/server
+aiosqlite==0.20.0               # Async interface for SQLite
+bcrypt==3.2.2                   # Cryptographic library for secure password hashing
+beautifulsoup4==4.12.3          # HTML parsing library
+browser-cookie3==0.19.1         # Cookie extraction from browsers
+colorama==0.4.5                 # Colored terminal output
+cryptography==42.0.8            # Cryptographic functions
+dnspython==2.6.1                # DNS toolkit for domain validation
+h11==0.14.0                     # HTTP/1.1 protocol implementation
+httpcore==1.0.4                 # Low-level HTTP client
+httpx[brotli, socks]==0.27.0    # Modern HTTP client with async support
+httpx-ntlm==1.4.0               # NTLM authentication support
+humanize==4.9.0                 # Human-friendly output formatting
+loguru==0.7.2                   # Advanced Python logging
+mako==1.3.2                     # Template engine for reports
+markupsafe==2.1.5               # String handling for templates
+paramiko==3.5.1                 # SSH implementation for network scanning
+passlib==1.7.4                  # Password hashing library
+packaging==24.1                 # Version comparison utilities
+pyasn1==0.5.1                   # ASN.1 encoding/decoding
+PyQt5==5.15.11                  # GUI framework
+PyQt5-Qt5==5.15.2               # Qt5 binaries
+PyQt5_sip==12.17.0              # SIP bindings for PyQt5
+pyOpenSSL==24.0.0               # Python wrapper for OpenSSL
+python-nmap==0.7.1              # Nmap interface for network scanning
+python3-nmap==1.9.1             # Enhanced Nmap interface
+pymemcache==4.0.0               # Memcached client for cache security testing
+pymongo==4.11.2                 # MongoDB client for NoSQL security testing
+pymysql==1.1.1                  # MySQL client for database security testing
+redis==5.2.1                    # Redis client for cache security testing
+requests==2.32.3                # HTTP library for security testing
+scapy==2.5.0rc2                 # Packet manipulation for network analysis
+sqlalchemy==2.0.28              # SQL toolkit and ORM
+tabulate==0.9.0                 # Text tables in reports
+tld==0.13                       # Top-level domain extraction
+tldextract==5.1.3               # TLD separation
+typing-extensions==4.10.0        # Backported typing hints
+urllib3==2.0.7                  # HTTP client library (used directly)
+XlsxWriter==3.2.1               # Excel file creation for reports
 
 # =============================================================================
-# OPTIONAL DEPENDENCIES
+# SECURITY & REPORTING EXTENSIONS
 # =============================================================================
-# These packages are used for specific features and can be commented out
-# if those features are not needed
+
+cvss==2.4                       # CVSS scoring in vulnerability reports
+elasticsearch==7.17.0           # Elasticsearch client for search security testing
+
+# =============================================================================
+# GUI & REPORTING (Advanced/Optional)
+# =============================================================================
+
+pyqtwebengine==5.15.6           # Rendering web content in reports
+
+# =============================================================================
+# OPTIONAL/LEGACY/ADVANCED FEATURES
+# =============================================================================
 
 # Custom package - local dependency
 ./packages/arsenic-28.1+remove.distutils-py3-none-any.whl  # Selenium wrapper (modified)
 
-# Advanced Report Rendering
-pyqtwebengine==5.15.6 # Rendering web content in reports
-
-# API Testing
-prance[osv]>=23.6.21.0  # OpenAPI/Swagger spec parser
-
-# Legacy Format Support (can be removed if not needed)
-yaswfp==0.9.3         # Flash (SWF) file parser - optional, for legacy web apps
-
-# Advanced HTTP Inspection (can be removed if not needed)
-mitmproxy==10.2.3     # Man-in-the-middle proxy - optional, for traffic inspection
+mitmproxy==10.2.3               # Man-in-the-middle proxy - optional, for traffic inspection
+prance[osv]>=23.6.21.0          # OpenAPI/Swagger spec parser
+yaswfp==0.9.3                   # Flash (SWF) file parser - optional, for legacy web apps
 
 # =============================================================================
-# TESTING DEPENDENCIES
+# TESTING DEPENDENCIES (Development only)
 # =============================================================================
-# Only needed for development and testing
 
-pytest==8.3.5         # Testing framework
-pytest-asyncio==0.25.3 # Async testing support
-respx==0.22.0         # HTTP mocking for API tests
+pytest==8.3.5                   # Testing framework
+pytest-asyncio==0.25.3          # Async testing support
+respx==0.22.0                   # HTTP mocking for API tests
 
 # =============================================================================
-# EXTERNAL TOOL DEPENDENCIES
+# EXTERNAL TOOL DEPENDENCIES (Install separately)
 # =============================================================================
-# The following tools need to be installed separately:
-
 # - Nmap: Required for comprehensive port scanning
 #   Download from: https://nmap.org/download.html
-# 
-# - sslscan: Required for SSL/TLS vulnerability detection
-#   Install via Nmap (includes sslscan) or download from:
-#   https://github.com/rbsec/sslscan/releases
+
