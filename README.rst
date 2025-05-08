@@ -65,7 +65,6 @@ Pentora's security tests are organized into specialized modules:
 * backup - Identifies backup files and exposed source code
 * brute_login_form - Tests login forms against common credentials
 * buster - Performs directory and file enumeration
-* cookieflags - Verifies secure cookie implementation
 * crlf - Tests for HTTP header injection
 * csp - Evaluates Content Security Policy configuration
 * csrf - Identifies missing or weak CSRF protections

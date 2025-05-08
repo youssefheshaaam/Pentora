@@ -1,274 +1,761 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Pentora scan report</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="css/kube.min.css" />
-    <link rel="stylesheet" type="text/css" href="css/master.css" />
+	<title>Pentora Scan Report - ${target}</title>
+	<!-- Bootstrap CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- Custom CSS -->
+	<style>
+		/* Pentora Report Custom Styles */
+		:root {
+		  --bs-primary: #1ABC9C; /* Teal */
+		  --bs-secondary: #6c757d; /* Gray */
+		  --bs-success: #198754; /* Green */
+		  --bs-info: #0dcaf0;    /* Cyan */
+		  --bs-warning: #ffc107; /* Yellow */
+		  --bs-danger: #dc3545;  /* Red */
+		  --bs-light: #f8f9fa;   /* Light Gray */
+		  --bs-dark: #212529;    /* Dark Gray */
+
+		  --pentora-critical: #e53935; /* Red */
+		  --pentora-high: #fb8c00;     /* Orange */
+		  --pentora-medium: #fbc02d;   /* Yellow */
+		  --pentora-low: #43a047;      /* Green */
+		  --pentora-info: #1e88e5;     /* Blue */
+
+		  --pentora-bg: #181A20; /* Dark background */
+		  --pentora-card-bg: #20232B; /* Slightly lighter card background */
+		  --pentora-text: #E3E6ED; /* Light text */
+		  --pentora-border: #2D313A; /* Subtle border */
+		  --pentora-accent: #1ABC9C; /* Teal accent */
+		}
+
+		body {
+		  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+		  background-color: var(--pentora-bg);
+		  color: var(--pentora-text);
+		  font-size: 16px;
+		  line-height: 1.6;
+		}
+
+		.report-container {
+		  max-width: 1200px;
+		  margin: 2rem auto;
+		  padding: 1rem;
+		}
+
+		.report-header {
+		  background-color: var(--pentora-card-bg);
+		  padding: 2rem 2.5rem;
+		  border-radius: 1rem;
+		  margin-bottom: 2rem;
+		  border: 1px solid var(--pentora-border);
+		}
+
+		.report-header .logo {
+		  max-height: 60px;
+		  margin-bottom: 1rem;
+		  margin-right: 1.5rem;
+		}
+
+		.report-title {
+		  color: var(--pentora-accent);
+		  font-weight: bold;
+		  font-size: 2.5rem;
+		  margin-bottom: 0;
+		}
+
+		.scan-meta p {
+		  margin-bottom: 0.3rem;
+		  font-size: 1.1rem;
+		  color: #adb5bd; /* Lighter gray */
+		}
+
+		.scan-meta strong {
+		    color: var(--pentora-text);
+		}
+
+		h2, h3 {
+		  color: var(--pentora-accent);
+		  margin-top: 2rem;
+		  margin-bottom: 1.2rem;
+		  font-weight: 600;
+		}
+		 h4 {
+		  color: var(--pentora-text);
+		  margin-top: 1.5rem;
+		  margin-bottom: 1rem;
+		  font-weight: 600;
+		  font-size: 1.3rem;
+		}
+
+		.summary-card,
+		.details-card {
+		  background-color: var(--pentora-card-bg);
+		  border: 1px solid var(--pentora-border);
+		  border-radius: 1rem;
+		  padding: 1.5rem 2rem;
+		  margin-bottom: 1.5rem;
+		}
+
+		.summary-table th {
+		  color: var(--pentora-accent);
+		  border-bottom-width: 2px;
+		  border-color: var(--pentora-accent);
+		}
+
+		.summary-table td {
+		    vertical-align: middle;
+            color: var(--pentora-text); /* Explicitly set text color for cells */
+            background-color: var(--pentora-card-bg); /* Ensure cells match card background */
+		}
+        .summary-table td a {
+            color: var(--pentora-accent) !important; /* Ensure links are visible */
+            text-decoration: none;
+        }
+        .summary-table td a:hover {
+            text-decoration: underline;
+        }
+		.table {
+		    color: var(--pentora-text); /* Ensure table text is light */
+		    border-color: var(--pentora-border); /* Light border for table */
+		}
+		.table-hover > tbody > tr:hover > * {
+		  background-color: rgba(255, 255, 255, 0.05);
+		  color: var(--pentora-text);
+		}
+
+		.badge.bg-pentora-critical { background-color: var(--pentora-critical) !important; color: white; }
+		.badge.bg-pentora-high { background-color: var(--pentora-high) !important; color: white; }
+		.badge.bg-pentora-medium { background-color: var(--pentora-medium) !important; color: var(--bs-dark); }
+		.badge.bg-pentora-low { background-color: var(--pentora-low) !important; color: white; }
+		.badge.bg-pentora-info { background-color: var(--pentora-info) !important; color: white; }
+
+		.badge.rounded-pill {
+		    padding: 0.4em 0.8em;
+		    font-weight: 600;
+		    font-size: 0.9em;
+		}
+
+		/* Details section */
+		.finding-card {
+		    margin-bottom: 2rem;
+		    border-left-width: 5px !important;
+		    border: 1px solid var(--pentora-border);
+		    border-radius: 0.5rem;
+		    background-color: var(--pentora-card-bg);
+		}
+
+		.finding-card.critical { border-left-color: var(--pentora-critical) !important; }
+		.finding-card.high { border-left-color: var(--pentora-high) !important; }
+		.finding-card.medium { border-left-color: var(--pentora-medium) !important; }
+		.finding-card.low { border-left-color: var(--pentora-low) !important; }
+		.finding-card.info { border-left-color: var(--pentora-info) !important; }
+
+		.finding-card .card-header {
+		    background-color: rgba(0,0,0,0.1);
+		    border-bottom: 1px solid var(--pentora-border);
+		    padding: 1rem 1.5rem;
+		    margin-bottom: 0; /* Remove default margin */
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		}
+
+		.finding-card .card-title {
+		    margin-bottom: 0;
+		    font-size: 1.3rem;
+		    font-weight: 600;
+		    color: var(--pentora-text);
+		}
+
+		.finding-card .badge {
+		    margin-right: 0.5rem;
+		}
+
+		.finding-card .card-body {
+		    padding: 1.5rem;
+		}
+
+		.nav-tabs {
+		    border-bottom: 1px solid var(--pentora-border);
+		    margin-bottom: 1.5rem;
+		}
+
+		.nav-tabs .nav-link {
+		  color: #adb5bd;
+		  border: none;
+		  border-bottom: 3px solid transparent;
+		  margin-right: 5px;
+		  padding: 0.7rem 1.2rem;
+		  font-weight: 500;
+		}
+
+		.nav-tabs .nav-link.active,
+		.nav-tabs .nav-item.show .nav-link {
+		  color: var(--pentora-accent);
+		  background-color: transparent;
+		  border-color: var(--pentora-accent);
+		}
+
+		.nav-tabs .nav-link:hover,
+		.nav-tabs .nav-link:focus {
+		  border-color: var(--pentora-border);
+		  isolation: isolate;
+		  color: var(--pentora-text);
+		}
+
+		.tab-content {
+		  padding-top: 1rem; /* Add some space above tab content */
+		}
+
+		.tab-content pre {
+		  background-color: var(--pentora-bg);
+		  color: #d1d5db;
+		  padding: 1rem;
+		  border-radius: 0.5rem;
+		  border: 1px solid var(--pentora-border);
+		  font-family: 'Fira Mono', monospace;
+		  font-size: 0.95em;
+		  white-space: pre-wrap; /* Allow wrapping */
+		  word-wrap: break-word;
+		}
+
+		dl dt {
+		    font-weight: bold;
+		    color: var(--pentora-accent);
+		    margin-top: 0.8rem;
+		}
+		dl dd {
+		    margin-left: 1rem;
+		    margin-bottom: 0.8rem;
+		}
+
+		.report-footer {
+		    text-align: center;
+		    margin-top: 3rem;
+		    padding-top: 1.5rem;
+		    border-top: 1px solid var(--pentora-border);
+		    color: #adb5bd;
+		    font-size: 0.9rem;
+		}
+
+		.report-footer a {
+		    color: var(--pentora-accent);
+		    text-decoration: none;
+		}
+
+		.report-footer a:hover {
+		    text-decoration: underline;
+		}
+
+		/* CVSS Scores */
+		.cvss-score {
+		    padding: 0.3em 0.6em;
+		    border-radius: 0.25rem;
+		    font-weight: bold;
+		    font-size: 0.9em;
+		    margin-left: 0.5rem; /* Space from title */
+		}
+
+		.cvss-score.critical {
+		    background-color: var(--pentora-critical);
+		    color: white;
+		}
+		.cvss-score.high {
+		    background-color: var(--pentora-high);
+		    color: white;
+		}
+		.cvss-score.medium {
+		    background-color: var(--pentora-medium);
+		    color: var(--bs-dark);
+		}
+		.cvss-score.low {
+		    background-color: var(--pentora-low);
+		    color: white;
+		}
+		.cvss-score.info {
+		    background-color: var(--pentora-info);
+		    color: white;
+		}
+
+		/* Utils */
+		.word-break {
+		    word-break: break-all;
+		}
+
+		/* Print styles */
+		@media print {
+		  body {
+		    background-color: white;
+		    color: black;
+		  }
+		  .report-header,
+		  .summary-card,
+		  .details-card,
+		  .finding-card {
+		    background-color: white !important;
+		    border: 1px solid #dee2e6 !important;
+		    box-shadow: none;
+		    color: black !important;
+		  }
+
+		  .report-header .logo { display: none; } /* Hide logo in print */
+		  .scan-meta p, .report-footer, h2, h3, h4, h5, dl dt, .finding-card .card-title, .summary-table th, .table, a {
+		    color: black !important;
+		  }
+		  .badge {
+		      border: 1px solid #6c757d;
+		      color: black !important;
+		      background-color: white !important;
+		  }
+		  .nav-tabs, .report-footer a {
+		      display: none !important; /* Hide tabs and links in print */
+		  }
+		  .tab-content > .tab-pane {
+		      display: block !important; /* Show all tab content */
+		      opacity: 1 !important;
+		  }
+		  pre {
+		    background-color: #f8f9fa !important;
+		    color: black !important;
+		    border: 1px solid #dee2e6 !important;
+		    white-space: pre-wrap !important;
+		  }
+		  .finding-card {
+		      border-left: 3px solid #adb5bd !important;
+		  }
+		}
+	</style>
 </head>
 <body>
-    <div id="page">
-        <header style="text-align: center">
-        <h2 class="title" style="text-align: center">Pentora vulnerability report</h2>
-        <h3>Target: ${target}</h3>
-        <p>Date of the scan: ${scan_date}. Scope of the scan: ${scan_scope}. Crawled pages: ${crawled_pages_nbr}</p>
-        </header>
-        <hr />
-        % if auth_dict != None:
-        <h4>Authentication</h4>
-        <p>
-            Url: ${auth_dict["url"]}<br>
-            Logged in: ${auth_dict["logged_in"]}<br>
-            % if auth_form_dict != None and len(auth_form_dict) > 0:
-            Login field: ${auth_form_dict["login_field"]}<br>
-            Password field: ${auth_form_dict["password_field"]}<br>
-            % endif
-        </p>
-        <hr />
-        % endif
+	<div class="container report-container">
+		<!-- Header -->
+		<div class="report-header shadow-sm mb-5">
+			<div class="d-flex align-items-center mb-3">
+				<img src="Pentora_logo.png" alt="Pentora Logo" class="logo">
+				<h1 class="report-title">Pentora Scan Report</h1>
+			</div>
+			<div class="scan-meta">
+				<p><strong>Target:</strong> ${target | h}</p>
+				<p><strong>Scan Date:</strong> ${scan_date}</p>
+				<p><strong>Scope:</strong> ${scan_scope}</p>
+				<p><strong>Pages Crawled:</strong> ${crawled_pages_nbr}</p>
+				% if auth_dict != None:
+				<p><strong>Authentication Url:</strong> ${auth_dict["url"] | h}</p>
+				<p><strong>Logged in:</strong> ${auth_dict["logged_in"]}</p>
+					% if auth_form_dict != None and len(auth_form_dict) > 0:
+					<p><strong>Login field:</strong> ${auth_form_dict["login_field"] | h}</p>
+					<p><strong>Password field:</strong> ${auth_form_dict["password_field"] | h}</p>
+					% endif
+				% endif
+			</div>
+		</div>
 
-        <h4>Summary</h4>
-        <table class="width-100 hovered" style="background: url('Pentora_logo.png') no-repeat center;">
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Number of vulnerabilities found</th>
-                </tr>
-            </thead>
-            <tbody id="summary">
-                % for i, vuln_name in enumerate(vulnerabilities):
-                    <tr>
-                        <td class="small">
-                            % if len(vulnerabilities[vuln_name]):
-                            <a href="#vuln_type_${i}">${vuln_name}</a>
-                            % else:
-                            ${vuln_name}
-                            % endif
-                        </td>
-                        <td class="small .text-centered">${len(vulnerabilities[vuln_name])}</td>
-                    </tr>
-                % endfor
-                % for i, anomaly_name in enumerate(anomalies):
-                    <tr>
-                        <td class="small">
-                            % if len(anomalies[anomaly_name]):
-                            <a href="#anom_type_${i}">${anomaly_name}</a>
-                            % else:
-                            ${anomaly_name}
-                            % endif
-                        </td>
-                        <td class="small .text-centered">${len(anomalies[anomaly_name])}</td>
-                    </tr>
-                % endfor
-                % for i, additional_name in enumerate(additionals):
-                    <tr>
-                        <td class="small">
-                            % if len(additionals[additional_name]):
-                            <a href="#addition_type_${i}">${additional_name}</a>
-                            % else:
-                            ${additional_name}
-                            % endif
-                        </td>
-                        <td class="small .text-centered">${len(additionals[additional_name])}</td>
-                    </tr>
-                % endfor
-            </tbody>
-        </table>
-        <hr />
-        <div id="details">
-            % for i, vuln_name in enumerate(vulnerabilities):
-                % if len(vulnerabilities[vuln_name]):
-                <h3 id="vuln_type_${i}">${vuln_name}</h3>
-                <dl>
-                    <dt>Description</dt>
-                    <dd>${flaws[vuln_name]["desc"] | h}</dd>
-                    % if "cvss" in flaws[vuln_name]:
-                    <dt>CVSS Score</dt>
-                    <dd>
-                        <span class="cvss-score ${flaws[vuln_name]['cvss']['severity'].lower()}">${flaws[vuln_name]['cvss']['score']}</span>
-                        <span class="cvss-severity">${flaws[vuln_name]['cvss']['severity']}</span>
-                        <span class="cvss-vector">${flaws[vuln_name]['cvss']['vector']}</span>
-                    </dd>
-                    % endif
-                </dl>
+		<!-- Summary -->
+		<div class="summary-card shadow-sm mb-5">
+			<h2 class="mb-4">Scan Summary</h2>
+			<table class="table table-hover summary-table">
+				<thead class="table-dark">
+					<tr>
+						<th>Category</th>
+						<th class="text-center">Count</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%def name="get_severity_badge(vuln_name)">
+						<% 
+						severity = 'info' # Default 
+						if "cvss" in flaws[vuln_name]:
+							severity = flaws[vuln_name]['cvss']['severity'].lower()
+						elif "level" in flaws[vuln_name]: # Fallback for anomalies/additionals
+							level = flaws[vuln_name]['level']
+							if level == 5: severity = 'critical'
+							elif level == 4: severity = 'high'
+							elif level == 3: severity = 'medium'
+							elif level == 2: severity = 'low'
+							else: severity = 'info'
+						%>
+						<span class="badge rounded-pill bg-pentora-${severity}">${severity.capitalize()}</span>
+					</%def>
 
-                    % for j, vulnerability in enumerate(vulnerabilities[vuln_name]):
-                        <h4>${level_to_emoji(vulnerability["level"])} Vulnerability found in ${vulnerability["path"] | h} 
-                        % if "cvss_score" in vulnerability:
-                        <span class="cvss-score-label">CVSS: <span class="cvss-score ${vulnerability['cvss_severity'].lower()}">${vulnerability['cvss_score']}</span></span>
-                        % endif
-                        </h4>
-                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
-                            <a href="#tab-vuln-${i}-${j}-1" class="is-active">Description</a>
-                            <a href="#tab-vuln-${i}-${j}-2">HTTP Request</a>
-                            % if detailed_report is True and vulnerability["detail"]["response"] is not None:
-                                <a href="#tab-vuln-${i}-${j}-3">HTTP Response</a>
-                            % endif
-                            <a href="#tab-vuln-${i}-${j}-5">WSTG Code</a>
-                        </nav>
-                        <section id="tab-vuln-${i}-${j}-1" style="min-height: 124px;">
-                            <pre>${vulnerability["info"] | h}</pre>
-                        </section>
-                        <section id="tab-vuln-${i}-${j}-2" style="min-height: 124px;" class="is-hidden">
-                            <pre style="white-space: normal">
-                                % for line in vulnerability["http_request"].split("\n"):
-                                    ${line | h}
-                                    <br>
-                                % endfor
-                            </pre>
-                        </section>
-                        % if detailed_report is True and vulnerability["detail"]["response"] is not None:
-                            <section id="tab-vuln-${i}-${j}-3" style="min-height: 124px;" class="is-hidden">
-                                <pre style="white-space: nowrap">
-                                    HTTP ${vulnerability["detail"]["response"]["status_code"] | h}<br />
-                                    % if vulnerability["detail"]["response"]["headers"] is not None:
-                                        % for header in vulnerability["detail"]["response"]["headers"]:
-                                            ${header[0] | h}: ${header[1] | h}<br />
-                                        %endfor
-                                    %endif
-                                    <br />
-                                    ${vulnerability["detail"]["response"]["body"] | h}
-                                </pre>
-                            </section>
-                        % endif
-                        <section id="tab-vuln-${i}-${j}-5" style="min-height: 124px;" class="is-hidden">
-                            <pre>${vulnerability["wstg"] | h}</pre>
-                        </section>
-                    % endfor
+					% for i, vuln_name in enumerate(vulnerabilities):
+						<tr>
+							<td>
+								% if len(vulnerabilities[vuln_name]):
+								<a href="#vuln_group_${i}" class="text-decoration-none link-light">${vuln_name}</a>
+								% else:
+								${vuln_name}
+								% endif
+							</td>
+							<td class="text-center">
+								${len(vulnerabilities[vuln_name])}
+								% if len(vulnerabilities[vuln_name]) and vuln_name in flaws:
+									${get_severity_badge(vuln_name)}
+								% endif
+							</td>
+						</tr>
+					% endfor
+					% for i, anomaly_name in enumerate(anomalies):
+						<tr>
+							<td>
+								% if len(anomalies[anomaly_name]):
+								<a href="#anom_group_${i}" class="text-decoration-none link-light">${anomaly_name}</a>
+								% else:
+								${anomaly_name}
+								% endif
+							</td>
+							<td class="text-center">
+								${len(anomalies[anomaly_name])}
+								% if len(anomalies[anomaly_name]) and anomaly_name in flaws:
+									${get_severity_badge(anomaly_name)}
+								% endif
+							</td>
+						</tr>
+					% endfor
+					% for i, additional_name in enumerate(additionals):
+						 <tr>
+							<td>
+								% if len(additionals[additional_name]):
+								<a href="#addition_group_${i}" class="text-decoration-none link-light">${additional_name}</a>
+								% else:
+								${additional_name}
+								% endif
+							</td>
+							<td class="text-center">
+								${len(additionals[additional_name])}
+								% if len(additionals[additional_name]) and additional_name in flaws:
+									 ${get_severity_badge(additional_name)}
+								% endif
+							</td>
+						</tr>
+					% endfor
+				</tbody>
+			</table>
+		</div>
 
-                <dl><dt>Solutions</dt><dd>${flaws[vuln_name]["sol"]}</dd></dl>
-                <h5>References</h5>
-                <ul>
-                    % for ref_name, ref_url in flaws[vuln_name]["ref"].items():
-                    <li><a href="${ref_url}">${ref_name | h}</a></li>
-                    % endfor
-                </ul>
-                <br />
-                <hr>
-                % endif
-            % endfor
-            % for i, anomaly_name in enumerate(anomalies):
-                % if len(anomalies[anomaly_name]):
-                <h3 id="anom_type_${i}">${anomaly_name}</h3>
-                <dl>
-                    <dt>Description</dt>
-                    <dd>${flaws[anomaly_name]["desc"] | h}</dd>
-                </dl>
+		<!-- Details -->
+		<div id="details">
+			<%def name="get_finding_severity(finding)">
+				 <% 
+				 severity = 'info' # Default
+				 if "cvss_severity" in finding:
+				    severity = finding['cvss_severity'].lower()
+				 elif "level" in finding:
+				    level = finding['level']
+				    if level == 5: severity = 'critical'
+				    elif level == 4: severity = 'high'
+				    elif level == 3: severity = 'medium'
+				    elif level == 2: severity = 'low'
+				    else: severity = 'info'
+				 %>
+				 <% return severity %>
+			</%def>
 
-                    % for j, anomaly in enumerate(anomalies[anomaly_name]):
-                        <h4>${level_to_emoji(anomaly["level"])} Anomaly found in ${anomaly["path"] | h}</h4>
-                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
-                            <a href="#tab-anom-${i}-${j}-1" class="is-active">Description</a>
-                            <a href="#tab-anom-${i}-${j}-2">HTTP Request</a>
-                            % if detailed_report is True and anomaly["detail"]["response"] is not None:
-                                <a href="#tab-anom-${i}-${j}-3">HTTP Response</a>
-                            % endif
-                            <a href="#tab-anom-${i}-${j}-5">WSTG Code</a>
-                        </nav>
-                        <section id="tab-anom-${i}-${j}-1" style="min-height: 124px;">
-                            <pre>${anomaly["info"] | h}</pre>
-                        </section>
-                        <section id="tab-anom-${i}-${j}-2" style="min-height: 124px;" class="is-hidden">
-                            <pre style="white-space: normal">
-                                % for line in anomaly["http_request"].split("\n"):
-                                    ${line | h}
-                                    <br>
-                                % endfor
-                            </pre>
-                        </section>
-                        % if detailed_report is True and anomaly["detail"]["response"] is not None:
-                            <section id="tab-anom-${i}-${j}-3" style="min-height: 124px;" class="is-hidden">
-                                <pre style="white-space: nowrap">
-                                    HTTP ${anomaly["detail"]["response"]["status_code"] | h}<br />
-                                    % if anomaly["detail"]["response"]["headers"] is not None:
-                                        % for header in anomaly["detail"]["response"]["headers"]:
-                                            ${header[0] | h}: ${header[1] | h}<br />
-                                        %endfor
-                                    %endif
-                                    <br />
-                                    ${anomaly["detail"]["response"]["body"] | h}
-                                </pre>
-                            </section>
-                        % endif
-                        <section id="tab-anom-${i}-${j}-5" style="min-height: 124px;" class="is-hidden">
-                            <pre>${anomaly["wstg"] | h}</pre>
-                        </section>
-                    % endfor
+			% for i, vuln_name in enumerate(vulnerabilities):
+				% if len(vulnerabilities[vuln_name]):
+				<div class="details-card shadow-sm mb-5">
+					<h3 id="vuln_group_${i}">${vuln_name}</h3>
+					<dl class="row">
+						<dt class="col-sm-2">Description</dt>
+						<dd class="col-sm-10">${flaws[vuln_name]["desc"] | h}</dd>
+						% if "cvss" in flaws[vuln_name] and flaws[vuln_name]["cvss"]:
+						<dt class="col-sm-2">CVSS</dt>
+						<dd class="col-sm-10">
+							% if 'score' in flaws[vuln_name]['cvss']:
+								<span class="cvss-score ${flaws[vuln_name]['cvss'].get('severity', 'info').lower()}">${flaws[vuln_name]['cvss']['score']}</span>
+							% endif
+							% if 'severity' in flaws[vuln_name]['cvss']:
+								<span class="ms-1">(${flaws[vuln_name]['cvss']['severity']})</span>
+							% endif
+						</dd>
+						<dt class="col-sm-2 ${'pt-0' if ('score' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['score']) or ('severity' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['severity']) else ''}">CVSS Vector</dt>
+						<dd class="col-sm-10 ${'pt-0' if ('score' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['score']) or ('severity' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['severity']) else ''}">
+							% if 'vector' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['vector']:
+								<span>${flaws[vuln_name]['cvss']['vector']}</span>
+							% else:
+								<span>(Vector not available)</span>
+							% endif
+						</dd>
+						% endif
+						 <dt class="col-sm-2">Solution</dt>
+						<dd class="col-sm-10">${flaws[vuln_name]["sol"] | h}</dd>
+						<dt class="col-sm-2">References</dt>
+						<dd class="col-sm-10">
+							<ul class="list-unstyled">
+								% for ref_name, ref_url in flaws[vuln_name]["ref"].items():
+								<li><a href="${ref_url}" target="_blank" rel="noopener noreferrer" class="link-info">${ref_name | h}</a></li>
+								% endfor
+							</ul>
+						</dd>
+					</dl>
+					<hr class="my-4">
+					<h4 class="mb-3">Findings (${len(vulnerabilities[vuln_name])})</h4>
+					% for j, vulnerability in enumerate(vulnerabilities[vuln_name]):
+						<% finding_severity = get_finding_severity(vulnerability) %>
+						<div class="card finding-card shadow-sm ${finding_severity}">
+							<div class="card-header">
+								<h5 class="card-title mb-0 d-flex align-items-center flex-wrap">
+                                     <span class="me-2">${level_to_emoji(vulnerability.get('level', 1))}</span>
+									 <span class="badge rounded-pill bg-pentora-${finding_severity} me-2">${finding_severity.capitalize()}</span>
+                                     <span class="me-2">Vulnerability found in</span>
+                                     <span class="me-2">Path:</span>
+									 <span class="word-break me-3">${vulnerability["path"] | h}</span>
+								</h5>
+							</div>
+							<div class="card-body">
+								<ul class="nav nav-tabs" id="vulnTabs-${i}-${j}" role="tablist">
+									<li class="nav-item" role="presentation">
+										<button class="nav-link active" id="vuln-desc-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#vuln-desc-${i}-${j}" type="button" role="tab">Description</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="vuln-req-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#vuln-req-${i}-${j}" type="button" role="tab">Request</button>
+									</li>
+									% if detailed_report is True and vulnerability["detail"]["response"] is not None:
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="vuln-resp-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#vuln-resp-${i}-${j}" type="button" role="tab">Response</button>
+									</li>
+									% endif
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="vuln-wstg-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#vuln-wstg-${i}-${j}" type="button" role="tab">WSTG</button>
+									</li>
+								</ul>
+								<div class="tab-content" id="vulnTabContent-${i}-${j}">
+									<div class="tab-pane fade show active" id="vuln-desc-${i}-${j}" role="tabpanel">
+										<pre>${vulnerability["info"] | h}</pre>
+									</div>
+									<div class="tab-pane fade" id="vuln-req-${i}-${j}" role="tabpanel">
+										<pre>${vulnerability["http_request"] | h}</pre>
+									</div>
+									% if detailed_report is True and vulnerability["detail"]["response"] is not None:
+									<div class="tab-pane fade" id="vuln-resp-${i}-${j}" role="tabpanel">
+										<pre>HTTP ${vulnerability["detail"]["response"]["status_code"] | h}
+% if vulnerability["detail"]["response"]["headers"] is not None:
+% for header in vulnerability["detail"]["response"]["headers"]:
+${header[0] | h}: ${header[1] | h}
+%endfor
+%endif
 
-                <dl><dt>Solutions</dt><dd>${flaws[anomaly_name]["sol"]}</dd></dl>
-                <h5>References</h5>
-                <ul>
-                    % for ref_name, ref_url in flaws[anomaly_name]["ref"].items():
-                    <li><a href="${ref_url}">${ref_name | h}</a></li>
-                    % endfor
-                </ul>
-                <br />
-                <hr>
-                % endif
-            % endfor
-            % for i, additional_name in enumerate(additionals):
-                % if len(additionals[additional_name]):
-                <h3 id="addition_type_${i}">${additional_name}</h3>
-                <dl>
-                    <dt>Description</dt>
-                    <dd>${flaws[additional_name]["desc"] | h}</dd>
-                </dl>
+${vulnerability["detail"]["response"]["body"] | h}</pre>
+									</div>
+									% endif
+									<div class="tab-pane fade" id="vuln-wstg-${i}-${j}" role="tabpanel">
+										<pre>${vulnerability["wstg"] | h}</pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					% endfor
+				</div>
+				% endif
+			% endfor
 
-                    % for j, additional in enumerate(additionals[additional_name]):
-                        <h4>${level_to_emoji(additional["level"])} Additional found in ${additional["path"] | h}</h4>
-                        <nav class="tabs" data-kube="tabs" data-equal="true" data-height="equal">
-                            <a href="#tab-addition-${i}-${j}-1" class="is-active">Description</a>
-                            <a href="#tab-addition-${i}-${j}-2">HTTP Request</a>
-                            % if detailed_report is True and additional["detail"]["response"] is not None:
-                                <a href="#tab-addition-${i}-${j}-3">HTTP Response</a>
-                            % endif
-                            <a href="#tab-addition-${i}-${j}-5">WSTG Code</a>
-                        </nav>
-                        <section id="tab-addition-${i}-${j}-1" style="min-height: 124px;">
-                            <pre>${additional["info"] | h}</pre>
-                        </section>
-                        <section id="tab-addition-${i}-${j}-2" style="min-height: 124px;" class="is-hidden">
-                            <pre style="white-space: normal">
-                                % for line in additional["http_request"].split("\n"):
-                                    ${line | h}
-                                    <br>
-                                % endfor
-                            </pre>
-                        </section>
-                        % if detailed_report is True and additional["detail"]["response"] is not None:
-                            <section id="tab-addition-${i}-${j}-3" style="min-height: 124px;" class="is-hidden">
-                                <pre style="white-space: nowrap">
-                                    HTTP ${additional["detail"]["response"]["status_code"] | h}<br />
-                                    % if additional["detail"]["response"]["headers"] is not None:
-                                        % for header in additional["detail"]["response"]["headers"]:
-                                            ${header[0] | h}: ${header[1] | h}<br />
-                                        %endfor
-                                    %endif
-                                    <br />
-                                    ${additional["detail"]["response"]["body"] | h}
-                                </pre>
-                            </section>
-                        % endif
-                        <section id="tab-addition-${i}-${j}-5" style="min-height: 124px;" class="is-hidden">
-                            <pre>${additional["wstg"] | h}</pre>
-                        </section>
-                    % endfor
-                <dl><dt>Solutions</dt><dd>${flaws[additional_name]["sol"]}</dd></dl>
-                <h5>References</h5>
-                <ul>
-                    % for ref_name, ref_url in flaws[additional_name]["ref"].items():
-                    <li><a href="${ref_url}">${ref_name | h}</a></li>
-                    % endfor
-                </ul>
-                <br />
-                <hr>
-                % endif
-            % endfor
-        </div>
-        <footer class="small" id="footer"><a href="#" id="pentora_link">${pentora_version}</a> &copy; Pentora Team 2025</footer>
+			% for i, anom_name in enumerate(anomalies):
+				% if len(anomalies[anom_name]):
+				<div class="details-card shadow-sm mb-5">
+					 <h3 id="anom_group_${i}">${anom_name}</h3>
+					  <dl class="row">
+						<dt class="col-sm-2">Description</dt>
+						<dd class="col-sm-10">${flaws[anom_name]["desc"] | h}</dd>
+						% if "cvss" in flaws[anom_name] and flaws[anom_name]["cvss"]:
+						<dt class="col-sm-2">CVSS</dt>
+						<dd class="col-sm-10">
+							% if 'score' in flaws[anom_name]['cvss']:
+								<span class="cvss-score ${flaws[anom_name]['cvss'].get('severity', 'info').lower()}">${flaws[anom_name]['cvss']['score']}</span>
+							% endif
+							% if 'severity' in flaws[anom_name]['cvss']:
+								<span class="ms-1">(${flaws[anom_name]['cvss']['severity']})</span>
+							% endif
+						</dd>
+						<dt class="col-sm-2 ${'pt-0' if ('score' in flaws[anom_name]['cvss'] and flaws[anom_name]['cvss']['score']) or ('severity' in flaws[anom_name]['cvss'] and flaws[anom_name]['cvss']['severity']) else ''}">CVSS Vector</dt>
+						<dd class="col-sm-10 ${'pt-0' if ('score' in flaws[anom_name]['cvss'] and flaws[anom_name]['cvss']['score']) or ('severity' in flaws[anom_name]['cvss'] and flaws[anom_name]['cvss']['severity']) else ''}">
+							% if 'vector' in flaws[anom_name]['cvss'] and flaws[anom_name]['cvss']['vector']:
+								<span>${flaws[anom_name]['cvss']['vector']}</span>
+							% else:
+								<span>(Vector not available)</span>
+							% endif
+						</dd>
+						% endif
+						 <dt class="col-sm-2">Solution</dt>
+						<dd class="col-sm-10">${flaws[anom_name]["sol"] | h}</dd>
+						 <dt class="col-sm-2">References</dt>
+						<dd class="col-sm-10">
+							<ul class="list-unstyled">
+								% for ref_name, ref_url in flaws[anom_name]["ref"].items():
+								<li><a href="${ref_url}" target="_blank" rel="noopener noreferrer" class="link-info">${ref_name | h}</a></li>
+								% endfor
+							</ul>
+						</dd>
+					</dl>
+					<hr class="my-4">
+					<h4 class="mb-3">Findings (${len(anomalies[anom_name])})</h4>
+					% for j, anomaly in enumerate(anomalies[anom_name]):
+						 <% finding_severity = get_finding_severity(anomaly) %>
+						<div class="card finding-card shadow-sm ${finding_severity}">
+							<div class="card-header">
+								<h5 class="card-title mb-0 d-flex align-items-center flex-wrap">
+                                     <span class="me-2">${level_to_emoji(anomaly.get('level', 1))}</span>
+									 <span class="badge rounded-pill bg-pentora-${finding_severity} me-2">${finding_severity.capitalize()}</span>
+                                     <span class="me-2">Anomaly found in</span>
+                                     <span class="me-2">Path:</span>
+									 <span class="word-break me-3">${anomaly["path"] | h}</span>
+								</h5>
+							</div>
+							 <div class="card-body">
+								<ul class="nav nav-tabs" id="anomTabs-${i}-${j}" role="tablist">
+									<li class="nav-item" role="presentation">
+										<button class="nav-link active" id="anom-desc-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#anom-desc-${i}-${j}" type="button" role="tab">Description</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="anom-req-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#anom-req-${i}-${j}" type="button" role="tab">Request</button>
+									</li>
+									 % if detailed_report is True and anomaly["detail"]["response"] is not None:
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="anom-resp-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#anom-resp-${i}-${j}" type="button" role="tab">Response</button>
+									</li>
+									% endif
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="anom-wstg-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#anom-wstg-${i}-${j}" type="button" role="tab">WSTG</button>
+									</li>
+								</ul>
+								<div class="tab-content" id="anomTabContent-${i}-${j}">
+									<div class="tab-pane fade show active" id="anom-desc-${i}-${j}" role="tabpanel">
+										<pre>${anomaly["info"] | h}</pre>
+									</div>
+									<div class="tab-pane fade" id="anom-req-${i}-${j}" role="tabpanel">
+										 <pre>${anomaly["http_request"] | h}</pre>
+									</div>
+									 % if detailed_report is True and anomaly["detail"]["response"] is not None:
+									<div class="tab-pane fade" id="anom-resp-${i}-${j}" role="tabpanel">
+										<pre>HTTP ${anomaly["detail"]["response"]["status_code"] | h}
+% if anomaly["detail"]["response"]["headers"] is not None:
+% for header in anomaly["detail"]["response"]["headers"]:
+${header[0] | h}: ${header[1] | h}
+%endfor
+%endif
+
+${anomaly["detail"]["response"]["body"] | h}</pre>
+									</div>
+									% endif
+									<div class="tab-pane fade" id="anom-wstg-${i}-${j}" role="tabpanel">
+										<pre>${anomaly["wstg"] | h}</pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					% endfor
+				</div>
+				% endif
+			% endfor
+
+			 % for i, additional_name in enumerate(additionals):
+				% if len(additionals[additional_name]):
+				<div class="details-card shadow-sm mb-5">
+					 <h3 id="addition_group_${i}">${additional_name}</h3>
+					 <dl class="row">
+						<dt class="col-sm-2">Description</dt>
+						<dd class="col-sm-10">${flaws[additional_name]["desc"] | h}</dd>
+						% if "cvss" in flaws[additional_name] and flaws[additional_name]["cvss"]:
+						<dt class="col-sm-2">CVSS</dt>
+						<dd class="col-sm-10">
+							% if 'score' in flaws[additional_name]['cvss']:
+								<span class="cvss-score ${flaws[additional_name]['cvss'].get('severity', 'info').lower()}">${flaws[additional_name]['cvss']['score']}</span>
+							% endif
+							% if 'severity' in flaws[additional_name]['cvss']:
+								<span class="ms-1">(${flaws[additional_name]['cvss']['severity']})</span>
+							% endif
+						</dd>
+						<dt class="col-sm-2 ${'pt-0' if ('score' in flaws[additional_name]['cvss'] and flaws[additional_name]['cvss']['score']) or ('severity' in flaws[additional_name]['cvss'] and flaws[additional_name]['cvss']['severity']) else ''}">CVSS Vector</dt>
+						<dd class="col-sm-10 ${'pt-0' if ('score' in flaws[additional_name]['cvss'] and flaws[additional_name]['cvss']['score']) or ('severity' in flaws[additional_name]['cvss'] and flaws[additional_name]['cvss']['severity']) else ''}">
+							% if 'vector' in flaws[additional_name]['cvss'] and flaws[additional_name]['cvss']['vector']:
+								<span>${flaws[additional_name]['cvss']['vector']}</span>
+							% else:
+								<span>(Vector not available)</span>
+							% endif
+						</dd>
+						% endif
+						 <dt class="col-sm-2">Solution</dt>
+						<dd class="col-sm-10">${flaws[additional_name]["sol"] | h}</dd>
+						 <dt class="col-sm-2">References</dt>
+						<dd class="col-sm-10">
+							<ul class="list-unstyled">
+								% for ref_name, ref_url in flaws[additional_name]["ref"].items():
+								<li><a href="${ref_url}" target="_blank" rel="noopener noreferrer" class="link-info">${ref_name | h}</a></li>
+								% endfor
+							</ul>
+						</dd>
+					</dl>
+					<hr class="my-4">
+					 <h4 class="mb-3">Findings (${len(additionals[additional_name])})</h4>
+					 % for j, additional in enumerate(additionals[additional_name]):
+						<% finding_severity = get_finding_severity(additional) %>
+						 <div class="card finding-card shadow-sm ${finding_severity}">
+							 <div class="card-header">
+								<h5 class="card-title mb-0 d-flex align-items-center flex-wrap">
+                                     <span class="me-2">${level_to_emoji(additional.get('level', 1))}</span>
+									 <span class="badge rounded-pill bg-pentora-${finding_severity} me-2">${finding_severity.capitalize()}</span>
+                                     <span class="me-2">Additional found in</span>
+                                     <span class="me-2">Path:</span>
+									 <span class="word-break me-3">${additional["path"] | h}</span>
+								</h5>
+							</div>
+							  <div class="card-body">
+								<ul class="nav nav-tabs" id="additionTabs-${i}-${j}" role="tablist">
+									<li class="nav-item" role="presentation">
+										<button class="nav-link active" id="addition-desc-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#addition-desc-${i}-${j}" type="button" role="tab">Description</button>
+									</li>
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="addition-req-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#addition-req-${i}-${j}" type="button" role="tab">Request</button>
+									</li>
+									 % if detailed_report is True and additional["detail"]["response"] is not None:
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="addition-resp-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#addition-resp-${i}-${j}" type="button" role="tab">Response</button>
+									</li>
+									% endif
+									<li class="nav-item" role="presentation">
+										<button class="nav-link" id="addition-wstg-tab-${i}-${j}" data-bs-toggle="tab" data-bs-target="#addition-wstg-${i}-${j}" type="button" role="tab">WSTG</button>
+									</li>
+								</ul>
+								<div class="tab-content" id="additionTabContent-${i}-${j}">
+									<div class="tab-pane fade show active" id="addition-desc-${i}-${j}" role="tabpanel">
+										<pre>${additional["info"] | h}</pre>
+									</div>
+									<div class="tab-pane fade" id="addition-req-${i}-${j}" role="tabpanel">
+										  <pre>${additional["http_request"] | h}</pre>
+									</div>
+									  % if detailed_report is True and additional["detail"]["response"] is not None:
+									<div class="tab-pane fade" id="addition-resp-${i}-${j}" role="tabpanel">
+										 <pre>HTTP ${additional["detail"]["response"]["status_code"] | h}
+% if additional["detail"]["response"]["headers"] is not None:
+% for header in additional["detail"]["response"]["headers"]:
+${header[0] | h}: ${header[1] | h}
+%endfor
+%endif
+
+${additional["detail"]["response"]["body"] | h}</pre>
+									</div>
+									% endif
+									<div class="tab-pane fade" id="addition-wstg-${i}-${j}" role="tabpanel">
+										<pre>${additional["wstg"] | h}</pre>
+									</div>
+								</div>
+							</div>
+						</div>
+					% endfor
+				</div>
+				% endif
+			% endfor
+		</div>
+
+		<!-- Footer -->
+		<footer class="report-footer">
+			Generated by <a href="#" id="pentora_link">${pentora_version}</a> &copy; Pentora Team 2025
+		</footer>
 	</div>
-    <script type="text/javascript" src="js/kube.min.js"></script>
-    <script>$K.init();</script>
+
+	<!-- Bootstrap JS Bundle -->
+	<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
