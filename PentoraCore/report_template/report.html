@@ -471,10 +471,25 @@
 								<span class="ms-1">(${flaws[vuln_name]['cvss']['severity']})</span>
 							% endif
 						</dd>
-						<dt class="col-sm-2 ${'pt-0' if ('score' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['score']) or ('severity' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['severity']) else ''}">CVSS Vector</dt>
-						<dd class="col-sm-10 ${'pt-0' if ('score' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['score']) or ('severity' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['severity']) else ''}">
-							% if 'vector' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['vector']:
-								<span>${flaws[vuln_name]['cvss']['vector']}</span>
+						<%
+                        has_score_or_severity = ('score' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['score']) or \
+                                                ('severity' in flaws[vuln_name]['cvss'] and flaws[vuln_name]['cvss']['severity'])
+                        # Attempt to get CVE ID from the main flaw definition
+                        cve_id = flaws[vuln_name].get('cve') 
+                        cvss_vector = flaws[vuln_name]['cvss'].get('vector') if 'cvss' in flaws[vuln_name] else None
+                        %>
+						<dt class="col-sm-2 ${'pt-0' if has_score_or_severity else ''}">
+							% if cve_id:
+								CVE
+							% else:
+								CVSS Vector
+							% endif
+						</dt>
+						<dd class="col-sm-10 ${'pt-0' if has_score_or_severity else ''}">
+							% if cve_id:
+								<a href="https://nvd.nist.gov/vuln/detail/${cve_id | h}" target="_blank" rel="noopener noreferrer">${cve_id | h}</a>
+							% elif cvss_vector:
+								<span>${cvss_vector | h}</span>
 							% else:
 								<span>(Vector not available)</span>
 							% endif

@@ -94,6 +94,12 @@ class JSONReportGenerator(ReportGenerator):
         if name not in self._flaw_types:
             # Use passed-in CVSS data directly, no internal call needed
             # Fallback logic is handled in the controller (_init_report)
+            
+            # Get the first representative CVE if available from CVSSCalculator's mapping
+            representative_cve_id = None
+            if name in CVSSCalculator.VULN_TO_CVE_MAPPING and CVSSCalculator.VULN_TO_CVE_MAPPING[name]:
+                representative_cve_id = CVSSCalculator.VULN_TO_CVE_MAPPING[name][0] # Get the first one
+
             self._flaw_types[name] = {
                 "desc": description,
                 "sol": solution,
@@ -103,7 +109,8 @@ class JSONReportGenerator(ReportGenerator):
                     "score": cvss_score,
                     "vector": cvss_vector,
                     "severity": cvss_severity
-                }
+                },
+                "cve": representative_cve_id
             }
         if name not in self._vulns:
             self._vulns[name] = []
