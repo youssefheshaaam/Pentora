@@ -805,67 +805,87 @@ class ScannerThread(QThread):
             loop.close()
 
 
-class ModuleSelectionDialog(QDialog):  # Changed from QWidget to QDialog
+class ModuleSelectionDialog(QDialog):
     """Dialog for selecting attack modules"""
     
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("Select Attack Modules")
-        self.setMinimumSize(800, 600)  # Increased size
+        self.setMinimumSize(800, 600)
         
-        # Apply dark theme styling
+        # Apply modern styling
         self.setStyleSheet("""
-            QWidget {
-                background-color: #1E1E1E;
-                color: #CCCCCC;
+            QDialog {
+                background-color: #212121;
+                color: #E0E0E0;
+                border-radius: 10px;
             }
             QLabel {
-                color: #CCCCCC;
+                color: #E0E0E0;
+                font-size: 14px;
             }
             QListWidget {
-                background-color: #252525;
-                color: #CCCCCC;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                padding: 5px;
+                background-color: #2D2D2D;
+                color: #E0E0E0;
+                border: none;
+                border-radius: 8px;
+                padding: 8px;
+                font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', sans-serif;
             }
             QListWidget::item {
-                padding: 5px;
-                border-bottom: 1px solid #3E3E3E;
+                padding: 10px;
+                margin: 2px 0px;
+                border-radius: 6px;
+            }
+            QListWidget::item:hover {
+                background-color: #333333;
             }
             QListWidget::item:selected {
-                background-color: #B388FF;
-                color: #1E1E1E;
+                background-color: #6200EA;
+                color: white;
             }
             QCheckBox {
-                color: #CCCCCC;
+                color: #E0E0E0;
+                spacing: 8px;
             }
             QCheckBox::indicator {
-                width: 16px;
-                height: 16px;
+                width: 18px;
+                height: 18px;
+                border-radius: 4px;
             }
             QCheckBox::indicator:checked {
-                background-color: #C6FF00;
-                border: 1px solid #3E3E3E;
-                border-radius: 2px;
+                background-color: #6200EA;
+                border: none;
             }
             QCheckBox::indicator:unchecked {
-                background-color: #252525;
-                border: 1px solid #3E3E3E;
-                border-radius: 2px;
+                background-color: #424242;
+                border: none;
             }
             QPushButton {
                 background-color: #424242;
-                color: #CCCCCC;
+                color: #E0E0E0;
                 border: none;
-                border-radius: 4px;
-                padding: 6px 12px;
+                border-radius: 6px;
+                padding: 10px 16px;
+                font-weight: medium;
+                min-height: 36px;
             }
             QPushButton:hover {
-                background-color: #616161;
+                background-color: #4A4A4A;
             }
             QPushButton:pressed {
-                background-color: #757575;
+                background-color: #5A5A5A;
+            }
+            QPushButton#primary {
+                background-color: #6200EA;
+                color: white;
+                font-weight: bold;
+            }
+            QPushButton#primary:hover {
+                background-color: #7C4DFF;
+            }
+            QPushButton#primary:pressed {
+                background-color: #651FFF;
             }
         """)
         
@@ -874,12 +894,34 @@ class ModuleSelectionDialog(QDialog):  # Changed from QWidget to QDialog
     def init_ui(self):
         """Initialize the user interface"""
         layout = QVBoxLayout(self)
-        layout.setContentsMargins(20, 20, 20, 20)  # Add margins for better spacing
-        layout.setAlignment(Qt.AlignCenter)  # Center the layout
+        layout.setContentsMargins(24, 24, 24, 24)
+        layout.setSpacing(16)
         
-        # Create module list
+        # Create header with title and description
+        header_widget = QWidget()
+        header_layout = QVBoxLayout(header_widget)
+        header_layout.setContentsMargins(0, 0, 0, 16)
+        header_layout.setSpacing(8)
+        
+        # Create and style the selection label
+        module_label = QLabel("Select Attack Modules")
+        module_label.setStyleSheet("color: #BB86FC; font-weight: bold; font-size: 18px;")
+        
+        module_description = QLabel("Choose which vulnerability testing modules to enable for your scan.")
+        module_description.setStyleSheet("color: #BBBBBB; font-size: 14px;")
+        
+        header_layout.addWidget(module_label)
+        header_layout.addWidget(module_description)
+        layout.addWidget(header_widget)
+        
+        # Create module list with modern styling
         self.module_list = QListWidget()
-        self.module_list.setMinimumHeight(300)  # Make the list taller
+        self.module_list.setMinimumHeight(350)
+        self.module_list.setStyleSheet("""
+            QListWidget::item {
+                border-bottom: 1px solid #333333;
+            }
+        """)
         
         # Add modules to the list with descriptions
         for module_name in sorted(all_modules):
@@ -890,65 +932,62 @@ class ModuleSelectionDialog(QDialog):  # Changed from QWidget to QDialog
             item.setCheckState(Qt.CheckState.Unchecked)
             # Store the module name as user data for later retrieval
             item.setData(Qt.UserRole, module_name)
-            # Set text color explicitly to ensure visibility
-            item.setForeground(QBrush(QColor("#CCCCCC")))
             self.module_list.addItem(item)
-            
-        # Create and style the selection label
-        module_label = QLabel("Select attack modules to use:")
-        module_label.setStyleSheet("color: #C6FF00; font-weight: bold; font-size: 14px; margin-bottom: 5px;")
-        layout.addWidget(module_label)
+        
         layout.addWidget(self.module_list)
         
-        # Add buttons
-        buttons_layout = QHBoxLayout()
+        # Add action buttons with modern styling
+        buttons_widget = QWidget()
+        buttons_layout = QHBoxLayout(buttons_widget)
+        buttons_layout.setContentsMargins(0, 0, 0, 0)
+        buttons_layout.setSpacing(12)
+        
         select_all_button = QPushButton("Select All")
         select_all_button.clicked.connect(self.select_all)
-        select_all_button.setStyleSheet("""
-            background-color: #424242;
-            color: #C6FF00;
-            border: 1px solid #B388FF;
-            border-radius: 4px;
-            padding: 6px 12px;
-        """)
+        select_all_button.setMinimumWidth(120)
         
         select_common_button = QPushButton("Select Common")
         select_common_button.clicked.connect(self.select_common)
-        select_common_button.setStyleSheet("""
-            background-color: #424242;
-            color: #C6FF00;
-            border: 1px solid #B388FF;
-            border-radius: 4px;
-            padding: 6px 12px;
-        """)
+        select_common_button.setMinimumWidth(120)
         
         clear_button = QPushButton("Clear All")
         clear_button.clicked.connect(self.clear_all)
-        clear_button.setStyleSheet("""
-            background-color: #424242;
-            color: #C6FF00;
-            border: 1px solid #B388FF;
-            border-radius: 4px;
-            padding: 6px 12px;
-        """)
+        clear_button.setMinimumWidth(120)
         
         buttons_layout.addWidget(select_all_button)
         buttons_layout.addWidget(select_common_button)
         buttons_layout.addWidget(clear_button)
-        layout.addLayout(buttons_layout)
+        buttons_layout.addStretch()
+        layout.addWidget(buttons_widget)
         
-        # Add OK and Cancel buttons
-        ok_cancel_layout = QHBoxLayout()
+        # Add divider
+        divider = QFrame()
+        divider.setFrameShape(QFrame.HLine)
+        divider.setStyleSheet("background-color: #333333; max-height: 1px; margin: 8px 0px;")
+        layout.addWidget(divider)
         
-        ok_button = QPushButton("OK")
-        ok_button.clicked.connect(self.accept)
-        ok_cancel_layout.addWidget(ok_button)
+        # Add OK and Cancel buttons with modern styling
+        dialog_buttons = QWidget()
+        dialog_buttons_layout = QHBoxLayout(dialog_buttons)
+        dialog_buttons_layout.setContentsMargins(0, 8, 0, 0)
+        dialog_buttons_layout.setSpacing(12)
+        
+        # Spacer to push buttons to the right
+        dialog_buttons_layout.addStretch()
         
         cancel_button = QPushButton("Cancel")
         cancel_button.clicked.connect(self.reject)
-        ok_cancel_layout.addWidget(cancel_button)
+        cancel_button.setMinimumWidth(100)
         
-        layout.addLayout(ok_cancel_layout)
+        ok_button = QPushButton("Save")
+        ok_button.setObjectName("primary")
+        ok_button.clicked.connect(self.accept)
+        ok_button.setMinimumWidth(100)
+        
+        dialog_buttons_layout.addWidget(cancel_button)
+        dialog_buttons_layout.addWidget(ok_button)
+        
+        layout.addWidget(dialog_buttons)
         
     def select_all(self):
         """Select all modules"""
@@ -1158,23 +1197,22 @@ class SideNavPanel(QWidget):
         self.toggle_button = QPushButton()
         # Create explicit menu icon with unicode character instead of relying on theme
         self.toggle_button.setText("☰")
-        self.toggle_button.setFont(QFont("Arial", 14))
+        self.toggle_button.setFont(QFont("Segoe UI", 14))
         self.toggle_button.setToolTip("Toggle Navigation Panel")
         self.toggle_button.setStyleSheet("""
             QPushButton {
-                background-color: #252525;
+                background-color: #212121;
                 border: none;
-                padding: 8px;
+                padding: 16px;
                 text-align: center;
-                border-bottom: 1px solid #3E3E3E;
-                color: #C6FF00;
+                color: #BB86FC;
                 font-weight: bold;
             }
             QPushButton:hover {
-                background-color: #333333;
+                background-color: #2D2D2D;
             }
             QPushButton:pressed {
-                background-color: #424242;
+                background-color: #333333;
             }
         """)
         self.toggle_button.clicked.connect(self.toggle_panel)
@@ -1183,7 +1221,7 @@ class SideNavPanel(QWidget):
         self.items_container = QWidget()
         self.items_layout = QVBoxLayout(self.items_container)
         self.items_layout.setContentsMargins(0, 0, 0, 0)
-        self.items_layout.setSpacing(0)
+        self.items_layout.setSpacing(4)  # Add slight spacing between items
         self.items_layout.addStretch()  # Push items to the top
         
         # Add widgets to the layout
@@ -1193,37 +1231,41 @@ class SideNavPanel(QWidget):
         # Set panel styling
         self.setStyleSheet("""
             QWidget {
-                background-color: #252525;
-                color: #CCCCCC;
+                background-color: #212121;
+                color: #E0E0E0;
             }
             #NavItemContainer {
-                background-color: #252525;
+                background-color: #212121;
                 border: none;
             }
             #NavItem {
-                background-color: #252525;
-                color: #CCCCCC;
+                background-color: #212121;
+                color: #E0E0E0;
                 text-align: left;
-                padding: 12px 15px;
+                padding: 16px 20px;
                 border: none;
-                border-bottom: 1px solid #3E3E3E;
+                margin: 2px 8px;
+                border-radius: 8px;
                 font-size: 14px;
+                font-weight: medium;
             }
             #NavItem:hover {
-                background-color: #333333;
+                background-color: #2D2D2D;
             }
             #NavItemSelected {
-                background-color: #424242;
+                background-color: #2D2D2D;
                 color: #FFFFFF;
                 text-align: left;
-                padding: 12px 15px;
+                padding: 16px 20px;
                 border: none;
-                border-bottom: 1px solid #3E3E3E;
-                border-left: 4px solid #C6FF00;
+                margin: 2px 8px;
+                border-radius: 8px;
                 font-size: 14px;
+                font-weight: bold;
+                border-left: 3px solid #BB86FC;
             }
             #NavItemSelected:hover {
-                background-color: #505050;
+                background-color: #333333;
             }
         """)
     
@@ -1318,137 +1360,145 @@ class PentoraMainWindow(QMainWindow):
         self.setWindowTitle("Pentora")
         self.resize(1200, 800)
         
-        # Set application style
+        # Set application style - MODERNIZED
         self.setStyleSheet("""
             QMainWindow, QDialog {
-                background-color: #1E1E1E;
-                color: #CCCCCC;
+                background-color: #212121;
+                color: #E0E0E0;
             }
             QLabel {
-                color: #CCCCCC;
+                color: #E0E0E0;
             }
             QLineEdit, QComboBox, QSpinBox {
-                background-color: #303030;
+                background-color: #2D2D2D;
                 color: #E0E0E0;
-                border: 1px solid #424242;
-                border-radius: 4px;
-                padding: 5px;
+                border: none;
+                border-radius: 6px;
+                padding: 8px;
+                selection-background-color: #6200EA;
+                selection-color: white;
             }
             QLineEdit:focus, QComboBox:focus, QSpinBox:focus {
-                border: 1px solid #6C63FF;
+                border: 1px solid #6200EA;
             }
             QLineEdit:hover:!focus, QComboBox:hover:!focus, QSpinBox:hover:!focus {
-                border: 1px solid #555555;
+                background-color: #333333;
             }
             QComboBox::drop-down {
                 border: 0px;
+                width: 24px;
             }
             QComboBox::down-arrow {
-                width: 12px;
-                height: 12px;
+                width: 14px;
+                height: 14px;
             }
             QComboBox QAbstractItemView {
-                background-color: #333333;
-                color: #CCCCCC;
-                selection-background-color: #B388FF;
-                selection-color: #1E1E1E;
+                background-color: #2D2D2D;
+                color: #E0E0E0;
+                selection-background-color: #6200EA;
+                selection-color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 4px;
             }
             QTextEdit {
-                background-color: #252525;
-                color: #CCCCCC;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                padding: 5px;
-                font-family: Menlo, Monaco, monospace;
+                background-color: #2D2D2D;
+                color: #E0E0E0;
+                border: none;
+                border-radius: 6px;
+                padding: 8px;
+                font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', sans-serif;
                 font-size: 10pt;
             }
             QPushButton {
                 background-color: #424242;
-                color: #CCCCCC;
+                color: #E0E0E0;
                 border: none;
-                border-radius: 4px;
-                padding: 6px 12px;
+                border-radius: 6px;
+                padding: 10px 16px;
+                font-weight: medium;
             }
             QPushButton:hover {
-                background-color: #616161;
+                background-color: #4A4A4A;
             }
             QPushButton:pressed {
-                background-color: #757575;
+                background-color: #5A5A5A;
             }
             QPushButton#primary {
-                background-color: #C6FF00;
-                color: #1E1E1E;
+                background-color: #6200EA;
+                color: white;
                 font-weight: bold;
             }
             QPushButton#primary:hover {
-                background-color: #AEEA00;
+                background-color: #7C4DFF;
             }
             QPushButton#primary:pressed {
-                background-color: #9CCC65;
+                background-color: #651FFF;
             }
             QPushButton#danger {
-                background-color: #B388FF;
-                color: #1E1E1E;
+                background-color: #B23C17;
+                color: white;
                 font-weight: bold;
             }
             QPushButton#danger:hover {
-                background-color: #9575CD;
+                background-color: #CF6679;
             }
             QPushButton#danger:pressed {
-                background-color: #7E57C2;
+                background-color: #9A0007;
             }
             QPushButton#scan_start {
-                background-color: #C6FF00;
-                color: #1E1E1E;
+                background-color: #6200EA;
+                color: white;
                 font-weight: bold;
                 font-size: 14px;
-                padding: 12px 24px;
+                padding: 14px 24px;
+                border-radius: 8px;
             }
             QPushButton#scan_start:hover {
-                background-color: #AEEA00;
+                background-color: #7C4DFF;
             }
             QPushButton#scan_start:pressed {
-                background-color: #9CCC65;
+                background-color: #651FFF;
             }
             QPushButton#scan_stop {
-                background-color: #B388FF;
-                color: #1E1E1E;
+                background-color: #B23C17;
+                color: white;
                 font-weight: bold;
                 font-size: 14px;
-                padding: 12px 24px;
+                padding: 14px 24px;
+                border-radius: 8px;
             }
             QPushButton#scan_stop:hover {
-                background-color: #9575CD;
+                background-color: #CF6679;
             }
             QPushButton#scan_stop:pressed {
-                background-color: #7E57C2;
-            }
-            QPushButton#scan_stop:pressed {
-                background-color: #7E57C2;
+                background-color: #9A0007;
             }
             QGroupBox {
-                background-color: #252525;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                margin-top: 1em;
-                padding-top: 10px;
+                background-color: #2D2D2D;
+                border: none;
+                border-radius: 8px;
+                margin-top: 1.5em;
+                padding-top: 16px;
+                padding-bottom: 8px;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
-                left: 10px;
-                padding: 0 5px;
-                color: #B388FF;
+                left: 16px;
+                padding: 0 8px;
+                color: #BB86FC;
                 font-weight: bold;
             }
             QScrollBar:vertical {
                 border: none;
-                background: #252525;
+                background: #2D2D2D;
                 width: 10px;
                 margin: 0px;
+                border-radius: 5px;
             }
             QScrollBar::handle:vertical {
-                background: #3E3E3E;
-                min-height: 20px;
+                background: #424242;
+                min-height: 30px;
                 border-radius: 5px;
             }
             QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
@@ -1458,13 +1508,14 @@ class PentoraMainWindow(QMainWindow):
             }
             QScrollBar:horizontal {
                 border: none;
-                background: #252525;
+                background: #2D2D2D;
                 height: 10px;
                 margin: 0px;
+                border-radius: 5px;
             }
             QScrollBar::handle:horizontal {
-                background: #3E3E3E;
-                min-width: 20px;
+                background: #424242;
+                min-width: 30px;
                 border-radius: 5px;
             }
             QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
@@ -1473,76 +1524,114 @@ class PentoraMainWindow(QMainWindow):
                 width: 0px;
             }
             QCheckBox {
-                color: #CCCCCC;
+                color: #E0E0E0;
+                spacing: 8px;
             }
             QCheckBox::indicator {
-                width: 16px;
-                height: 16px;
+                width: 18px;
+                height: 18px;
+                border-radius: 4px;
             }
             QCheckBox::indicator:checked {
-                background-color: #C6FF00;
-                border: 1px solid #3E3E3E;
-                border-radius: 2px;
+                background-color: #6200EA;
+                border: none;
             }
             QCheckBox::indicator:unchecked {
-                background-color: #252525;
-                border: 1px solid #3E3E3E;
-                border-radius: 2px;
+                background-color: #424242;
+                border: none;
             }
             QFrame {
-                background-color: #252525;
-                border-radius: 4px;
-                border: 1px solid #3E3E3E;
+                background-color: #2D2D2D;
+                border-radius: 8px;
+                border: none;
+            }
+            QProgressBar {
+                border: none;
+                border-radius: 6px;
+                text-align: center;
+                background-color: #2D2D2D;
+                color: white;
+                font-weight: bold;
+                min-height: 14px;
+            }
+            QProgressBar::chunk {
+                background-color: #6200EA;
+                border-radius: 6px;
+            }
+            QTabWidget::pane {
+                border: none;
+                border-radius: 8px;
+                background-color: #2D2D2D;
+            }
+            QTabBar::tab {
+                background-color: #2D2D2D;
+                color: #9E9E9E;
+                border: none;
+                padding: 10px 16px;
+                min-width: 80px;
+                font-weight: medium;
+            }
+            QTabBar::tab:selected {
+                color: #BB86FC;
+                border-bottom: 2px solid #BB86FC;
+            }
+            QTabBar::tab:hover:!selected {
+                color: #E0E0E0;
             }
         """)
         
-        # Create central widget and main layout
+        # Create central widget and main layout with reduced spacing
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         main_layout = QVBoxLayout(central_widget)
-        main_layout.setContentsMargins(15, 15, 15, 15)
-        main_layout.setSpacing(10)
+        main_layout.setContentsMargins(10, 10, 10, 10)
+        main_layout.setSpacing(6)
         
-        # Create a simple, elegant header
+        # Create a compact header
         header_widget = QWidget()
-        header_widget.setStyleSheet("background-color: #252525; border-radius: 6px; padding: 15px;")
+        header_widget.setStyleSheet("""
+            background-color: #212121; 
+            border-radius: 8px; 
+            padding: 10px;
+            margin: 0px 0px 8px 0px;
+        """)
         header_layout = QHBoxLayout(header_widget)
-        header_layout.setContentsMargins(20, 10, 20, 10)
-        header_layout.setSpacing(15)  # Add more space between logo and title
+        header_layout.setContentsMargins(10, 8, 10, 8)
+        header_layout.setSpacing(16)  # Balanced spacing
         
-        # Logo on the left
+        # Logo on the left with improved styling
         logo_label = QLabel()
         logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "images", "Pentora_logo.png")
         
         if os.path.exists(logo_path):
             logo_pixmap = QPixmap(logo_path)
             if not logo_pixmap.isNull():
-                # Much larger size for the logo
-                logo_pixmap = logo_pixmap.scaled(180, 70, Qt.KeepAspectRatio, Qt.SmoothTransformation)
+                # Slightly larger size for better visibility
+                logo_pixmap = logo_pixmap.scaled(160, 70, Qt.KeepAspectRatio, Qt.SmoothTransformation)
                 logo_label.setPixmap(logo_pixmap)
-                logo_label.setAlignment(Qt.AlignCenter)  # Center the logo in the label
+                logo_label.setAlignment(Qt.AlignCenter)
             else:
                 logo_label.setText("🛡️")
-                logo_label.setStyleSheet("font-size: 36px; color: #4FC3F7;")
+                logo_label.setStyleSheet("font-size: 40px; color: #BB86FC;")
         else:
             logo_label.setText("🛡️")
-            logo_label.setStyleSheet("font-size: 36px; color: #4FC3F7;")
+            logo_label.setStyleSheet("font-size: 40px; color: #BB86FC;")
             
-        logo_label.setStyleSheet("background: transparent;")
+        logo_label.setStyleSheet("background: transparent; padding: 4px;")
         header_layout.addWidget(logo_label)
         
-        # Title and subtitle in the center
+        # Title and subtitle with modern typography
         title_container = QWidget()
         title_layout = QVBoxLayout(title_container)
         title_layout.setContentsMargins(0, 0, 0, 0)
-        title_layout.setSpacing(2)
+        title_layout.setSpacing(4)  # Increased spacing between title and subtitle
         
         title_label = QLabel("Pentora")
-        title_label.setStyleSheet("color: #B388FF; font-size: 28px; font-weight: bold;")
+        title_label.setStyleSheet("color: #BB86FC; font-size: 32px; font-weight: bold; font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', sans-serif;")
         title_label.setAlignment(Qt.AlignCenter)
         
         subtitle_label = QLabel("Vulnerability Scanner")
-        subtitle_label.setStyleSheet("color: #CCCCCC; font-size: 14px;")
+        subtitle_label.setStyleSheet("color: #E0E0E0; font-size: 16px; font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', sans-serif;")
         subtitle_label.setAlignment(Qt.AlignCenter)
         
         title_layout.addWidget(title_label)
@@ -1554,10 +1643,18 @@ class PentoraMainWindow(QMainWindow):
         # Add header to main layout
         main_layout.addWidget(header_widget)
         
-        # Create main content layout (horizontal layout for side nav + content)
-        content_layout = QHBoxLayout()
+        # Create main content layout with modern spacing and shadow effects
+        content_container = QFrame()
+        content_container.setStyleSheet("""
+            QFrame {
+                background-color: #212121;
+                border-radius: 12px;
+            }
+        """)
+        
+        content_layout = QHBoxLayout(content_container)
         content_layout.setContentsMargins(0, 0, 0, 0)
-        content_layout.setSpacing(10)
+        content_layout.setSpacing(16)  # Increased spacing between nav and content
         
         # Create side navigation panel
         self.side_nav = SideNavPanel()
@@ -1573,10 +1670,10 @@ class PentoraMainWindow(QMainWindow):
                 
                 painter = QPainter(pixmap)
                 painter.setRenderHint(QPainter.Antialiasing, True)
-                painter.setPen(QColor("#C6FF00"))  # Set text color to match theme
+                painter.setPen(QColor("#BB86FC"))  # Updated color to match theme
                 
                 # Use a nice font for the emoji
-                font = QFont("Segoe UI Emoji", 16)  # Windows emoji font, falls back gracefully on other systems
+                font = QFont("Segoe UI Emoji", 18)  # Slightly larger icons
                 painter.setFont(font)
                 
                 # Draw text centered on the pixmap
@@ -1587,7 +1684,7 @@ class PentoraMainWindow(QMainWindow):
         
         # Create web scan icon
         web_icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "images", "web_scan.png")
-        web_scan_icon = create_icon(web_icon_path, "⚔")
+        web_scan_icon = create_icon(web_icon_path, "🌐")
         
         # Create network scan icon
         network_icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "images", "network_scan.png")
@@ -1595,15 +1692,31 @@ class PentoraMainWindow(QMainWindow):
         
         # Create about icon
         about_icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "images", "about.png")
-        about_icon = create_icon(about_icon_path, "ⓘ")
+        about_icon = create_icon(about_icon_path, "ℹ️")
         
         # Add navigation items
         self.side_nav.add_item("Web Scan", web_scan_icon)
         self.side_nav.add_item("Network Scan", network_scan_icon)
         self.side_nav.add_item("About", about_icon)
         
+        # Create content container with card styling
+        content_card = QFrame()
+        content_card.setStyleSheet("""
+            QFrame {
+                background-color: #212121;
+                border-radius: 12px;
+            }
+        """)
+        content_card_layout = QVBoxLayout(content_card)
+        content_card_layout.setContentsMargins(0, 0, 0, 0)
+        
         # Create stacked widget for content
         self.content_stack = QStackedWidget()
+        self.content_stack.setStyleSheet("""
+            QStackedWidget {
+                background-color: transparent;
+            }
+        """)
         
         # Create web scan page
         web_scan_page = QWidget()
@@ -1623,32 +1736,37 @@ class PentoraMainWindow(QMainWindow):
         # Connect side nav to content stack
         self.side_nav.item_clicked.connect(self.content_stack.setCurrentIndex)
         
-        # Add side nav and content stack to content layout
-        content_layout.addWidget(self.side_nav)
-        content_layout.addWidget(self.content_stack, 1)  # Give content stack stretch
+        # Add content stack to card layout
+        content_card_layout.addWidget(self.content_stack)
         
-        # Add content layout to main layout
-        main_layout.addLayout(content_layout, 1)  # Give content layout stretch
+        # Add components to content layout
+        content_layout.addWidget(self.side_nav)
+        content_layout.addWidget(content_card, 1)  # Give content card stretch
+        
+        # Add content container to main layout
+        main_layout.addWidget(content_container, 1)  # Give content container stretch
         
     def setup_scan_tab(self, tab):
         """Setup the scan tab"""
+        # Use identical settings to network tab
         scan_layout = QVBoxLayout(tab)
         scan_layout.setContentsMargins(10, 10, 10, 10)
-        scan_layout.setSpacing(10)
+        scan_layout.setSpacing(4)  # Reduce overall spacing between elements
         
-        # URL input section
+        # URL input section with identical styling to network tab
         url_section = QFrame()
         url_section.setStyleSheet("""
             QFrame {
-                background-color: #252525;
-                border-radius: 4px;
-                border: 1px solid #3E3E3E;
+                background-color: transparent;
+                border: none;
             }
         """)
         url_layout = QHBoxLayout(url_section)
-        url_layout.setContentsMargins(10, 10, 10, 10)
+        url_layout.setContentsMargins(0, 0, 0, 0)
         
         url_label = QLabel("Target URL:")
+        url_label.setMinimumWidth(120)
+        
         self.url_input = QLineEdit()
         self.url_input.setPlaceholderText("https://example.com")
         
@@ -1656,20 +1774,22 @@ class PentoraMainWindow(QMainWindow):
         url_layout.addWidget(self.url_input)
         
         scan_layout.addWidget(url_section)
+        scan_layout.addSpacing(6)  # Reduced spacing between sections
         
-        # Options section
+        # Options section with identical styling to network scanner
         options_section = QFrame()
         options_section.setStyleSheet("""
             QFrame {
-                background-color: #252525;
-                border-radius: 4px;
-                border: 1px solid #3E3E3E;
+                background-color: transparent;
+                border: none;
             }
         """)
         options_layout = QGridLayout(options_section)
-        options_layout.setContentsMargins(10, 10, 10, 10)
+        options_layout.setContentsMargins(0, 0, 0, 0)
+        options_layout.setVerticalSpacing(8)
+        options_layout.setHorizontalSpacing(10)
         
-        # Scope
+        # Row 1: Scope and Depth side by side
         scope_label = QLabel("Scope:")
         options_layout.addWidget(scope_label, 0, 0)
         
@@ -1680,17 +1800,16 @@ class PentoraMainWindow(QMainWindow):
         self.scope_combo.addItem("domain")
         options_layout.addWidget(self.scope_combo, 0, 1)
         
-        # Depth
         depth_label = QLabel("Depth:")
         options_layout.addWidget(depth_label, 0, 2)
         
         self.depth_spin = QSpinBox()
         self.depth_spin.setMinimum(1)
-        self.depth_spin.setMaximum(40)  # Increased max depth to match Pentora default
+        self.depth_spin.setMaximum(40)
         self.depth_spin.setValue(2)
         options_layout.addWidget(self.depth_spin, 0, 3)
         
-        # Timeout
+        # Row 2: Timeout and Modules side by side
         timeout_label = QLabel("Timeout (sec):")
         options_layout.addWidget(timeout_label, 1, 0)
         
@@ -1700,13 +1819,13 @@ class PentoraMainWindow(QMainWindow):
         self.timeout_spin.setValue(10)
         options_layout.addWidget(self.timeout_spin, 1, 1)
         
-        # Modules
         modules_label = QLabel("Modules:")
         options_layout.addWidget(modules_label, 1, 2)
         
         modules_widget = QWidget()
         modules_layout = QHBoxLayout(modules_widget)
         modules_layout.setContentsMargins(0, 0, 0, 0)
+        modules_layout.setSpacing(8)
         
         self.modules_combo = QComboBox()
         self.modules_combo.addItem("Common", "common")
@@ -1721,13 +1840,23 @@ class PentoraMainWindow(QMainWindow):
         
         options_layout.addWidget(modules_widget, 1, 3)
         
-        # Output directory
-        output_dir_label = QLabel("Output Directory:")
-        options_layout.addWidget(output_dir_label, 2, 0)
+        # Row 3: Report Format and browse directory button
+        report_format_label = QLabel("Report Format:")
+        options_layout.addWidget(report_format_label, 2, 0)
+        
+        self.report_format_combo = QComboBox()
+        self.report_format_combo.addItem("html")
+        self.report_format_combo.addItem("json")
+        self.report_format_combo.addItem("pdf")
+        options_layout.addWidget(self.report_format_combo, 2, 1)
+        
+        output_dir_label = QLabel("Output Dir:")
+        options_layout.addWidget(output_dir_label, 2, 2)
         
         output_dir_widget = QWidget()
         output_dir_layout = QHBoxLayout(output_dir_widget)
         output_dir_layout.setContentsMargins(0, 0, 0, 0)
+        output_dir_layout.setSpacing(8)
         
         self.output_dir_input = QLineEdit()
         self.output_dir_input.setText(os.path.join(os.getcwd(), "pentora_reports"))
@@ -1737,186 +1866,130 @@ class PentoraMainWindow(QMainWindow):
         browse_button.clicked.connect(self.browse_output_dir)
         output_dir_layout.addWidget(browse_button)
         
-        options_layout.addWidget(output_dir_widget, 2, 1, 1, 3)
-        
-        # Report format
-        report_format_label = QLabel("Report Format:")
-        options_layout.addWidget(report_format_label, 3, 0)
-        
-        self.report_format_combo = QComboBox()
-        self.report_format_combo.addItem("html")
-        self.report_format_combo.addItem("json")
-        self.report_format_combo.addItem("pdf") # Added PDF option
-        options_layout.addWidget(self.report_format_combo, 3, 1)
+        options_layout.addWidget(output_dir_widget, 2, 3)
         
         scan_layout.addWidget(options_section)
+        scan_layout.addSpacing(12)  # Add spacing between sections
         
-        # Log and findings section - side by side
+        # Copy exactly from network scanner
         log_findings_section = QFrame()
         log_findings_section.setStyleSheet("""
             QFrame {
-                background-color: #252525;
-                border-radius: 4px;
-                border: 1px solid #3E3E3E;
-                padding-top: 5px;
+                background-color: transparent;
+                border: none;
+                padding-top: 0px;
             }
         """)
         log_findings_layout = QHBoxLayout(log_findings_section)
-        log_findings_layout.setContentsMargins(10, 15, 10, 10)
-        log_findings_layout.setSpacing(15)
+        log_findings_layout.setContentsMargins(0, 0, 0, 0)
+        log_findings_layout.setSpacing(10)
         
-        # Log panel (left side)
+        # Log panel (left side) with compact styling
         log_panel = QGroupBox()
         log_panel.setStyleSheet("""
             QGroupBox {
-                background-color: #252525;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                margin-top: 30px;
-                padding-top: 30px;
+                background-color: transparent;
+                border: none;
+                margin-top: 20px;
+                padding-top: 20px;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
                 subcontrol-position: top center;
-                padding: 0 15px;
-                color: #B388FF;
+                padding: 0 8px;
+                color: #BB86FC;
                 font-weight: bold;
-                background-color: #252525;
+                background-color: transparent;
                 font-size: 14px;
-                top: 10px;
+                top: 0px;
             }
         """)
         log_panel.setTitle("Scan Log")
         
         log_panel_layout = QVBoxLayout(log_panel)
-        log_panel_layout.setContentsMargins(5, 10, 5, 5)
-        log_panel_layout.setSpacing(5)
+        log_panel_layout.setContentsMargins(0, 8, 0, 0)
+        log_panel_layout.setSpacing(4)
         
         self.status_display = QTextEdit()
         self.status_display.setReadOnly(True)
         self.status_display.setStyleSheet("""
             QTextEdit {
-                background-color: #252525;
-                color: #CCCCCC;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                padding: 5px;
-                font-family: Menlo, Monaco, monospace;
+                background-color: #212121;
+                color: #E0E0E0;
+                border: none;
+                border-radius: 6px;
+                padding: 8px;
+                font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', 'Menlo', 'Consolas', monospace;
                 font-size: 10pt;
             }
         """)
-        self.status_display.setMinimumHeight(300)
+        self.status_display.setMinimumHeight(150)
+        self.status_display.setMaximumHeight(150)
         log_panel_layout.addWidget(self.status_display)
         
-        # Add clear log button
+        # Add modern styled buttons with compact layout
         clear_log_button = QPushButton("Clear Log")
         clear_log_button.clicked.connect(self.clear_log)
-        clear_log_button.setStyleSheet("""
-            QPushButton {
-                background-color: #424242;
-                color: #CCCCCC;
-                border: none;
-                border-radius: 4px;
-                padding: 6px 12px;
-            }
-            QPushButton:hover {
-                background-color: #616161;
-            }
-            QPushButton:pressed {
-                background-color: #757575;
-            }
-        """)
-        clear_log_button.setMaximumWidth(120)
         
         # Add hide logs button
         hide_logs_button = QPushButton("Hide Logs")
         hide_logs_button.clicked.connect(self.toggle_log_visibility)
-        hide_logs_button.setStyleSheet("""
-            QPushButton {
-                background-color: #424242;
-                color: #CCCCCC;
-                border: none;
-                border-radius: 4px;
-                padding: 6px 12px;
-            }
-            QPushButton:hover {
-                background-color: #616161;
-            }
-            QPushButton:pressed {
-                background-color: #757575;
-            }
-        """)
-        hide_logs_button.setMaximumWidth(120)
         
-        # Create a horizontal layout for the buttons
+        # Create a horizontal layout for the buttons with compact spacing
         log_buttons_layout = QHBoxLayout()
+        log_buttons_layout.setContentsMargins(0, 4, 0, 0)
+        log_buttons_layout.setSpacing(8)
         log_buttons_layout.addWidget(clear_log_button)
         log_buttons_layout.addWidget(hide_logs_button)
         log_buttons_layout.addStretch()
         log_panel_layout.addLayout(log_buttons_layout)
         
-        # Findings panel (right side)
+        # Findings panel (right side) with consistent styling
         findings_panel = QGroupBox()
         findings_panel.setStyleSheet("""
             QGroupBox {
-                background-color: #252525;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                margin-top: 30px;
-                padding-top: 30px;
+                background-color: transparent;
+                border: none;
+                margin-top: 20px;
+                padding-top: 20px;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
                 subcontrol-position: top center;
-                padding: 0 15px;
-                color: #C6FF00;
+                padding: 0 8px;
+                color: #CF6679;
                 font-weight: bold;
-                background-color: #252525;
+                background-color: transparent;
                 font-size: 14px;
-                top: 10px;
+                top: 0px;
             }
         """)
         findings_panel.setTitle("Vulnerability Findings")
         
         findings_panel_layout = QVBoxLayout(findings_panel)
-        findings_panel_layout.setContentsMargins(5, 10, 5, 5)
-        findings_panel_layout.setSpacing(5)
+        findings_panel_layout.setContentsMargins(0, 8, 0, 0)
+        findings_panel_layout.setSpacing(4)
         
         self.findings_display = QTextEdit()
         self.findings_display.setReadOnly(True)
         self.findings_display.setStyleSheet("""
             QTextEdit {
-                background-color: #252525;
-                color: #CCCCCC;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                padding: 5px;
-                font-family: Menlo, Monaco, monospace;
+                background-color: #212121;
+                color: #E0E0E0;
+                border: none;
+                border-radius: 6px;
+                padding: 8px;
+                font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', 'Menlo', 'Consolas', monospace;
                 font-size: 10pt;
             }
         """)
-        self.findings_display.setMinimumHeight(300)
+        self.findings_display.setMinimumHeight(150)
+        self.findings_display.setMaximumHeight(150)
         findings_panel_layout.addWidget(self.findings_display)
         
         # Add clear findings button
         clear_findings_button = QPushButton("Clear Findings")
         clear_findings_button.clicked.connect(self.clear_findings)
-        clear_findings_button.setStyleSheet("""
-            QPushButton {
-                background-color: #424242;
-                color: #CCCCCC;
-                border: none;
-                border-radius: 4px;
-                padding: 6px 12px;
-            }
-            QPushButton:hover {
-                background-color: #616161;
-            }
-            QPushButton:pressed {
-                background-color: #757575;
-            }
-        """)
-        clear_findings_button.setMaximumWidth(120)
         findings_panel_layout.addWidget(clear_findings_button, alignment=Qt.AlignmentFlag.AlignRight)
         
         # Add panels to the log_findings_layout with equal width
@@ -1925,64 +1998,131 @@ class PentoraMainWindow(QMainWindow):
         
         scan_layout.addWidget(log_findings_section)
         
-        # Control buttons
+        # Control buttons with compact styling
         control_section = QWidget()
+        control_section.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+            }
+        """)
         control_layout = QHBoxLayout(control_section)
-        control_layout.setContentsMargins(0, 0, 0, 0)
+        control_layout.setContentsMargins(0, 4, 0, 4)
+        control_layout.setSpacing(10)
         
+        # Make buttons match network scanner exactly
         self.start_button = QPushButton("Start Scan")
-        self.start_button.setObjectName("primary")
+        # Copy style from network_start_button
+        self.start_button.setStyleSheet("""
+            QPushButton {
+                background-color: #6200EA;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 6px;
+                padding: 6px 12px;
+                min-width: 120px;
+            }
+            QPushButton:hover {
+                background-color: #7C4DFF;
+            }
+            QPushButton:pressed {
+                background-color: #651FFF;
+            }
+            QPushButton:disabled {
+                background-color: #424242;
+                color: #757575;
+            }
+        """)
         self.start_button.clicked.connect(self.start_scan)
         
         self.stop_button = QPushButton("Stop Scan")
-        self.stop_button.setObjectName("danger")
+        # Copy style from network_stop_button
+        self.stop_button.setStyleSheet("""
+            QPushButton {
+                background-color: #B23C17;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 6px;
+                padding: 6px 12px;
+                min-width: 120px;
+            }
+            QPushButton:hover {
+                background-color: #CF6679;
+            }
+            QPushButton:pressed {
+                background-color: #9A0007;
+            }
+            QPushButton:disabled {
+                background-color: #424242;
+                color: #757575;
+            }
+        """)
         self.stop_button.clicked.connect(self.stop_scan)
         self.stop_button.setEnabled(False)
         
+        # Add buttons to layout
         control_layout.addWidget(self.start_button)
         control_layout.addWidget(self.stop_button)
         
         scan_layout.addWidget(control_section)
+        scan_layout.addSpacing(4)
         
-        # Progress bar
+        # Progress bar with compact styling
+        progress_container = QFrame()
+        progress_container.setStyleSheet("""
+            QFrame {
+                background-color: transparent;
+                border: none;
+            }
+        """)
+        progress_layout = QVBoxLayout(progress_container)
+        progress_layout.setContentsMargins(0, 0, 0, 0)
+        progress_layout.setSpacing(2)
+        
         self.progress_bar = QProgressBar()
+        self.progress_bar.setRange(0, 100)
+        self.progress_bar.setValue(0)
+        self.progress_bar.setTextVisible(True)
+        # Match network scanner progress bar style
         self.progress_bar.setStyleSheet("""
             QProgressBar {
                 border: 1px solid #3E3E3E;
                 border-radius: 4px;
                 text-align: center;
                 background-color: #252525;
+                color: white;
             }
             QProgressBar::chunk {
-                background-color: #C6FF00;
+                background-color: #6200EA;
             }
         """)
-        self.progress_bar.setRange(0, 100)
-        self.progress_bar.setValue(0)
-        scan_layout.addWidget(self.progress_bar)
+        progress_layout.addWidget(self.progress_bar)
         
-        # Current module label
+        # Current module label with compact styling
         self.current_module_label = QLabel("Current Module: Initializing...")
-        self.current_module_label.setStyleSheet("color: #B388FF; font-weight: bold;")
-        scan_layout.addWidget(self.current_module_label)
+        self.current_module_label.setStyleSheet("color: #BB86FC; font-weight: bold; font-size: 12px; margin-top: 2px;")
+        self.current_module_label.setAlignment(Qt.AlignCenter)
+        progress_layout.addWidget(self.current_module_label)
+        
+        scan_layout.addWidget(progress_container)
         
     def setup_network_scan_tab(self, tab):
         """Setup the network scan tab"""
         network_scan_layout = QVBoxLayout(tab)
         network_scan_layout.setContentsMargins(10, 10, 10, 10)
-        network_scan_layout.setSpacing(10)
+        network_scan_layout.setSpacing(4)  # Reduce overall spacing between elements
         
-        # Network target input section
+        # Network target input section with compact styling
         network_target_section = QFrame()
         network_target_section.setStyleSheet("""
             QFrame {
-                background-color: #252525;
-                border-radius: 4px;
-                border: 1px solid #3E3E3E;
+                background-color: transparent;
+                border: none;
             }
         """)
         network_target_layout = QHBoxLayout(network_target_section)
-        network_target_layout.setContentsMargins(10, 10, 10, 10)
+        network_target_layout.setContentsMargins(0, 0, 0, 0)
         
         network_target_label = QLabel("Network Target:")
         self.network_target_input = QLineEdit()
@@ -1993,17 +2133,18 @@ class PentoraMainWindow(QMainWindow):
         
         network_scan_layout.addWidget(network_target_section)
         
-        # Network options section
+        # Network options section with compact styling
         network_options_section = QFrame()
         network_options_section.setStyleSheet("""
             QFrame {
-                background-color: #252525;
-                border-radius: 4px;
-                border: 1px solid #3E3E3E;
+                background-color: transparent;
+                border: none;
             }
         """)
         network_options_layout = QGridLayout(network_options_section)
-        network_options_layout.setContentsMargins(10, 10, 10, 10)
+        network_options_layout.setContentsMargins(0, 0, 0, 0)
+        network_options_layout.setVerticalSpacing(8)
+        network_options_layout.setHorizontalSpacing(10)
         
         # Network port range
         network_port_label = QLabel("Port Range:")
@@ -2073,172 +2214,131 @@ class PentoraMainWindow(QMainWindow):
         
         network_scan_layout.addWidget(network_options_section)
         
-        # Network log and findings section - side by side
+        # Network log and findings section - side by side with compact styling
         network_log_findings_section = QFrame()
         network_log_findings_section.setStyleSheet("""
             QFrame {
-                background-color: #252525;
-                border-radius: 4px;
-                border: 1px solid #3E3E3E;
-                padding-top: 5px;
+                background-color: transparent;
+                border: none;
+                padding-top: 0px;
             }
         """)
         network_log_findings_layout = QHBoxLayout(network_log_findings_section)
-        network_log_findings_layout.setContentsMargins(10, 15, 10, 10)
-        network_log_findings_layout.setSpacing(15)
+        network_log_findings_layout.setContentsMargins(0, 0, 0, 0)
+        network_log_findings_layout.setSpacing(10)
         
-        # Network log panel (left side)
+        # Network log panel (left side) with compact styling
         network_log_panel = QGroupBox()
         network_log_panel.setStyleSheet("""
             QGroupBox {
-                background-color: #252525;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                margin-top: 30px;
-                padding-top: 30px;
+                background-color: transparent;
+                border: none;
+                margin-top: 20px;
+                padding-top: 20px;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
                 subcontrol-position: top center;
-                padding: 0 15px;
-                color: #B388FF;
+                padding: 0 8px;
+                color: #BB86FC;
                 font-weight: bold;
-                background-color: #252525;
+                background-color: transparent;
                 font-size: 14px;
-                top: 10px;
+                top: 0px;
             }
         """)
-        network_log_panel.setTitle("Network Scan Log")  # Set title after styling
+        network_log_panel.setTitle("Network Scan Log")
         
         network_log_panel_layout = QVBoxLayout(network_log_panel)
-        network_log_panel_layout.setContentsMargins(5, 10, 5, 5)
-        network_log_panel_layout.setSpacing(5)
+        network_log_panel_layout.setContentsMargins(0, 8, 0, 0)
+        network_log_panel_layout.setSpacing(4)
         
         self.network_status_display = QTextEdit()
         self.network_status_display.setReadOnly(True)
         self.network_status_display.setStyleSheet("""
             QTextEdit {
-                background-color: #252525;
-                color: #CCCCCC;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                padding: 5px;
-                font-family: Menlo, Monaco, monospace;
+                background-color: #212121;
+                color: #E0E0E0;
+                border: none;
+                border-radius: 6px;
+                padding: 8px;
+                font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', 'Menlo', 'Consolas', monospace;
                 font-size: 10pt;
             }
         """)
-        self.network_status_display.setMinimumHeight(300)
+        self.network_status_display.setMinimumHeight(150)
+        self.network_status_display.setMaximumHeight(150)
         network_log_panel_layout.addWidget(self.network_status_display)
         
-        # Add clear network log button
+        # Add clear network log button with compact styling
         clear_network_log_button = QPushButton("Clear Log")
         clear_network_log_button.clicked.connect(self.clear_network_log)
-        clear_network_log_button.setStyleSheet("""
-            QPushButton {
-                background-color: #424242;
-                color: #CCCCCC;
-                border: none;
-                border-radius: 4px;
-                padding: 6px 12px;
-            }
-            QPushButton:hover {
-                background-color: #616161;
-            }
-            QPushButton:pressed {
-                background-color: #757575;
-            }
-        """)
-        clear_network_log_button.setMaximumWidth(120)
+        clear_network_log_button.setMinimumHeight(28)
+        clear_network_log_button.setMaximumWidth(100)
         
-        # Add hide logs button
+        # Add hide logs button with compact styling
         hide_network_logs_button = QPushButton("Hide Logs")
         hide_network_logs_button.clicked.connect(self.toggle_network_log_visibility)
-        hide_network_logs_button.setStyleSheet("""
-            QPushButton {
-                background-color: #424242;
-                color: #CCCCCC;
-                border: none;
-                border-radius: 4px;
-                padding: 6px 12px;
-            }
-            QPushButton:hover {
-                background-color: #616161;
-            }
-            QPushButton:pressed {
-                background-color: #757575;
-            }
-        """)
-        hide_network_logs_button.setMaximumWidth(120)
+        hide_network_logs_button.setMinimumHeight(28)
+        hide_network_logs_button.setMaximumWidth(100)
         
-        # Create a horizontal layout for the buttons
+        # Create a horizontal layout for the buttons with compact spacing
         network_log_buttons_layout = QHBoxLayout()
+        network_log_buttons_layout.setContentsMargins(0, 4, 0, 0)
+        network_log_buttons_layout.setSpacing(8)
         network_log_buttons_layout.addWidget(clear_network_log_button)
         network_log_buttons_layout.addWidget(hide_network_logs_button)
         network_log_buttons_layout.addStretch()
         network_log_panel_layout.addLayout(network_log_buttons_layout)
         
-        # Network findings panel (right side)
-        network_findings_panel = QGroupBox()  # Create without title initially
+        # Network findings panel (right side) with consistent styling
+        network_findings_panel = QGroupBox()
         network_findings_panel.setStyleSheet("""
             QGroupBox {
-                background-color: #252525;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                margin-top: 30px;
-                padding-top: 30px;
+                background-color: transparent;
+                border: none;
+                margin-top: 20px;
+                padding-top: 20px;
             }
             QGroupBox::title {
                 subcontrol-origin: margin;
                 subcontrol-position: top center;
-                padding: 0 15px;
-                color: #C6FF00;
+                padding: 0 8px;
+                color: #CF6679;
                 font-weight: bold;
-                background-color: #252525;
+                background-color: transparent;
                 font-size: 14px;
-                top: 10px;
+                top: 0px;
             }
         """)
-        network_findings_panel.setTitle("Network Vulnerability Findings")  # Set title after styling
+        network_findings_panel.setTitle("Network Vulnerability Findings")
         
         network_findings_panel_layout = QVBoxLayout(network_findings_panel)
-        network_findings_panel_layout.setContentsMargins(5, 10, 5, 5)
-        network_findings_panel_layout.setSpacing(5)
+        network_findings_panel_layout.setContentsMargins(0, 8, 0, 0)
+        network_findings_panel_layout.setSpacing(4)
         
         self.network_findings_display = QTextEdit()
         self.network_findings_display.setReadOnly(True)
         self.network_findings_display.setStyleSheet("""
             QTextEdit {
-                background-color: #252525;
-                color: #CCCCCC;
-                border: 1px solid #3E3E3E;
-                border-radius: 4px;
-                padding: 5px;
-                font-family: Menlo, Monaco, monospace;
+                background-color: #212121;
+                color: #E0E0E0;
+                border: none;
+                border-radius: 6px;
+                padding: 8px;
+                font-family: 'Segoe UI', 'SF Pro Display', 'Roboto', 'Menlo', 'Consolas', monospace;
                 font-size: 10pt;
             }
         """)
-        self.network_findings_display.setMinimumHeight(300)
+        self.network_findings_display.setMinimumHeight(150)
+        self.network_findings_display.setMaximumHeight(150)
         network_findings_panel_layout.addWidget(self.network_findings_display)
         
-        # Add clear network findings button
+        # Add clear network findings button with compact styling
         clear_network_findings_button = QPushButton("Clear Findings")
         clear_network_findings_button.clicked.connect(self.clear_network_findings)
-        clear_network_findings_button.setStyleSheet("""
-            QPushButton {
-                background-color: #424242;
-                color: #CCCCCC;
-                border: none;
-                border-radius: 4px;
-                padding: 6px 12px;
-            }
-            QPushButton:hover {
-                background-color: #616161;
-            }
-            QPushButton:pressed {
-                background-color: #757575;
-            }
-        """)
-        clear_network_findings_button.setMaximumWidth(120)
+        clear_network_findings_button.setMinimumHeight(28)
+        clear_network_findings_button.setMaximumWidth(100)
         network_findings_panel_layout.addWidget(clear_network_findings_button, alignment=Qt.AlignmentFlag.AlignRight)
         
         # Add panels to the network_log_findings_layout with equal width
@@ -2247,17 +2347,58 @@ class PentoraMainWindow(QMainWindow):
         
         network_scan_layout.addWidget(network_log_findings_section)
         
-        # Network control buttons
+        # Network control buttons with explicit styling
         network_control_section = QWidget()
         network_control_layout = QHBoxLayout(network_control_section)
-        network_control_layout.setContentsMargins(0, 0, 0, 0)
+        network_control_layout.setContentsMargins(0, 4, 0, 4)
+        network_control_layout.setSpacing(10)
         
         self.network_start_button = QPushButton("Start Network Scan")
-        self.network_start_button.setObjectName("primary")
+        self.network_start_button.setStyleSheet("""
+            QPushButton {
+                background-color: #6200EA;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 6px;
+            }
+            QPushButton:hover {
+                background-color: #7C4DFF;
+            }
+            QPushButton:pressed {
+                background-color: #651FFF;
+            }
+            QPushButton:disabled {
+                background-color: #424242;
+                color: #757575;
+            }
+        """)
+        self.network_start_button.setMinimumHeight(36)
+        self.network_start_button.setFont(QFont("Segoe UI", 11, QFont.Bold))
         self.network_start_button.clicked.connect(self.start_network_scan)
         
-        self.network_stop_button = QPushButton("Stop Network Scan")
-        self.network_stop_button.setObjectName("danger")
+        self.network_stop_button = QPushButton("Stop Network Scan") 
+        self.network_stop_button.setStyleSheet("""
+            QPushButton {
+                background-color: #B23C17;
+                color: white;
+                font-weight: bold;
+                border: none;
+                border-radius: 6px;
+            }
+            QPushButton:hover {
+                background-color: #CF6679;
+            }
+            QPushButton:pressed {
+                background-color: #9A0007;
+            }
+            QPushButton:disabled {
+                background-color: #424242;
+                color: #757575;
+            }
+        """)
+        self.network_stop_button.setMinimumHeight(36)
+        self.network_stop_button.setFont(QFont("Segoe UI", 11, QFont.Bold))
         self.network_stop_button.clicked.connect(self.stop_network_scan)
         self.network_stop_button.setEnabled(False)
         
@@ -2274,9 +2415,10 @@ class PentoraMainWindow(QMainWindow):
                 border-radius: 4px;
                 text-align: center;
                 background-color: #252525;
+                color: white;
             }
             QProgressBar::chunk {
-                background-color: #C6FF00;
+                background-color: #6200EA;
             }
         """)
         self.network_progress_bar.setRange(0, 100)
