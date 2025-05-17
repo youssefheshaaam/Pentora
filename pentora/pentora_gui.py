@@ -1132,6 +1132,176 @@ class NetworkModuleSelectionDialog(QDialog):
         return selected_modules
 
 
+class SideNavPanel(QWidget):
+    """Side navigation panel with collapsible items"""
+    
+    item_clicked = pyqtSignal(int)  # Signal emitted when an item is clicked
+    
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.expanded = True  # Whether the panel is expanded or collapsed
+        self.items = []       # List of navigation items
+        self.item_texts = []  # Store original texts of items
+        self.selected_index = 0  # Currently selected item index
+        
+        # Set up the layout
+        self.setFixedWidth(250)  # Default expanded width
+        self.init_ui()
+    
+    def init_ui(self):
+        """Initialize the panel UI"""
+        self.layout = QVBoxLayout(self)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setSpacing(0)
+        
+        # Toggle button at the top to expand/collapse
+        self.toggle_button = QPushButton()
+        # Create explicit menu icon with unicode character instead of relying on theme
+        self.toggle_button.setText("☰")
+        self.toggle_button.setFont(QFont("Arial", 14))
+        self.toggle_button.setToolTip("Toggle Navigation Panel")
+        self.toggle_button.setStyleSheet("""
+            QPushButton {
+                background-color: #252525;
+                border: none;
+                padding: 8px;
+                text-align: center;
+                border-bottom: 1px solid #3E3E3E;
+                color: #C6FF00;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #333333;
+            }
+            QPushButton:pressed {
+                background-color: #424242;
+            }
+        """)
+        self.toggle_button.clicked.connect(self.toggle_panel)
+        
+        # Container for the nav items
+        self.items_container = QWidget()
+        self.items_layout = QVBoxLayout(self.items_container)
+        self.items_layout.setContentsMargins(0, 0, 0, 0)
+        self.items_layout.setSpacing(0)
+        self.items_layout.addStretch()  # Push items to the top
+        
+        # Add widgets to the layout
+        self.layout.addWidget(self.toggle_button)
+        self.layout.addWidget(self.items_container, 1)  # Give stretch to the container
+        
+        # Set panel styling
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #252525;
+                color: #CCCCCC;
+            }
+            #NavItemContainer {
+                background-color: #252525;
+                border: none;
+            }
+            #NavItem {
+                background-color: #252525;
+                color: #CCCCCC;
+                text-align: left;
+                padding: 12px 15px;
+                border: none;
+                border-bottom: 1px solid #3E3E3E;
+                font-size: 14px;
+            }
+            #NavItem:hover {
+                background-color: #333333;
+            }
+            #NavItemSelected {
+                background-color: #424242;
+                color: #FFFFFF;
+                text-align: left;
+                padding: 12px 15px;
+                border: none;
+                border-bottom: 1px solid #3E3E3E;
+                border-left: 4px solid #C6FF00;
+                font-size: 14px;
+            }
+            #NavItemSelected:hover {
+                background-color: #505050;
+            }
+        """)
+    
+    def add_item(self, title, icon=None):
+        """Add a navigation item to the panel
+        
+        Args:
+            title (str): The title of the navigation item
+            icon (QIcon, optional): The icon for the navigation item
+        
+        Returns:
+            int: The index of the added item
+        """
+        index = len(self.items)
+        
+        # Create the item button
+        item = QPushButton(title)
+        item.setProperty("index", index)
+        if icon:
+            item.setIcon(icon)
+            # Set a larger icon size
+            item.setIconSize(QSize(24, 24))
+        item.setObjectName("NavItem" if index != self.selected_index else "NavItemSelected")
+        
+        # Connect click signal
+        item.clicked.connect(lambda: self.on_item_clicked(index))
+        
+        # Insert before the stretch at the end
+        self.items_layout.insertWidget(self.items_layout.count() - 1, item)
+        self.items.append(item)
+        self.item_texts.append(title)  # Store original text
+        
+        return index
+    
+    def on_item_clicked(self, index):
+        """Handle item click
+        
+        Args:
+            index (int): The index of the clicked item
+        """
+        # Update selected styling
+        if 0 <= self.selected_index < len(self.items):
+            self.items[self.selected_index].setObjectName("NavItem")
+            self.items[self.selected_index].setStyleSheet("")  # Force style refresh
+        
+        self.selected_index = index
+        
+        if 0 <= index < len(self.items):
+            self.items[index].setObjectName("NavItemSelected")
+            self.items[index].setStyleSheet("")  # Force style refresh
+        
+        # Emit signal
+        self.item_clicked.emit(index)
+    
+    def toggle_panel(self):
+        """Toggle between expanded and collapsed states"""
+        self.expanded = not self.expanded
+        
+        if self.expanded:
+            self.setFixedWidth(250)  # Expanded width
+            
+            # Show text in items
+            for i, item in enumerate(self.items):
+                item.setText(self.item_texts[i])  # Restore original text
+                index = item.property("index")
+                item.setObjectName("NavItem" if index != self.selected_index else "NavItemSelected")
+                item.setStyleSheet("")  # Force style refresh
+        else:
+            self.setFixedWidth(50)  # Collapsed width - just icons
+            
+            # Hide text in items, keep icons
+            for i, item in enumerate(self.items):
+                index = item.property("index")
+                item.setObjectName("NavItem" if index != self.selected_index else "NavItemSelected")
+                item.setText("")
+                item.setToolTip(self.item_texts[i])  # Show title as tooltip
+                item.setStyleSheet("")  # Force style refresh
+
 class PentoraMainWindow(QMainWindow):
     """Main window for the Pentora application"""
     
@@ -1253,6 +1423,9 @@ class PentoraMainWindow(QMainWindow):
             QPushButton#scan_stop:pressed {
                 background-color: #7E57C2;
             }
+            QPushButton#scan_stop:pressed {
+                background-color: #7E57C2;
+            }
             QGroupBox {
                 background-color: #252525;
                 border: 1px solid #3E3E3E;
@@ -1266,27 +1439,6 @@ class PentoraMainWindow(QMainWindow):
                 padding: 0 5px;
                 color: #B388FF;
                 font-weight: bold;
-            }
-            QTabWidget::pane {
-                background-color: #252525;
-                border: none;
-                margin: 0px;
-                padding: 0px;
-            }
-            QTabBar::tab {
-                background-color: #252525;
-                color: #CCCCCC;
-                padding: 8px 12px;
-                margin-right: 2px;
-                border-top-left-radius: 4px;
-                border-top-right-radius: 4px;
-            }
-            QTabBar::tab:selected {
-                background-color: #424242;
-                border-bottom: 2px solid #C6FF00;
-            }
-            QTabBar::tab:hover:!selected {
-                background-color: #333333;
             }
             QScrollBar:vertical {
                 border: none;
@@ -1402,49 +1554,81 @@ class PentoraMainWindow(QMainWindow):
         # Add header to main layout
         main_layout.addWidget(header_widget)
         
-        # Create tab widget for different sections
-        tab_widget = QTabWidget()
-        tab_widget.setDocumentMode(True)  # More modern look
-        tab_widget.setStyleSheet("""
-            QTabWidget::pane {
-                background-color: #1E1E1E;
-                border: none;
-                margin: 0px;
-                padding: 0px;
-            }
-            QTabBar::tab {
-                background-color: #252525;
-                color: #CCCCCC;
-                padding: 8px 12px;
-                margin-right: 2px;
-                border-top-left-radius: 4px;
-                border-top-right-radius: 4px;
-            }
-            QTabBar::tab:selected {
-                background-color: #424242;
-                border-bottom: 2px solid #C6FF00;
-            }
-            QTabBar::tab:hover:!selected {
-                background-color: #333333;
-            }
-        """)
+        # Create main content layout (horizontal layout for side nav + content)
+        content_layout = QHBoxLayout()
+        content_layout.setContentsMargins(0, 0, 0, 0)
+        content_layout.setSpacing(10)
         
-        # Create scan tab
-        scan_tab = QWidget()
-        self.setup_scan_tab(scan_tab)
-        tab_widget.addTab(scan_tab, "Web Scan")
+        # Create side navigation panel
+        self.side_nav = SideNavPanel()
         
-        # Create network scan tab
-        network_scan_tab = QWidget()
-        self.setup_network_scan_tab(network_scan_tab)
-        tab_widget.addTab(network_scan_tab, "Network Scan")
+        # Function to create a button icon, either from an image file or using a Unicode fallback
+        def create_icon(image_path, fallback_unicode):
+            if os.path.exists(image_path):
+                return QIcon(image_path)
+            else:
+                # Create a custom icon directly with QPainter for better transparency
+                pixmap = QPixmap(32, 32)
+                pixmap.fill(Qt.transparent)
+                
+                painter = QPainter(pixmap)
+                painter.setRenderHint(QPainter.Antialiasing, True)
+                painter.setPen(QColor("#C6FF00"))  # Set text color to match theme
+                
+                # Use a nice font for the emoji
+                font = QFont("Segoe UI Emoji", 16)  # Windows emoji font, falls back gracefully on other systems
+                painter.setFont(font)
+                
+                # Draw text centered on the pixmap
+                painter.drawText(pixmap.rect(), Qt.AlignCenter, fallback_unicode)
+                painter.end()
+                
+                return QIcon(pixmap)
         
-        # Create about tab
-        about_tab = QWidget()
-        self.setup_about_tab(about_tab)
-        tab_widget.addTab(about_tab, "About")
+        # Create web scan icon
+        web_icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "images", "web_scan.png")
+        web_scan_icon = create_icon(web_icon_path, "⚔")
         
-        main_layout.addWidget(tab_widget)
+        # Create network scan icon
+        network_icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "images", "network_scan.png")
+        network_scan_icon = create_icon(network_icon_path, "⚡")
+        
+        # Create about icon
+        about_icon_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources", "images", "about.png")
+        about_icon = create_icon(about_icon_path, "ⓘ")
+        
+        # Add navigation items
+        self.side_nav.add_item("Web Scan", web_scan_icon)
+        self.side_nav.add_item("Network Scan", network_scan_icon)
+        self.side_nav.add_item("About", about_icon)
+        
+        # Create stacked widget for content
+        self.content_stack = QStackedWidget()
+        
+        # Create web scan page
+        web_scan_page = QWidget()
+        self.create_scan_page(web_scan_page)
+        self.content_stack.addWidget(web_scan_page)
+        
+        # Create network scan page
+        network_scan_page = QWidget()
+        self.create_network_scan_page(network_scan_page)
+        self.content_stack.addWidget(network_scan_page)
+        
+        # Create about page
+        about_page = QWidget()
+        self.create_about_page(about_page)
+        self.content_stack.addWidget(about_page)
+        
+        # Connect side nav to content stack
+        self.side_nav.item_clicked.connect(self.content_stack.setCurrentIndex)
+        
+        # Add side nav and content stack to content layout
+        content_layout.addWidget(self.side_nav)
+        content_layout.addWidget(self.content_stack, 1)  # Give content stack stretch
+        
+        # Add content layout to main layout
+        main_layout.addLayout(content_layout, 1)  # Give content layout stretch
         
     def setup_scan_tab(self, tab):
         """Setup the scan tab"""
@@ -3211,6 +3395,21 @@ class PentoraMainWindow(QMainWindow):
 
         # Start the event loop to wait for signals
         loop.exec_()
+
+    def create_scan_page(self, page):
+        """Create the web scan page content"""
+        # We can reuse the same implementation as the tab setup
+        self.setup_scan_tab(page)
+        
+    def create_network_scan_page(self, page):
+        """Create the network scan page content"""
+        # We can reuse the same implementation as the tab setup
+        self.setup_network_scan_tab(page)
+        
+    def create_about_page(self, page):
+        """Create the about page content"""
+        # We can reuse the same implementation as the tab setup
+        self.setup_about_tab(page)
 
 
 class NetworkScannerThread(QThread):
