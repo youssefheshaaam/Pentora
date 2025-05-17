@@ -1227,6 +1227,32 @@ class PentoraMainWindow(QMainWindow):
             QPushButton#danger:pressed {
                 background-color: #7E57C2;
             }
+            QPushButton#scan_start {
+                background-color: #C6FF00;
+                color: #1E1E1E;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 12px 24px;
+            }
+            QPushButton#scan_start:hover {
+                background-color: #AEEA00;
+            }
+            QPushButton#scan_start:pressed {
+                background-color: #9CCC65;
+            }
+            QPushButton#scan_stop {
+                background-color: #B388FF;
+                color: #1E1E1E;
+                font-weight: bold;
+                font-size: 14px;
+                padding: 12px 24px;
+            }
+            QPushButton#scan_stop:hover {
+                background-color: #9575CD;
+            }
+            QPushButton#scan_stop:pressed {
+                background-color: #7E57C2;
+            }
             QGroupBox {
                 background-color: #252525;
                 border: 1px solid #3E3E3E;

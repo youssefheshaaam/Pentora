@@ -18,7 +18,7 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='repla
 # Add the current directory to the path to import pentora module
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from pentora.pentora_gui_auth import main
+from pentora.auth_system import main
 
 if __name__ == "__main__":
     main() 

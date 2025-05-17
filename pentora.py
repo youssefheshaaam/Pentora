@@ -19,7 +19,7 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8', errors='repla
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 # Import the authenticated version of the GUI
-from pentora.pentora_gui_auth import main
+from pentora.auth_system import main
 
 if __name__ == "__main__":
     main()
