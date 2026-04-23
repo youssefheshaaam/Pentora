@@ -1,0 +1,65 @@
+# Database configuration backup file
+# SENSITIVE INFORMATION INCLUDED
+
+# Development environment
+development:
+  adapter: mysql2
+  encoding: utf8
+  database: vulnerable_app_dev
+  username: devuser
+  password: DevPassword123!
+  host: localhost
+  port: 3306
+  pool: 5
+  timeout: 5000
+
+# Test environment
+test:
+  adapter: mysql2
+  encoding: utf8
+  database: vulnerable_app_test
+  username: testuser
+  password: TestPassword456!
+  host: localhost
+  port: 3306
+  pool: 5
+  timeout: 5000
+
+# Production environment
+production:
+  adapter: mysql2
+  encoding: utf8
+  database: vulnerable_app_prod
+  username: produser
+  password: Pr0duct10nP@ssw0rd!
+  host: db.example.com
+  port: 3306
+  pool: 10
+  timeout: 5000
+  
+# Staging environment
+staging:
+  adapter: mysql2
+  encoding: utf8
+  database: vulnerable_app_staging
+  username: staginguser
+  password: St@g1ngP@ss!
+  host: staging-db.example.com
+  port: 3306
+  pool: 5
+  timeout: 5000
+
+# Redis configuration
+redis:
+  host: redis.example.com
+  port: 6379
+  password: R3d1sP@ssw0rd!
+
+# MongoDB configuration
+mongodb:
+  host: mongo.example.com
+  port: 27017
+  database: vulnerable_app
+  username: mongouser
+  password: M0ng0P@ssw0rd!
+  authentication_database: admin
